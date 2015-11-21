@@ -35,6 +35,15 @@
 			inform.style.display="block";
 		}
 	}
+	function submitAcount()
+	{
+		var form=document.getElementById("RegForm");
+		var username=form.username.value;
+		var password=form.password.value;
+		var confirmpass=form.confirmpass.value;
+		var phone=form.phone.value;
+		alert(username+" "+password+" "+confirmpass+" "+inform_phone);
+	}
 
 </script>
 </head>
@@ -79,7 +88,7 @@
 							<span class="inform" id="inform_phone" style="display:none">手机号码不能为空</span>
 						</div>
 						<div class="form-group">
-							<input class="form-control btn btn-success " type="submit" id="regsubmit" value="注册"/>
+							<input class="form-control btn btn-success " type="submit" id="regsubmit" value="注册" onClick="submitAcount()"/>
 						</div>
 					</form>
 				</div>
