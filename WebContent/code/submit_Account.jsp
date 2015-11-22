@@ -2,10 +2,13 @@
 <%@page import="com.takeaway.customer_Info"%>
 <%
 	String username = request.getParameter("username");
+	username=username.trim();
 	String password = request.getParameter("password");
+	password=password.trim();
 	//String name = request.getParameter("name");
 	String phone = request.getParameter("phone");
-	System.out.println(username+password+phone);
+	phone=phone.trim();
+	//System.out.println(username+password+phone);
 	customer_Info info = new customer_Info(username,password,phone);
 	customer_Bean bean = new customer_Bean();
 	boolean result = bean.insert_Info(info);
