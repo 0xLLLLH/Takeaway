@@ -1,3 +1,5 @@
+<%@page import="java.sql.*"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,7 +13,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/signin.css" rel="stylesheet">
+<link href="css/signup.css" rel="stylesheet">
 <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,10 +21,12 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script charset="utf-8" src="js/ajax.js"></script>
 <title>Login Page</title>
 <script type="text/javascript">
-	function getFocus(inform){
-		inform.style.display="none";
+	function getFocus(inform1,inform2){
+		inform1.style.display="none";
+		inform2.style.display="none";
 	}
 	function loseFocus(txt,inform){
 		if (txt.value==""){
@@ -35,16 +39,77 @@
 			inform.style.display="block";
 		}
 	}
-	function submitAcount()
+	function checkAccount(txt,inform)
 	{
-		var form=document.getElementById("RegForm");
+		var username=txt.value;
+		loadXMLDoc("code/check_Account.jsp?username="+username
+				+"&timestamp="+new Date().getTime(),
+				function()
+				{
+					 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					 {
+						 var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
+						 if( result == "repeat" )
+						 {
+							 inform.style.display="block";
+						  }
+						  else
+						  {
+							  inform.style.display="none";
+						  }
+					 }
+				});
+	}
+ 	function isEnterLegal()
+	{
+ 		var form=document.getElementById("RegForm");
 		var username=form.username.value;
 		var password=form.password.value;
 		var confirmpass=form.confirmpass.value;
 		var phone=form.phone.value;
-		alert(username+" "+password+" "+confirmpass+" "+inform_phone);
+		if(username!=""&&password!=""&&confirmpass==password&&document.getElementById("inform_account_exit").style.display=="none"&&phone!="")
+		{
+			submitAccount();
+		}
+		else
+		{
+			if(username=="")
+				document.getElementById("inform_account").style.display="block";
+			if(password=="")
+				document.getElementById("inform_password").style.display="block";
+			if(confirmpass!=password)
+				document.getElementById("confirmpass").style.display="block";
+			if(phone=="")
+				document.getElementById("inform_phone").style.display="block";
+		}
+	} 
+	function submitAccount()
+	{
+	    var form=document.getElementById("RegForm");
+		var username=form.username.value;
+		var password=form.password.value;
+		var confirmpass=form.confirmpass.value;
+		var phone=form.phone.value; 
+		loadXMLDoc("code/submit_Account.jsp?username="+username
+				+"&password="+password
+				+"&phone="+phone
+				+"&timestamp="+new Date().getTime(),
+				function()
+				{
+					 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					 {
+						 var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
+						 if( result == "success" )
+						 {
+							  alert( "注册成功" );
+						  }
+						  else
+						  {
+							  alert( "注册失败" );
+						  }
+					 }
+				});
 	}
-
 </script>
 </head>
 <body>
@@ -66,8 +131,9 @@
 						<div class="form-group">
 							<span class="inform">*</span>
 							<label for="username">账号</label>
-							<input class="form-control" type="text" id="username" placeholder="用户名" onfocus="getFocus(inform_account)" onblur="loseFocus(this,inform_account)"/>
+							<input class="form-control" type="text" id="username" placeholder="用户名" onfocus="getFocus(inform_account,inform_account_exit)" onblur="loseFocus(this,inform_account);checkAccount(this,inform_account_exit)"/>
 							<span class="inform" id="inform_account" style="display:none">用户名不能为空</span>
+							<span class="inform" id="inform_account_exit" style="display:none">该用户名已存在</span>
 						</div>
 						<div class="form-group">
 							<span class="inform">*</span>
@@ -88,7 +154,7 @@
 							<span class="inform" id="inform_phone" style="display:none">手机号码不能为空</span>
 						</div>
 						<div class="form-group">
-							<input class="form-control btn btn-success " type="submit" id="regsubmit" value="注册" onClick="submitAcount()"/>
+							<input class="form-control btn btn-success " type="button" id="regsubmit" value="注册"  onclick="isEnterLegal()"/>
 						</div>
 					</form>
 				</div>
