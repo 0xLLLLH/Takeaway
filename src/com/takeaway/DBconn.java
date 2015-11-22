@@ -9,9 +9,9 @@ public class DBconn {
 		{
 			Class.forName("com.mysql.jdbc.Driver");// 加载MySql数据驱动
 			con = DriverManager.getConnection( 
-	    	    	"jdbc:mysql://localhost:3306/WMsystem",//指定数据库名称
-					"root", 
-					"JCYzt121" );// 创建数据库连接
+	    	    	"jdbc:mysql://rdse330ghf0z34axdkw4b.mysql.rds.aliyuncs.com:3306/r79njh5842o2r1s4",//指定数据库名称
+					"shuishou", 
+					"shuishou" );// 创建数据库连接
 		}
 		catch(Exception e)
 		{
