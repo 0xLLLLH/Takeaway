@@ -58,10 +58,16 @@
 							</div>
 							<form class="" id="LoginForm">
 								<div class="form-group">
-									<label for="login_username">用户名</label><input type="text" class="form-control" placehoder="用户名" id="login_username"></input>
+									<label for="login_username">用户名</label>
+									<input type="text" class="form-control" placehoder="用户名" id="login_username" onfocus="getFocus(inform_account_login,inform_account_notexit)" onblur="loseFocus(this,inform_account_login)"></input>
+                                    <span class="inform" id="inform_account_login" style="display:none">用户名不能为空</span>
+                                    <span class="inform" id="inform_account_notexit" style="display:none">该用户名尚未注册</span>								
 								</div>
 								<div class="form-group">
-									<label for="login_password">密码</label><input type="password" class="form-control" placehoder="密码" id="login_password"></input>
+									<label for="login_password">密码</label>
+									<input type="password" class="form-control" placehoder="密码" id="login_password" onfocus="getFocus(inform_password_login)" onblur="loseFocus(this,inform_password_login)"></input>
+									<span class="inform" id="inform_password_login" style="display:none">密码不能为空</span>
+									<span class="inform" id="inform_password_error" style="display:none">您输入的密码有误，请确认后重新输入</span>
 								</div>
 								<div class="form-group">
 									<div class="checkbox">
@@ -69,7 +75,7 @@
 								    </div>
 								</div>
 								<div class="form-group">
-									<input type="button" class="form-control btn btn-success" value="登录"/>
+									<input type="button" class="form-control btn btn-success" value="登录" onclick="isLoginLegal()"/>
 								</div>
 							</form>
 						</div>
