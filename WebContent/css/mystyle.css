@@ -5,14 +5,38 @@
   margin:0;
 }
 
+*{
+	font-family: Microsoft YaHei,SimHei,"Times New Roman", Times, serif;
+	line-height: 1.5em;
+}
+
 body{
 	  background-color: #fff;
 }
 
 .headerbar{
 	background-color:#27AE60;
-	margin-bottom:150px;
+	/*margin-bottom:100px;*/
 }
 .headerbar .img_header{
 	height:80px;
+}
+
+.space{
+	width: 0px;
+}
+
+.color_red{
+	color: red;	
+}
+
+.content-margin{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.shadowed{
+	border:1px solid #d5d5d5;
+	box-shadow:0px 1px 11px #999;
+	border-radius: 5px;
 }
