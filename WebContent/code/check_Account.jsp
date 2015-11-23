@@ -1,6 +1,7 @@
 <%@page import="com.takeaway.customer_Bean"%>
 <%
 	String username = request.getParameter("username");
+	username=username.trim();
 	if(username=="")
 	{
 		response.setContentType("text/xml; charset=UTF-8");  
