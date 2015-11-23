@@ -1,14 +1,5 @@
 @CHARSET "UTF-8";
 
-* {
-  padding:0;
-  margin:0;
-}
-
-body{
-	  background-color: #fff;
-}
-
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -43,13 +34,7 @@ body{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.homepage{
-	margin:60px 100px;
-	
-}
-.homepage .img_header{
-	height:80px;
-}
+
 .inform{
 	color:#f00;
 }
@@ -57,4 +42,24 @@ body{
 .txt{
 	font-size:1.5em;
 	font-family:SimHei;
+}
+
+.login-regiseter{
+	border-radius:5px;
+	border:1px solid #d5d5d5;
+	box-shadow:0px 1px 11px #999;
+}
+
+.login-img{
+	width:140px;
+	height:140px;
+}
+
+#logintab,#regtab{
+	padding: 10px 20px;
+	text-align: center;
+}
+
+hr{
+	width: 0px;
 }
