@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+* {
+  padding:0;
+  margin:0;
+}
+
+body{
+	  background-color: #fff;
+}
+
+.headerbar{
+	background-color:#27AE60;
+	margin-bottom:150px;
+}
+.headerbar .img_header{
+	height:80px;
+}
