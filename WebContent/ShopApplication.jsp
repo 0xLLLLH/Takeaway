@@ -21,28 +21,74 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<title>成为商家</title>
+<title>商家入驻</title>
 </head>
 <body>
-	<div class="headerbar">
-		<img class="img_header" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg">
-	</div>
-	<div class="container">
+	<%@ include file='Header.jsp' %>
+	<div class="container content-margin">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2 bordered">
-				<form class="form-horizontal ">
+			<div class="col-md-10 col-md-offset-1 shadowed">
+				<hr class="space">
+				<form class="form-horizontal">
 					<div class="form-group">
-						<div class="col-md-2"><label for="shop_name">店铺名称</label></div>
-						<div class="col-md-8"><input type="text" id="shop_name" class="form-control" placehoder="填写您的店铺名称"></div>
+						<div class="col-md-2 col-md-offset-1"><label for="shop_name"><span class="color_red">*</span>店铺名称</label></div>
+						<div class="col-md-8"><input type="text" id="shop_name" class="form-control" placeholder="填写您的店铺名称"></div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-1"><label><span class="color_red">*</span>经营品类</label></div>
+						<div class="col-md-4"><select class="form-control"></select></div>
+						<div class="col-md-4"><select class="form-control"></select></div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-1"><label for="shop_address"><span class="color_red">*</span>详细地址</label></div>
+						<div class="col-md-8"><input type="text" id="shop_address" class="form-control" placeholder="填写您的详细地址"></div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-1"><label><span class="color_red">*</span>地理位置</label></div>
+						<div class="col-md-1"><label for="longitude">经度</label></div>
+						<div class="col-md-3"><input id="longitude" type="text" class="form-control" placeholder="经度"></div>
+						<div class="col-md-1"><label for="latitude">纬度</label></div>
+						<div class="col-md-3"><input id="latitude" type="text" class="form-control" placeholder="纬度"></div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-1"><label for="shop_description">&nbsp;店铺介绍</label></div>
+						<div class="col-md-8"><textarea id="shop_description" class="form-control" placeholder="用简单的几句话介绍一下您的店铺吧"></textarea></div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-1"><label for="shop_owner"><span class="color_red">*</span>联系人</label></div>
+						<div class="col-md-8"><input type="text" id="shop_owner" class="form-control" placeholder="您的姓名"></div>
 					</div>
 					<div class="form-group">
-						<label>经营品类</label><select class="form-control"></select><select class="form-control"></select>
+						<div class="col-md-8 col-md-offset-3"><span class="color_red">请如实填写您的信息，我们不会将您的信息透漏给任何第三方</span></div>
 					</div>
+					<hr class="space">
 					<div class="form-group">
-						<label for="shop_address">详细地址</label><input type="text" id="shop_address" class="form-control" placehoder="填写您的详细地址">
+						<div class="col-md-2 col-md-offset-1"><label for="shop_phone"><span class="color_red">*</span>联系电话</label></div>
+						<div class="col-md-8"><input type="text" id="shop_phone" class="form-control" placeholder="填写您的联系电话"></div>
 					</div>
-					
-					
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-1"><label for="shop_license"><span class="color_red">*</span>营业许可证号</label></div>
+						<div class="col-md-8"><input type="text" id="shop_license" class="form-control" placeholder="填写您的营业许可证号"></div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-2 col-md-offset-3">
+							<input type="button" class="form-control btn btn-success" value="提交申请">
+						</div>
+						<div class="col-md-2">
+							<input type="button" class="form-control btn btn-default" value="返回">
+						</div>
+					</div>
+					<hr class="space">
+					<div class="form-group">
+						<div class="col-md-8 col-md-offset-3"><span class="color_red">填写的过程中有疑问您可以联系客服人员获得帮助<br>客服电话：400-233-3333</span></div>
+					</div>
 				</form>
 			</div>
 		</div>

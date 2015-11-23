@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
-.bordered{
-	border:2px solid #eee;
+label{
+	font-size: 1.3em;
+	color: #555;
 }
