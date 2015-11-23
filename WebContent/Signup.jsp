@@ -65,7 +65,7 @@
 								</div>
 								<div class="form-group">
 									<label for="login_password">密码</label>
-									<input type="password" class="form-control" placehoder="密码" id="login_password" onfocus="getFocus(inform_password_login)" onblur="loseFocus(this,inform_password_login)"></input>
+									<input type="password" class="form-control" placehoder="密码" id="login_password" onfocus="getFocus(inform_password_login,inform_password_error)" onblur="loseFocus(this,inform_password_login)"></input>
 									<span class="inform" id="inform_password_login" style="display:none">密码不能为空</span>
 									<span class="inform" id="inform_password_error" style="display:none">您输入的密码有误，请确认后重新输入</span>
 								</div>
