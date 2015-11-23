@@ -28,10 +28,8 @@
 <title>登录|注册</title>
 </head>
 <body>
-	<div class="headerbar">
-		<img class="img_header" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg">
-	</div>
-	<div class="container">
+	<%@ include file='Header.jsp' %>
+	<div class="container content-margin">
 	<div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<div class="row">
