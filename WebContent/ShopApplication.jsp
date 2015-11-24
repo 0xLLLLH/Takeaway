@@ -21,6 +21,7 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<script charset="utf-8" src="js/shopapplication.js"></script>
 <title>商家入驻</title>
 </head>
 <body>
@@ -32,7 +33,16 @@
 				<form class="form-horizontal">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_name"><span class="color_red">*</span>店铺名称</label></div>
-						<div class="col-md-8"><input type="text" id="shop_name" class="form-control" placeholder="填写您的店铺名称"></div>
+						<div class="col-md-8"><input type="text" id="shop_name" class="form-control" onclick="getFocus(alert_shopname,alert_shopname)" onblur="loseFocus(this,alert_shopname)" placeholder="填写您的店铺名称"></div>
+					</div>
+					<div class="form-group" id="alert_shopname" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								店铺名称不能为空
+							</div>
+						</div>
 					</div>
 					<hr class="space">
 					<div class="form-group">
@@ -43,15 +53,33 @@
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_address"><span class="color_red">*</span>详细地址</label></div>
-						<div class="col-md-8"><input type="text" id="shop_address" class="form-control" placeholder="填写您的详细地址"></div>
+						<div class="col-md-8"><input type="text" id="shop_address" class="form-control"onclick="getFocus(alert_shopaddress,alert_shopaddress)" onblur="loseFocus(this,alert_shopaddress)" placeholder="填写您的详细地址"></div>
+					</div>
+					<div class="form-group" id="alert_shopaddress" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								详细地址不能为空
+							</div>
+						</div>
 					</div>
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label><span class="color_red">*</span>地理位置</label></div>
 						<div class="col-md-1"><label for="longitude">经度</label></div>
-						<div class="col-md-3"><input id="longitude" type="text" class="form-control" placeholder="经度"></div>
+						<div class="col-md-3"><input id="longitude" type="text" class="form-control" onclick="getFocus(alert_shopplace,alert_shopplace)" onblur="loseFocus(this,alert_shopplace)" placeholder="经度"></div>
 						<div class="col-md-1"><label for="latitude">纬度</label></div>
-						<div class="col-md-3"><input id="latitude" type="text" class="form-control" placeholder="纬度"></div>
+						<div class="col-md-3"><input id="latitude" type="text" class="form-control" onclick="getFocus(alert_shopplace,alert_shopplace)" onblur="loseFocus(this,alert_shopplace)" placeholder="纬度"></div>
+					</div>
+					<div class="form-group" id="alert_shopplace" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								地理位置不能为空
+							</div>
+						</div>
 					</div>
 					<hr class="space">
 					<div class="form-group">
@@ -61,7 +89,16 @@
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_owner"><span class="color_red">*</span>联系人</label></div>
-						<div class="col-md-8"><input type="text" id="shop_owner" class="form-control" placeholder="您的姓名"></div>
+						<div class="col-md-8"><input type="text" id="shop_owner" class="form-control" onclick="getFocus(alert_shopowner,alert_shopowner)" onblur="loseFocus(this,alert_shopowner)" placeholder="您的姓名"></div>
+					</div>
+					<div class="form-group" id="alert_shopowner" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								联系人姓名不能为空
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-8 col-md-offset-3"><span class="color_red">请如实填写您的信息，我们不会将您的信息透漏给任何第三方</span></div>
@@ -69,12 +106,30 @@
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_phone"><span class="color_red">*</span>联系电话</label></div>
-						<div class="col-md-8"><input type="text" id="shop_phone" class="form-control" placeholder="填写您的联系电话"></div>
+						<div class="col-md-8"><input type="text" id="shop_phone" class="form-control" onclick="getFocus(alert_shopphone,alert_shopphone)" onblur="loseFocus(this,alert_shopphone)" placeholder="填写您的联系电话"></div>
+					</div>
+					<div class="form-group" id="alert_shopphone" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								联系电话不能为空
+							</div>
+						</div>
 					</div>
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_license"><span class="color_red">*</span>营业许可证号</label></div>
-						<div class="col-md-8"><input type="text" id="shop_license" class="form-control" placeholder="填写您的营业许可证号"></div>
+						<div class="col-md-8"><input type="text" id="shop_license" class="form-control" onclick="getFocus(alert_shoplicense,alert_shoplicense)" onblur="loseFocus(this,alert_shoplicense)" placeholder="填写您的营业许可证号"></div>
+					</div>
+					<div class="form-group" id="alert_shoplicense" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								营业许可证不能为空
+							</div>
+						</div>
 					</div>
 					<hr class="space">
 					<div class="form-group">
@@ -93,5 +148,12 @@
 			</div>
 		</div>
 	</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
