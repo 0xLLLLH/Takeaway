@@ -21,6 +21,7 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<script charset="utf-8" src="js/ajax.js"></script>
 <script charset="utf-8" src="js/shopapplication.js"></script>
 <title>商家入驻</title>
 </head>
@@ -30,7 +31,7 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 shadowed">
 				<hr class="space">
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="ApplyForm">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_name"><span class="color_red">*</span>店铺名称</label></div>
 						<div class="col-md-8"><input type="text" id="shop_name" class="form-control" onclick="getFocus(alert_shopname,alert_shopname)" onblur="loseFocus(this,alert_shopname)" placeholder="填写您的店铺名称"></div>
@@ -47,8 +48,8 @@
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label><span class="color_red">*</span>经营品类</label></div>
-						<div class="col-md-4"><select class="form-control"></select></div>
-						<div class="col-md-4"><select class="form-control"></select></div>
+						<div class="col-md-4"><select class="form-control" id="select_first_type" onclick="show_Second_type()" ></select></div>
+						<div class="col-md-4"><select class="form-control" id="select_second_type" ></select></div>
 					</div>
 					<hr class="space">
 					<div class="form-group">
@@ -134,7 +135,7 @@
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-3">
-							<input type="button" class="form-control btn btn-success" value="提交申请">
+							<input type="button" class="form-control btn btn-success" value="提交申请" onclick="isSubmitLegal()">
 						</div>
 						<div class="col-md-2">
 							<input type="button" class="form-control btn btn-default" value="返回">
