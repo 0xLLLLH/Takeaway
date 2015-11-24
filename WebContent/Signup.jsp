@@ -58,14 +58,38 @@
 								<div class="form-group">
 									<label for="login_username">用户名</label>
 									<input type="text" class="form-control" placehoder="用户名" id="login_username" onfocus="getFocus(inform_account_login,inform_account_notexit)" onblur="loseFocus(this,inform_account_login)"></input>
-                                    <span class="inform" id="inform_account_login" style="display:none">用户名不能为空</span>
-                                    <span class="inform" id="inform_account_notexit" style="display:none">该用户名尚未注册</span>								
+                                    <div class="inform" id="inform_account_login" style="display:none">
+                                    	<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											用户名不能为空
+										</div>
+                                    </div>
+                                    <div class="inform" id="inform_account_notexit" style="display:none">
+                                    	<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											该用户尚未注册
+										</div>
+                                    </div>								
 								</div>
 								<div class="form-group">
 									<label for="login_password">密码</label>
 									<input type="password" class="form-control" placehoder="密码" id="login_password" onfocus="getFocus(inform_password_login,inform_password_error)" onblur="loseFocus(this,inform_password_login)"></input>
-									<span class="inform" id="inform_password_login" style="display:none">密码不能为空</span>
-									<span class="inform" id="inform_password_error" style="display:none">您输入的密码有误，请确认后重新输入</span>
+									<div class="inform" id="inform_password_login" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											密码不能为空
+										</div>
+									</div>
+									<div class="inform" id="inform_password_error" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											您输入的密码有误，请确认后重新输入
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<div class="checkbox">
@@ -83,26 +107,56 @@
 									<span class="inform">*</span>
 									<label for="username">账号</label>
 									<input class="form-control" type="text" id="username" placeholder="用户名" onfocus="getFocus(inform_account,inform_account_exit)" onblur="loseFocus(this,inform_account);checkAccount(this,inform_account_exit)"/>
-									<span class="inform" id="inform_account" style="display:none">用户名不能为空</span>
-									<span class="inform" id="inform_account_exit" style="display:none">该用户名已存在</span>
+									<div class="inform" id="inform_account" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											用户名不能为空
+										</div>
+									</div>
+									<div class="inform" id="inform_account_exit" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											该用户名已被使用
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<span class="inform">*</span>
 									<label for="password">密码</label>
 									<input class="form-control" type="password" id="password" placeholder="密码" onfocus="getFocus(inform_password)" onblur="loseFocus(this,inform_password)"/>
-									<span class="inform" id="inform_password" style="display:none">密码不能为空</span>
+									<div class="inform" id="inform_password" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											密码不能为空
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<span class="inform">*</span>
 									<label for="confirmpass">密码确认</label>
 									<input class="form-control" type="password" id="confirmpass"  placeholder="密码确认"  onfocus="getFocus(inform_check)" onblur="loseFocusCheck(this,inform_check)"/>
-									<span class="inform" id="inform_check" style="display:none">两次密码不一致</span>
+									<div class="inform" id="inform_check" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											两次密码不一致
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<span class="inform">*</span>
 									<label for="phone">手机号码</label>
 									<input class="form-control" type="text" id="phone" placeholder="手机号码"  onfocus="getFocus(inform_phone)" onblur="loseFocus(this,inform_phone)"/>
-									<span class="inform" id="inform_phone" style="display:none">手机号码不能为空</span>
+									<div class="inform" id="inform_phone" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											手机号码不能为空
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<input class="form-control btn btn-success" type="button" id="regsubmit" value="注册"  onclick="isEnterLegal()"/>
