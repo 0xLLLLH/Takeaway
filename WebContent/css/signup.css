@@ -63,3 +63,8 @@
 hr{
 	width: 0px;
 }
+
+.alert{
+	margin-top:5px;
+	padding:5px;
+}

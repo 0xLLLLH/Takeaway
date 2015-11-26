@@ -4,3 +4,12 @@ label{
 	font-size: 1.3em;
 	color: #555;
 }
+
+.alert{
+	padding:8px;
+	margin-button:5px;
+}
+
+.space{
+	margin:10px;
+}

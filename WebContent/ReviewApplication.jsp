@@ -26,21 +26,32 @@
 </head>
 <body>
 	<%@ include file='Header.jsp' %>
-	<div class="container content-margin">
+	<div class="container content">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 shadowed">
 				<hr class="space">
 				<div class="row">
-					<div class="col-md-12">
-						<form class="form-inline">
+					<div class="col-md-10 col-md-offset-1 form_div">
+						<form class="form-horizontal">
 							<div class="form-group">
-								<input type="text" class="form-control"/>
+								<div class="col-md-3">
+									<select class="form-control"></select>
+								</div>
+								<div class="col-md-3">
+									<select class="form-control"></select>
+								</div>
 							</div>
 						</form>
 					</div>
 				</div>
+				<hr/>
 				<div class="row">
-					
+					<div class="col-md-10 col-md-offset-1 ">
+						<table class="table table-striped table-hover">
+							<tr><th>#</th><th>申请日期</th><th>店铺名</th><th>经营品类</th><th>店铺的详细地址</th><th>操作</th></tr>
+							<tr><td><input type="checkbox" /></td><td>申请日期</td><td>店铺名</td><td>经营品类</td><td>店铺的详细地址</td><td><button class="btn btn-success">同意</button><button class="btn btn-default">不同意</button></td></tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

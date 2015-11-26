@@ -1,2 +1,16 @@
 @CHARSET "UTF-8";
 
+.grid {
+	font-size:1.2em;
+ 	padding-top: 10px;
+ 	padding-bottom: 10px;
+ 	background-color: #eee;
+	border: 1px solid rgba(128,128,128,.2);
+}
+
+.form_div{
+	background-color: #eee;
+	border-radius: 10px;
+	padding: 10px;
+	height: 53px;
+}
