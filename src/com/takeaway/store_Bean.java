@@ -6,6 +6,77 @@ import java.util.*;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public boolean set_application(int state)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "update "+store_Info.dataTable_application_name
+					+" set state = '"+state+"'";
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
+	public boolean submit_application(String username)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			StringBuffer sql = new StringBuffer();
+			sql.append("insert into ")
+			.append(store_Info.dataTable_application_name)
+			.append("(username,submit_time )")
+			.append("values(?,?)");
+			PreparedStatement st = conn.prepareStatement(sql.toString());
+			st.setString(1, username);
+			st.setTimestamp(2, new java.sql.Timestamp(new java.util.Date().getTime()));
+			st.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
 	public boolean submit_store_info(store_Info info)
 	{
 		conn = DBconn.GetConnection();

@@ -3,6 +3,7 @@ package com.takeaway;
 public class store_Info {
 	public static String dataTable_store_Name="store_list";
 	public static String dataTable_type_Name="category_list";
+	public static String dataTable_application_name="application_list";
 	private String username;
 	private String shop_name;
 	private String shop_address;

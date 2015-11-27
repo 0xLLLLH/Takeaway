@@ -11,6 +11,7 @@
 		boolean psrt = bean.check_Login(username, password);
 		if(psrt)
 		{
+			//session.setMaxInactiveInterval(2);设置过期时间
 			session.setAttribute("username", username);
 			response.setContentType("text/xml; charset=UTF-8");  
 	 		response.setHeader("Cache-Control","no-cache"); 

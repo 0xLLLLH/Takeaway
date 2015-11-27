@@ -15,7 +15,11 @@
 	String username = (String)session.getAttribute("username");
 	store_Bean bean = new store_Bean();
 	store_Info info = new store_Info(username,shop_name,shop_address,shop_phone,first_type,second_type,shop_owner,Double.parseDouble(longitude),Double.parseDouble(latitude),shop_license,shop_description);
-	boolean result = bean.submit_store_info(info);
+	boolean result = true;
+	if(!bean.submit_store_info(info))
+		result=false;
+	if(!bean.submit_application(username))
+		result=false;
 	response.setContentType("text/xml; charset=UTF-8");  
 	response.setHeader("Cache-Control","no-cache"); 
 	out.println("<result>");
