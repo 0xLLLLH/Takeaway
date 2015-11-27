@@ -20,8 +20,7 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-<script charset="utf-8" src="js/review.js"></script>
+
 <title>申请审核</title>
 </head>
 <body>
@@ -31,30 +30,59 @@
 			<div class="col-md-10 col-md-offset-1 shadowed">
 				<hr class="space">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1 form_div">
-						<form class="form-horizontal">
-							<div class="form-group">
-								<div class="col-md-3">
-									<select class="form-control"></select>
-								</div>
-								<div class="col-md-3">
-									<select class="form-control"></select>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<hr/>
-				<div class="row">
 					<div class="col-md-10 col-md-offset-1 ">
-						<table class="table table-striped table-hover">
-							<tr><th>#</th><th>申请日期</th><th>店铺名</th><th>经营品类</th><th>店铺的详细地址</th><th>操作</th></tr>
-							<tr><td><input type="checkbox" /></td><td>申请日期</td><td>店铺名</td><td>经营品类</td><td>店铺的详细地址</td><td><button class="btn btn-success">同意</button><button class="btn btn-default">不同意</button></td></tr>
-						</table>
+						<div class="table-responsive">
+							<table class="table table-striped table-hover table-bordered">
+								<tr><th>申请日期</th><th>店铺名</th><th>经营品类</th><th>店铺的详细地址</th><th>审核状态</th></tr>
+								<%
+								for (int i=0;i<6;i++){
+								%>
+								<tr data-toggle="modal" data-target="#detailModal" data-date="date" data-shopname="<%= i %>" data-address="address" data-type1="type1" data-type2="type2" 
+								data-description="description" data-owner="owner" data-phone="phone" data-license="license">
+									<td>申请日期</td><td><%= i %></td><td>经营品类</td><td>店铺的详细地址</td><td><span class="label label-default">未审核</span><span class="label label-success">通过</span><span class="label label-danger">未通过</span></td>
+								</tr>
+								<%
+								}
+								%>
+							</table>
+						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-5">
+						<button class="btn btn-primary">提交</button>
+					</div>
+				</div>
+				<hr class="space">
 			</div>
 		</div>
+		
+	</div>
+	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="exampleModalLabel">详细信息</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="container-fluid">
+		      	<div class="row"><div class="col-md-6"><label id="shopname"></label></div><div class="col-md-6"><label id="date"></label></div></div>
+		      	<div class="row"><div class="col-md-6"><label id="type1"></label></div><div class="col-md-6"><label id="type2"></label></div></div>
+		      	<div class="row"><div class="col-md-12"><label id="address"></label></div></div>
+		      	<div class="row"><div class="col-md-12"><label id="description"></label></div></div>
+		      	<div class="row"><div class="col-md-12"><label id="owner"></label></div></div>
+		      	<div class="row"><div class="col-md-12"><label id="phone"></label></div></div>
+		      	<div class="row"><div class="col-md-12"><label id="license"></label></div></div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-success" data-dismiss="modal">同意</button>
+	      	<button type="button" class="btn btn-danger" data-dismiss="modal">不同意</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -63,5 +91,6 @@
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	<script charset="utf-8" src="js/review.js"></script>
 </body>
 </html>
