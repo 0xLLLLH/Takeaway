@@ -19,7 +19,7 @@ body{
 	/*margin-bottom:100px;*/
 }
 .headerbar .img_header{
-	height:80px;
+	height:45px;
 }
 
 .space{
@@ -40,4 +40,17 @@ body{
 	border:1px solid #d5d5d5;
 	box-shadow:0px 1px 11px #999;
 	border-radius: 5px;
+}
+
+.footerbar{
+	position:fixed; bottom:0; left:0; width:100%;
+}
+
+.footercontent{
+	display:block;
+	text-align: center;
+}
+
+.footercontent a{
+	color: #fff;
 }
