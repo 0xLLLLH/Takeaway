@@ -1,9 +1,10 @@
 package com.takeaway;
-
+import java.util.*;
 public class store_Info {
 	public static String dataTable_store_Name="store_list";
 	public static String dataTable_type_Name="category_list";
 	public static String dataTable_application_name="application_list";
+	private int id;
 	private String username;
 	private String shop_name;
 	private String shop_address;
@@ -18,12 +19,13 @@ public class store_Info {
 	private double latitude;
 	private String shop_license;
 	private String shop_description ;
+	private Date submit_date;
 	
-	
+	public store_Info(){};
 	public store_Info(String username, String shop_name, String shop_address, String shop_phone, String first_type,
 			String second_type,  String shop_owner,
 			double longitude, double latitude, String shop_license, String shop_description) {
-		super();
+		//super();
 		this.username = username;
 		this.shop_name = shop_name;
 		this.shop_address = shop_address;
@@ -38,23 +40,19 @@ public class store_Info {
 	}
 		
 	public store_Info(String username, String shop_name, String shop_address, String shop_phone, String first_type,
-			String second_type, double price_tosend, String discount, String shop_owner, String id_card,
-			double longitude, double latitude, String shop_license, String shop_description) {
-		super();
+			String second_type,  String shop_owner,String shop_license, String shop_description,Date submit_time ,int id) {
+		//super();
 		this.username = username;
 		this.shop_name = shop_name;
 		this.shop_address = shop_address;
 		this.shop_phone = shop_phone;
 		this.first_type = first_type;
 		this.second_type = second_type;
-		this.price_tosend = price_tosend;
-		this.discount = discount;
 		this.shop_owner = shop_owner;
-		this.id_card = id_card;
-		this.longitude = longitude;
-		this.latitude = latitude;
 		this.shop_license = shop_license;
 		this.shop_description = shop_description;
+		this.submit_date=submit_time;
+		this.id=id;
 	}
 
 	public static String getDataTable_store_Name() {
@@ -152,6 +150,22 @@ public class store_Info {
 	}
 	public void setShop_description(String shop_description) {
 		this.shop_description = shop_description;
+	}
+
+	public Date getSubmit_date() {
+		return submit_date;
+	}
+
+	public void setSubmit_date(Date submit_date) {
+		this.submit_date = submit_date;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

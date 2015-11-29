@@ -3,9 +3,52 @@ package com.takeaway;
 import java.sql.*;
 import java.util.*;
 
+
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public boolean get_application_info(ArrayList<store_Info> data)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select "+store_Info.dataTable_application_name+".id,shop_name ,first_type,second_type,shop_owner,shop_address,shop_description,shop_phone,shop_license,submit_time from "
+						+store_Info.dataTable_store_Name+","+store_Info.dataTable_application_name 
+						+" where "+ store_Info.dataTable_store_Name+".username = "
+						+store_Info.dataTable_application_name+".username "
+						+" and  state='2' order by submit_time";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next())
+			{
+				store_Info elem= GetDataFromResultSet(rs);
+				data.add(elem);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
 	public boolean set_application(int state)
 	{
 		conn = DBconn.GetConnection();
@@ -85,7 +128,7 @@ public class store_Bean {
 			StringBuffer sBuffer =new StringBuffer();
 			sBuffer.append("insert into ")
 			.append(store_Info.dataTable_store_Name)
-			.append("(username , shop_name , shop_adress , shop_phone ,first_type , second_type , shop_owner ,longitude ,latitude ,shop_license ,shop_description )")
+			.append("(username , shop_name , shop_address , shop_phone ,first_type , second_type , shop_owner ,longitude ,latitude ,shop_license ,shop_description )")
 			.append(" values(?,?,?,?,?,?,?,?,?,?,?)");
 			PreparedStatement st=conn.prepareStatement(sBuffer.toString());
 			st.setString(1, info.getUsername());
@@ -206,6 +249,30 @@ public class store_Bean {
 				}
 			}
 		}
+	}
+	public store_Info GetDataFromResultSet(ResultSet rs)
+	{
+		store_Info info = new store_Info();
+		try
+		{
+			info.setId(rs.getInt("id"));
+			info.setFirst_type(rs.getString("first_type"));
+			info.setSecond_type(rs.getString("second_type"));
+			info.setShop_address(rs.getString("shop_address"));
+			info.setShop_description(rs.getString("shop_description"));
+			info.setShop_license(rs.getString("shop_license"));
+			info.setShop_name(rs.getString("shop_name"));
+			info.setShop_owner(rs.getString("shop_owner"));
+			info.setShop_phone(rs.getString("shop_phone"));
+			info.setSubmit_date(rs.getDate("submit_time"));
+			
+			
+		}
+		catch(SQLException e)
+		{
+			System.out.printf( "数据库查询失败\n" + e.getMessage()  );
+		}
+		return info;
 	}
 	/*public boolean get_secondtype(ArrayList<String> data )
 	{
