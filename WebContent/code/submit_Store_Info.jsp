@@ -3,13 +3,19 @@
 <%@page import="com.takeaway.store_Bean"%>
 <%
 	String shop_name=request.getParameter("shop_name");
+	shop_name.trim();
 	String shop_address=request.getParameter("shop_address");
+	shop_address.trim();
 	String longitude=request.getParameter("longitude");
 	String latitude=request.getParameter("latitude");
 	String shop_description=request.getParameter("shop_description");
+	shop_description.trim();
 	String shop_owner=request.getParameter("shop_owner");
+	shop_owner.trim();
 	String shop_phone=request.getParameter("shop_phone");
+	shop_phone.trim();
 	String shop_license=request.getParameter("shop_license");
+	shop_license.trim();
 	String first_type=request.getParameter("first_type");
 	String second_type=request.getParameter("second_type");
 	String username = (String)session.getAttribute("username");
