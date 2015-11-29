@@ -40,8 +40,8 @@
 				</div>
 				<div class="row">
 					<div class="col-md-2 col-md-offset-5">
-						<button class="btn btn-primary">提交</button>
-						<button class="btn btn-default">返回</button>
+						<button class="btn btn-primary" id="app_submit">提交</button>
+						<button class="btn btn-default" onclick="back()" >返回</button>
 					</div>
 				</div>
 				<hr class="space">

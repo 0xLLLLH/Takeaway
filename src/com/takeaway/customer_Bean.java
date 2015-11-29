@@ -5,6 +5,43 @@ import java.util.*;
 public class customer_Bean {
 	private Connection conn;
 	public customer_Bean(){}
+	public boolean isAdmin(String username)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select * from "+customer_Info.dataTable_Name
+					+" where username= '"+username +"' and admin_flag = '1'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+				return true;
+			else 
+				return false;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+	}
 	public boolean check_Login(String username,String password)
 	{
 		conn = DBconn.GetConnection();

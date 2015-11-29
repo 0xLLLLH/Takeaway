@@ -49,13 +49,13 @@ public class store_Bean {
 		}
 		return true;
 	}
-	public boolean set_application(int state)
+	public boolean set_application(String state,String  id)
 	{
 		conn = DBconn.GetConnection();
 		try
 		{
 			String sql = "update "+store_Info.dataTable_application_name
-					+" set state = '"+state+"'";
+					+" set state = '"+state+"' where id = '"+id+"'";
 			Statement st = conn.createStatement();
 			st.executeUpdate(sql);
 		}

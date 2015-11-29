@@ -123,11 +123,17 @@
 							  inform_username.style.display="none";
 							  inform_password.style.display="block";
 						  }
-						  else if(result== "username_exitandpassword_right")
+						  else if(result== "username_exitandpassword_right0")
 						  {
 							  inform_username.style.display="none";
 							  inform_password.style.display="none";
 							  alert("登陆成功");
+						  }
+						  else if(result=="username_exitandpassword_right1")
+						  {
+							  inform_username.style.display="none";
+							  inform_password.style.display="none";
+							  window.location.href="ReviewApplication.jsp";
 						  }
 					 }
 				});

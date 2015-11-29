@@ -13,11 +13,23 @@
 		{
 			//session.setMaxInactiveInterval(2);设置过期时间
 			session.setAttribute("username", username);
-			response.setContentType("text/xml; charset=UTF-8");  
-	 		response.setHeader("Cache-Control","no-cache"); 
-	 		out.println("<result>");
-	    	out.println( "<result_code>username_exitandpassword_right</result_code>" );
-			out.println("</result>");
+			boolean isadmin = bean.isAdmin(username);
+			if(isadmin)
+			{
+				response.setContentType("text/xml; charset=UTF-8");  
+				response.setHeader("Cache-Control","no-cache"); 
+		 		out.println("<result>");
+		    	out.println( "<result_code>username_exitandpassword_right1</result_code>" );
+		    	out.println("</result>");
+			}
+			else
+			{
+				response.setContentType("text/xml; charset=UTF-8");  
+				response.setHeader("Cache-Control","no-cache"); 
+			 	out.println("<result>");
+			   	out.println( "<result_code>username_exitandpassword_right0</result_code>" );
+				out.println("</result>");
+			}
 		}
 		else
 		{
