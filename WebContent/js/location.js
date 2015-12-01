@@ -62,18 +62,25 @@ function setPlace(){
 		map.centerAndZoom(pp, 18);
 		var marker=new BMap.Marker(pp);
 		map.addOverlay(marker);    //添加标注
+		//marker.addEventListener("click", function(){          
+			var sContent =
+				"<div style='margin:0'>"+
+				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
+				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
+				"<a href='#' role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
+				"</div";	
+			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+			marker.openInfoWindow(infoWindow);
+		//});
 		marker.addEventListener("click", function(){          
 			var sContent =
+				"<div style='margin:0'>"+
 				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
-				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'><a href='#'>查看附近商家</a></p>" + 
-				"</div>";	
+				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
+				"<a href='#' role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
+				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-			this.openInfoWindow(infoWindow);
-			//图片加载完毕重绘infowindow
-			document.getElementById('imgDemo').onload = function (){
-				infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
-				alert(e.point);
-			}
+			marker.openInfoWindow(infoWindow);
 		});
 	}
 	var local = new BMap.LocalSearch(map, { //智能搜索

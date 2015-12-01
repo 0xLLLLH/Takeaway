@@ -28,11 +28,13 @@ body{
 }
 
 .cross{
+	position:relative;
 	display:block;
 	background: url(http://xs01.meituan.net/waimai_web/img/map/cross.png) no-repeat;
 	width: 15px;
 	height:15px;
-	margin-left: 800px;
+	left: 760px;
+	top: 30px;
 }
 
 .guider .choosecity{
@@ -101,20 +103,22 @@ body{
 #r-result{
 	width: 100%;
 	margin: 100px;
+	margin-top:40px;
 	margin-bottom: 50px;
 }
 
 #r-result input[type="text"]{
+	margin-left: 20px;
 	font-size:1.5em;
 	padding: 5px;
-	width: 700px;
-	height: 60px;
+	width: 600px;
+	height: 50px;
 }
 
 #r-result input[type="button"]{
 	font-size:1.5em;
 	width: 100px;
-	height: 60px;
+	height: 50px;
 	background-color: #5cb85c;
 }
 
