@@ -84,30 +84,37 @@ $('#detailModal').on('hide.bs.modal', function(event) {
 })
 
 $("#app_submit").bind("click",function(){
-	var idstr="";
-	$("#app_table tr:gt(0)").each(function(i){
-	    if(i!=0) idstr+=",";
-	    idstr+=$(this).children("td").eq(5).text();
-	    idstr+="-";
-	    idstr+=$(this).children("td").eq(6).text();
-	    //alert($(this).html());
-	});
-	loadXMLDoc("code/review_Application.jsp?idstr="+idstr+"&timestamp="+new Date().getTime(),
-			function()
-			{
-				 if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				 {
-					 var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
-					 if(result=="true")
-					 {
-						 newApp_list();
-					 }
-					 else
-					 {
-						 alert("提交错误");
-					 }
-				 }
-			});
+	if($("#app_table").find("tr").length>1)
+	{
+		var idstr="";
+		$("#app_table tr:gt(0)").each(function(i){
+			if(i!=0) idstr+=",";
+			idstr+=$(this).children("td").eq(5).text();
+			idstr+="-";
+			idstr+=$(this).children("td").eq(6).text();
+			//alert($(this).html());
+		});
+		loadXMLDoc("code/review_Application.jsp?idstr="+idstr+"&timestamp="+new Date().getTime(),
+				function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
+						if(result=="true")
+						{
+							newApp_list();
+						}
+						else 
+						{
+							alert("提交错误");
+						}
+					}
+				});
+	}
+	else 
+	{
+		alert("你已处理完所有请求！");
+	}
 })
 function back()
 {
