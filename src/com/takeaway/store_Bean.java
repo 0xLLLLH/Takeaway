@@ -16,7 +16,7 @@ public class store_Bean {
 						+store_Info.dataTable_store_Name+","+store_Info.dataTable_application_name 
 						+" where "+ store_Info.dataTable_store_Name+".username = "
 						+store_Info.dataTable_application_name+".username "
-						+" and  state='2' order by submit_time";
+						+" and  state='2' order by submit_time limit 0,8";
 			System.out.println(sql);
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
