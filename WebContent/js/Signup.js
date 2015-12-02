@@ -79,7 +79,8 @@
 						 var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
 						 if( result == "success" )
 						 {
-							  alert( "注册成功" );
+							 // alert( "注册成功" );
+							 window.location.href="LocationSelect.jsp";
 						  }
 						  else
 						  {
@@ -127,7 +128,8 @@
 						  {
 							  inform_username.style.display="none";
 							  inform_password.style.display="none";
-							  alert("登陆成功");
+							  //alert("登陆成功");
+							  window.location.href="LocationSelect.jsp";
 						  }
 						  else if(result=="username_exitandpassword_right1")
 						  {

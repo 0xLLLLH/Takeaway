@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 
  */
 window.onload=function()
@@ -99,7 +99,8 @@ function submit_store_info()
 						 var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
 						 if(result=="true")
 						 {
-							 alert("提交成功")
+							 alert("您的申请已提交!");
+							 window.history.back(-1);
 						 }
 						 else
 						 {
@@ -108,6 +109,10 @@ function submit_store_info()
 					 }
 				});
 	 
+}
+function goBack()
+{
+	window.history.back(-1);
 }
 function isSubmitLegal()
 {

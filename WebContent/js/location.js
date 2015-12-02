@@ -1,4 +1,4 @@
-
+﻿
 //百度地图API功能
 function G(id) {
 	return document.getElementById(id);
@@ -38,23 +38,24 @@ function G(id) {
 		
 		setPlace();
 	});
-//	map.addEventListener("click",function(e){
-//		map.clearOverlays();    //清除地图上所有覆盖物
-//		map.centerAndZoom(e.point, 15);
-//		var marker = new BMap.Marker(e.point);  // 创建标注
-//		map.addOverlay(marker);               // 将标注添加到地图中
-//		marker.addEventListener("click", function(){          
-//				var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-//			   this.openInfoWindow(infoWindow);
-//			   //图片加载完毕重绘infowindow
-//			   document.getElementById('imgDemo').onload = function (){
-//				   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
-//			   alert(e.point);
-//			   }
-//			});
-//		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-//	});
-
+	//
+/*	map.addEventListener("click",function(e){
+		map.clearOverlays();    //清除地图上所有覆盖物
+		map.centerAndZoom(e.point, 15);
+		var marker = new BMap.Marker(e.point);  // 创建标注
+		map.addOverlay(marker);               // 将标注添加到地图中
+		marker.addEventListener("click", function(){          
+				var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+			   this.openInfoWindow(infoWindow);
+			   //图片加载完毕重绘infowindow
+			   document.getElementById('imgDemo').onload = function (){
+				   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+			   alert(e.point);
+			   }
+			});
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	});*/
+//
 function setPlace(){
 	map.clearOverlays();    //清除地图上所有覆盖物
 	function myFun(){
@@ -67,7 +68,7 @@ function setPlace(){
 				"<div style='margin:0'>"+
 				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
 				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
-				"<a href='#' role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
+				"<a href='Signup.jsp' role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
 				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 			marker.openInfoWindow(infoWindow);
@@ -77,7 +78,7 @@ function setPlace(){
 				"<div style='margin:0'>"+
 				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
 				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
-				"<a href='#' role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
+				"<a href='www.baidu.com'>查看附近商家</a>"+
 				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 			marker.openInfoWindow(infoWindow);
