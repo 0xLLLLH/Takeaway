@@ -93,12 +93,12 @@
 								</div>
 								<div class="form-group">
 									<div class="checkbox">
-										<label><input type="checkbox">记住密码</label>
+										<label><input type="checkbox" id="remember">记住密码</label>
 								    </div>
 								</div>
-								<div class="form-group">
+								
 									<input type="button" class="form-control btn btn-success" value="登录" onclick="isLoginLegal()"/>
-								</div>
+								
 							</form>
 						</div>
 						<div class="row tab-pane" role="tabpanel" id="RegDiv">
