@@ -1,3 +1,14 @@
+	window.onload=function()
+	{
+		var str = document.cookie;
+		if(!(str == "")){
+		var arrStr = document.cookie.split("; ");
+		var temp = arrStr[0].split("=");
+		document.getElementById("login_username").value=temp[0];
+		document.getElementById("login_password").value=temp[1];
+		LoginForm.remember.checked = true;
+		}
+	}
 	function getFocus(inform1,inform2){
 		inform1.style.display="none";
 		inform2.style.display="none";
@@ -79,7 +90,8 @@
 						 var result = xmlhttp.responseXML.getElementsByTagName( "result_code" )[0].firstChild.nodeValue;
 						 if( result == "success" )
 						 {
-							  alert( "注册成功" );
+							 // alert( "注册成功" );
+							 window.location.href="LocationSelect.jsp";
 						  }
 						  else
 						  {
@@ -105,6 +117,20 @@
 			 if(password=="") document.getElementById("inform_password_login").style.display="block";
 		 }
 	}
+	function addCookie(objName,objValue,objHours){//添加cookie
+		var str = objName + "=" + escape(objValue);
+		if(objHours > 0){//为0时不设定过期时间，浏览器关闭时cookie自动消失
+		var date = new Date();
+		var ms = objHours*3600*1000;
+		date.setTime(date.getTime() + ms);
+		str += "; expires=" + date.toGMTString();
+		}
+		document.cookie = str;
+		//alert("添加cookie成功");
+	}
+	function fun(m,n){
+		return document.forms[m].elements[n].value;
+	}
 	function  checkLogin(username,password,inform_username,inform_password)
 	{
 		loadXMLDoc("code/check_Login.jsp?username="+username
@@ -127,7 +153,25 @@
 						  {
 							  inform_username.style.display="none";
 							  inform_password.style.display="none";
-							  alert("登陆成功");
+							  //alert("登陆成功");
+							  var str = document.cookie;
+							  if(!(str == "")){
+								  var arrStr = document.cookie.split("; ");
+								  for(var i = 0;i < arrStr.length;i ++){
+								  var temp = arrStr[i].split("=");
+								  var date = new Date();
+								  date.setTime(date.getTime() - 10000);
+								  document.cookie = temp[0] + "=a; expires=" + date.toGMTString();
+							  	}
+							  }
+							  if(LoginForm.remember.checked)
+							  {
+								  var cookie_name = fun("LoginForm","login_username");
+								  var cookie_value = fun("LoginForm","login_password");
+								  addCookie(cookie_name,cookie_value,3);
+								  //alert("登陆成功");
+							  }
+							  window.location.href="LocationSelect.jsp";
 						  }
 						  else if(result=="username_exitandpassword_right1")
 						  {

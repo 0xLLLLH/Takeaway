@@ -93,7 +93,7 @@
 								</div>
 								<div class="form-group">
 									<div class="checkbox">
-										<label><input type="checkbox">记住密码</label>
+										<label><input type="checkbox" id="remember">记住密码</label>
 								    </div>
 								</div>
 								<div class="form-group">

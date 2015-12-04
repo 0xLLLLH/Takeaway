@@ -138,7 +138,7 @@
 							<input type="button" class="form-control btn btn-success" value="提交申请" onclick="isSubmitLegal()">
 						</div>
 						<div class="col-md-2">
-							<input type="button" class="form-control btn btn-default" value="返回">
+							<input type="button" class="form-control btn btn-default" value="返回" onclick="goBack()">
 						</div>
 					</div>
 					<hr class="space">
