@@ -91,15 +91,34 @@ function setPlace(){
 }
 
 function hideguider(){
-	$("#tipclose").hide();
-	$(".guider").hide();
+	$("#tipclose").fadeTo(0,0);
+	$(".guider").fadeTo(0,0);
 }
-
 function search(){
-	hideguider();
-	$("#l-map").removeClass("map-min");
-	$("#l-map").addClass("map");
-	setPlace();
+	if($("#l-map").hasClass("map"))
+	{
+		setPlace();
+	}
+	else
+	{
+		hideguider();
+		$("#r-result").animate(
+			{
+				left:"-=250px",
+				top:"-=200px"
+			},
+			1500,
+			function()
+			{
+				//alert("213");
+				//hideguider();
+				$("#l-map").removeClass("map-min");
+				$("#l-map").addClass("map");
+				$("#l-map").animate({left:"-=130px",top:"-=200px"},0);
+				setPlace();
+			}
+			)
+	}
 }
 
 function getPositionByBrowser(){
