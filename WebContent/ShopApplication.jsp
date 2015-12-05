@@ -27,6 +27,7 @@
 </head>
 <body>
 	<%@ include file='Header.jsp' %>
+	<%@ include file='isLoginTLE.jsp' %>
 	<div class="container content">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 shadowed">

@@ -11,7 +11,7 @@
 		boolean psrt = bean.check_Login(username, password);
 		if(psrt)
 		{
-			//session.setMaxInactiveInterval(2);设置过期时间
+			session.setMaxInactiveInterval(60);//设置过期时间
 			session.setAttribute("username", username);
 			boolean isadmin = bean.isAdmin(username);
 			if(isadmin)

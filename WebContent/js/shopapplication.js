@@ -114,6 +114,25 @@ function goBack()
 {
 	window.history.back(-1);
 }
+function checkApplicationRepeat()
+{
+	$.ajax({
+		url: "code/check_Application_Repeat.jsp",
+		 type:"get",
+		 dataType:"text",
+		 success: function(data)
+		 {
+			if(data.trim()=="repeat")
+			{
+				alert("请勿重复提交申请！");
+			}
+			else if(data.trim()=="norepeat")
+			{
+				submit_store_info();
+			}
+		 }
+	});
+}
 function isSubmitLegal()
 {
 	 var form=document.getElementById("ApplyForm");
@@ -128,7 +147,7 @@ function isSubmitLegal()
 	 
 	 if(shop_name!=""&&shop_address!=""&&longitude!=""&&latitude!=""&&shop_owner!=""&&shop_phone!=""&&shop_license!="")
 	 {
-		 submit_store_info();
+		 checkApplicationRepeat();  
 	 }
 	 else
 	 {

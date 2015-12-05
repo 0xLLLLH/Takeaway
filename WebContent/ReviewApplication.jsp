@@ -25,6 +25,15 @@
 </head>
 <body>
 	<%@ include file='Header.jsp' %>
+	<%      
+		String username = (String)session.getAttribute("username");
+		System.out.println(username);
+		if(username==null||!username.equals("admin"))
+		{
+			System.out.println("Lodin_outoftime");
+			request.getRequestDispatcher("Signup.jsp").forward(request, response);
+		}
+	%>
 	<div class="container content">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 shadowed">
