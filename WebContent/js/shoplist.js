@@ -3,7 +3,7 @@ $("#searchbar").headroom({
 	"offset": 205,
 	"classes": {
 		"initial": "animated",
-		"pinned": "slideInDown",
-		"unpinned": "slideInUp"
+		"pinned": "swingOutX",
+		"unpinned": "swingInX"
 	  }
 });

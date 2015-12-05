@@ -14,6 +14,7 @@
 
 <!-- Custom styles for this template -->
 <link href="css/animate.css" rel="stylesheet">
+<link href="css/normalize.css" rel="stylesheet">
 <link href="css/mystyle.css" rel="stylesheet">
 <link href="css/shoplist.css" rel="stylesheet">
 <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
@@ -28,9 +29,26 @@
 <title>附近店铺</title>
 </head>
 <body>
-	<%@ include file='Header.jsp' %>
-	<div id="searchbar">
-		
+	<div id="commonheader" class="headerbar">
+		<div class="header-content">
+			当前位置:<a href="./LocationSelect.jsp">[切换地址]</a>
+		</div>
+	</div>
+	<div id="searchbar" class="searchbar header--fixed">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-3-offset-5">
+					<form class="search-form form-inline">
+						 <div class="col-lg-6">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="搜索商家,美食">
+								<input type="button" class="input-group-addon" value="搜索"/>
+							</div><!-- /input-group -->
+						  </div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="content">
 		<hr class="space">

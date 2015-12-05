@@ -8,13 +8,40 @@ hr{
 	margin: 10px;
 }
 
-#searchbar{
-	position:fixed;
-	top:0px;
+.header-content{
+	width: 1024px;
+	margin: 0 auto;
 	height: 50px;
+}
+
+.searchbar{
+	height:50px;
 	background-color:#5cb85c;
 }
 
+.search-form{
+}
+
+.search-form input[type=text]{
+	margin-left: 20px;
+    font-size: 1.5em;
+    padding: 5px;
+    height: 40px;
+}
+.search-form input[type=button]{
+	font-size: 1.5em;
+    height: 40px;
+	width: 100px;
+    background-color: #27AE60;
+}
+
+.header--fixed {
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    left: 0;
+    top: 0;
+}
 
 .content{
 	width: 1024px;
