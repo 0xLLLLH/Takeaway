@@ -1,0 +1,331 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #f5f5f5;
+}
+
+hr{
+	margin: 10px;
+}
+
+.fixed-button{
+	display:block;
+	width:55px;
+	height:55px;
+	position: fixed;
+	bottom: 50px;
+	right: 150px;	
+	background-color: #f5f5f5;
+	border: 2.5px #7f7f7f solid;
+}
+
+.return-top{
+	width: 50px;
+	height: 50px;
+	background-image:url(http://www.iconpng.com/png/ios7-set-filled-2/arrow187.png);/*图片地址*/
+	background-origin:content;/*从content区域开始显示背景*/
+	background-position:50%50%;/*图片上下左右居中*/
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	background-repeat:no-repeat;/*图像不重复显示*/
+}
+
+.header-content{
+	width: 1024px;
+	margin: 0 auto;
+	height: 25px;
+}
+
+.linkarea{
+	display: block;
+	height: 2em;
+	width: 18em;
+	margin: 30px 60px;
+}
+
+.headerlink{
+	font-size: 1.5em;
+    color: #898989;
+	text-decoration: none;
+    outline: none;
+}
+
+.vertical-line{
+	font-size: 1.5em;
+	color: #dcdcdc;
+}
+.searchbar{
+	height:50px;
+	padding:5px;
+	background-color:#27AE60;
+	box-shadow:0px 1px 5px #999;
+}
+
+.search-bar .img-area{
+	width: 100px;
+	height: 100px;
+	background-image:url(http://www.hostime.cn/images/waimai_icon.png);/*图片地址*/
+	background-origin:content;/*从content区域开始显示背景*/
+	background-position:50%50%;/*图片上下左右居中*/
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	background-repeat:no-repeat;/*图像不重复显示*/
+}
+
+.search-box{
+	display:block;
+	width: 500px;
+	height: 40px;
+}
+
+.search-box input[type=text]{
+	background:url(../images/search-vector.jpg) no-repeat;
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	border:2px solid #fff;
+    font-size: 1.5em;
+    padding-left:2.5em;
+    width:400px;
+    height: 40px;
+    border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.search-box input[type=button]{
+	border:2px solid #fff;
+    font-size: 1.5em;
+    width:100px;
+    height: 40px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: #5cb85c;
+}
+
+.search-box-bordered{
+	display:block;
+	width: 500px;
+	height: 40px;
+	margin: 30px 20px;
+}
+
+.search-box-bordered input[type=text]{
+	background:url(../images/search-vector.jpg) no-repeat;
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	border:2px solid #27AE60;
+	border-right-width:0px;
+    font-size: 1.5em;
+    padding-left:2.5em;
+    width:400px;
+    height: 40px;
+    border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.search-box-bordered input[type=button]{
+	border:2px solid #27AE60;
+	border-left-width:0px;
+    font-size: 1.5em;
+    width:100px;
+    height: 40px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: #5cb85c;
+}
+
+.header--fixed {
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.search-area{
+	width: 100%;
+	height: 120px;
+	padding:10px;
+	background-color: #fff;
+	box-shadow:0px 1px 5px #999;
+}
+.search-area .search-content{
+	width: 1024px;
+	margin: 0px auto;
+	background-color: #fff;
+	padding:0px;
+}
+
+.search-area .img-area{
+	display: block;
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.content{
+	width: 1024px;
+	margin: 20px auto;
+	background-color: #fff;
+	padding:0px;
+}
+
+.left-part{
+	display:block;
+	float: left;
+	width: 130px;
+	height: 50px
+}
+
+.right-part{
+	display:block;
+	float: right;
+	height: 50px;
+	width: 850px;
+}
+
+.restaurant-type,.discount-filter{
+	color: #5f5f5f;
+	padding: 15px;
+}
+
+.type-title,.discount-title {
+	margin-left: 30px;
+}
+
+.rest-type,.discount-type{
+	display::block;
+	margin: 0px 10px;
+	margin-bottom:10px;
+	float: left;
+	text-align:center;
+}	
+
+.rest-type a,.discount-type a{
+	color: #898989;
+}
+
+.rest-type a:hover,.discount-type a:hover{
+	text-decoration:none;
+	color: #5cb85c;
+}
+
+.rest-type .selected,.discount-type .selected{
+	color: #5cb85c;
+}
+
+.divider{
+	height: 20px;
+	background-color: #f5f5f5;
+}
+
+.sort-filter {
+	padding: 15px;
+	border-bottom: 1px solid #eee;
+}
+
+.sort{
+	display:block;
+	border-right: 1px #c5c5c5 solid;
+	width:100px;
+	height: 30px;
+	float: left;
+	margin: 0px auto;
+	padding: 5px;
+	text-align:center;
+}
+
+.sort a{
+	color:#555;
+	text-decoration: none;
+}
+
+.shop-list{
+	padding:10px;
+}
+
+ul,li {
+	list-style-type: none;
+	display: block;
+	padding:0;
+	margin:0;
+}
+
+.shop-list img{
+	display:block;
+	margin:0 auto;
+	max-width:250;
+	max-height:250;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.restaurant {
+	text-decoration: none;
+}
+
+.restaurant a {
+	color: #898989;
+}
+.restaurant:hover .outer {
+	background-color: #f5f5f5;
+}
+
+.restaurant:hover a {
+	text-decoration: none;
+}
+
+.shop-content{
+	border-bottom: 1px solid #eee;
+}
+
+.shop-content div {
+	padding: 3px 0px 3px 0px;
+	margin:0px auto;
+}
+
+.outer {
+	display: block;
+	padding: 20px;
+	height: 320px;
+	width: 250px;
+	border-bottom: 1px solid #eee;
+}
+
+.outer div{
+	margin-bottom: 2px;
+}
+
+.shop-preview{
+	display:block;
+	border: 1px solid #eee;
+	height:160px;
+	width:210px;
+}
+
+.shopname{
+	color:#222;
+	font-size:1.5em;
+}
+
+.loading{  
+    width:160px;  
+    height:56px;
+    margin: 0 auto;
+    line-height:56px;  
+    color:#fff;  
+    padding-left:60px;  
+    font-size:15px;  
+    background: #000 url(../images/loading.gif) no-repeat 10px 50%;  
+    opacity: 0.7;  
+    z-index:9999;  
+    -moz-border-radius:20px;  
+    -webkit-border-radius:20px;  
+    border-radius:20px;  
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);  
+} 
