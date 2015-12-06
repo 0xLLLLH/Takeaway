@@ -7,6 +7,42 @@ import java.util.*;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public boolean check_application_repeat(String username)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select * from "+store_Info.dataTable_application_name + " where username ='"+username+"'";
+			System.out.println(sql);
+			Statement st =conn.createStatement();
+			ResultSet rs =st.executeQuery(sql);
+			if(rs.next())
+				return true;
+			else 
+				return false;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+	}
 	public boolean get_application_info(ArrayList<store_Info> data)
 	{
 		conn = DBconn.GetConnection();
