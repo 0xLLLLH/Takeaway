@@ -51,8 +51,7 @@
 						<div class="row tab-pane active" role="tabpanel" id="LoginDiv">
 							<div class="row">
 								<div class="col-sm-4 col-md-offset-4">
-									<img class="img-circle img-responsive " alt="homepage" src="http://a3.qpic.cn/psb?/V14QtrpP0auDE5/DwfbIj0ZARyKeQAey2KmBaA1LTPlR.7Ty8BZ6D.sCr4!/b/dGsAAAAAAAAA&bo=AAIAAgACAAIDCSw!&rf=viewer_4">
-									<!-- http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg -->
+									<img class="img-circle img-responsive " alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg">
 								</div>
 							</div>
 							<form class="" id="LoginForm">
