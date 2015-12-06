@@ -19,7 +19,7 @@ body{
 	/*margin-bottom:100px;*/
 }
 .headerbar .img_header{
-	height:45px;
+	height:50px;
 }
 
 .space{
@@ -33,6 +33,7 @@ body{
 .content{
 	margin-top: 100px;
 	margin-bottom: 100px;
+	width:1024px;
 	padding: 10px;
 }
 
@@ -53,4 +54,11 @@ body{
 
 .footercontent a{
 	color: #fff;
+}
+
+ul,li {
+	list-style-type: none;
+	display: block;
+	padding:0;
+	margin:0;
 }
