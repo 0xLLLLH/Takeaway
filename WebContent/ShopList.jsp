@@ -29,26 +29,39 @@
 <title>附近店铺</title>
 </head>
 <body>
+	<div id="top"></div>
+	<div class="fixed-button">
+		<a href="#top">
+			<div class="return-top"></div>
+		</a>
+	</div>
 	<div id="commonheader" class="headerbar">
 		<div class="header-content">
 			当前位置:<a href="./LocationSelect.jsp">[切换地址]</a>
 		</div>
 	</div>
-	<div id="searchbar" class="searchbar header--fixed">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-3-offset-5">
-					<form class="search-form form-inline">
-						 <div class="col-lg-6">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="搜索商家,美食">
-								<input type="button" class="input-group-addon" value="搜索"/>
-							</div><!-- /input-group -->
-						  </div>
-					</form>
-				</div>
+	<div class="search-area">
+		<div class="search-content">
+			<div class="img-area fl"><img class="img-responsive" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg"></div>		
+			<div class="linkarea fl">
+				<a href="#" class="headerlink">首页</a>
+				<span class="vertical-line">|</span>
+				<a href="#" class="headerlink">我的外卖</a>
+				<span class="vertical-line">|</span>
+				<a href="#" class="headerlink">加盟合作</a>
 			</div>
+			<form class="search-box-bordered fr">
+				<input class="fl" type="text" placeholder="搜索商家,美食">
+				<input class="fl clearfix" type="button" value="搜索">
+			</form>
 		</div>
+	</div>
+	<div id="searchbar" class="searchbar header--fixed">
+		<div class="img-area"></div>
+		<form class="search-box center-block">
+			<input class="fl" type="text" placeholder="搜索商家,美食">
+			<input class="fl clearfix" type="button" value="搜索">
+		</form>
 	</div>
 	<div class="content">
 		<hr class="space">
@@ -59,12 +72,13 @@
 				</div>
 			</div>
 			<div class="right-part clearfix">
-					<span class="rest-type"><a href="#" >全部</a></span>
+					<span class="rest-type"><a href="#" class="selected">全部</a></span>
 					<%for(int i=0;i<11;i++) { %>
 						<span class="rest-type"> <a href="#" >快餐小吃</a></span>
 					<%} %>
 			</div>
 		</div>
+		<!--
 		<hr>
 		<div class="discount-filter clearfix">
 			<div class="left-part clearfix">
@@ -73,12 +87,13 @@
 				</div>
 			</div>
 			<div class="right-part clearfix">
-					<span class="discount-type"><a href="#" >全部</a></span>
+					<span class="discount-type"><a href="#" class="selected">全部</a></span>
 					<%for(int i=0;i<11;i++) { %>
 						<span class="discount-type"> <a href="#" >快餐小吃</a></span>
 					<%} %>
 			</div>
 		</div>
+		-->
 		<div class="divider"></div>
 		<div class="sort-filter clearfix">
 			<div class="sort"> <a href="http://www.baidu.com">默认排序</a></div>
@@ -91,8 +106,11 @@
 				<%
 				for (int i=0;i<10;i++){
 				%>
-				<li class = "restaurant fl clearfix">	
-					<a class="restaurant-link" href="https://www.baidu.com" target="_blank">
+				<li class = "restaurant fl clearfix" data-delay='{"show": 432, "hide": 100 }' 
+				data-toggle="popover" data-title="商家详情" data-placement="left auto" data-html="true"
+				data-template="<div class='popover'  style='border:2px solid #5cb85c;' role='tooltip'><div class='arrow'  style='border-color:#5cb85c;'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>"
+				data-content="<label style='color:#5cb85c;'>优惠信息</label><hr><p>优惠信息内容</p><label style='color:#5cb85c;'>商家地址</label><hr><p>商家地址内容</p><label style='color:#5cb85c;'>商家公告</label><hr><p>商家公告内容</p>" data-trigger="hover">	
+					<a tabindex="0" class="restaurant-link" href="https://www.baidu.com" target="_blank">
 						<div class="outer">
 							<div class = "top-content">
 								<div class="shop-preview">
@@ -112,7 +130,10 @@
 				</li>
 				<%} %>
 			</ul>
-		</div>
+		</div><!-- end of shop-list -->
+	</div><!-- end of content -->
+	<div>
+		<div class="loading"></div>
 	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
