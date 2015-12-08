@@ -13,3 +13,13 @@ label{
 .space{
 	margin:10px;
 }
+
+#l-map{
+	width:100%;
+	height: 400px;
+	
+}
+
+.locationbar{
+	margin:10px 72px;
+}
