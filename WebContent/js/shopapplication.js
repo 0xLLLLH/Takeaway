@@ -130,6 +130,11 @@ function checkApplicationRepeat()
 			{
 				submit_store_info();
 			}
+			else
+			{
+				 alert("您的登陆信息已过期!");
+				 window.location.href="Signup.jsp";
+			}
 		 }
 	});
 }

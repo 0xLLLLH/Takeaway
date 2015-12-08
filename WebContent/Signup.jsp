@@ -51,7 +51,7 @@
 						<div class="row tab-pane active" role="tabpanel" id="LoginDiv">
 							<div class="row">
 								<div class="col-sm-4 col-md-offset-4">
-									<img class="img-circle img-responsive " alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg">
+									<img class="img-circle img-responsive " alt="homepage" src="images/zafu.png">
 								</div>
 							</div>
 							<form class="" id="LoginForm">

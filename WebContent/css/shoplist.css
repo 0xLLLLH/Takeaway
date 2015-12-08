@@ -61,9 +61,10 @@ hr{
 }
 
 .search-bar .img-area{
+	display: block;
 	width: 100px;
 	height: 100px;
-	background-image:url(http://www.hostime.cn/images/waimai_icon.png);/*图片地址*/
+	background-image:url(http://a2.qpic.cn/psb?/V14QtrpP0auDE5/Kr3JzXY1Uaw43GTbx9rYR.piV3hZg6vVzhgop0y7sOg!/b/dHIBAAAAAAAA&bo=gACAAIAAgAADCSw!&rf=viewer_4);/*图片地址*/
 	background-origin:content;/*从content区域开始显示背景*/
 	background-position:50%50%;/*图片上下左右居中*/
 	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
@@ -208,7 +209,10 @@ hr{
 .rest-type .selected,.discount-type .selected{
 	color: #5cb85c;
 }
-
+.sort_selected
+{
+	color: #5cb85c;
+}
 .divider{
 	height: 20px;
 	background-color: #f5f5f5;
@@ -318,10 +322,10 @@ ul,li {
     height:56px;
     margin: 0 auto;
     line-height:56px;  
-    color:#fff;  
+    color:black;  
     padding-left:60px;  
     font-size:15px;  
-    background: #000 url(../images/loading.gif) no-repeat 10px 50%;  
+    background: #f5f5f5 url(../images/loading.gif) no-repeat 10px 50%;  
     opacity: 0.7;  
     z-index:9999;  
     -moz-border-radius:20px;  
