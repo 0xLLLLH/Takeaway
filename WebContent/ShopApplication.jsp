@@ -22,7 +22,6 @@
     <![endif]-->
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <script charset="utf-8" src="js/ajax.js"></script>
-<script charset="utf-8" src="js/shopapplication.js"></script>
 <title>商家入驻</title>
 </head>
 <body>
@@ -31,6 +30,26 @@
 	<div class="container content">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 shadowed">
+				<hr class="space">
+				<div class="locationbar clearfix">
+					<div style="float:left;width:20%"><label><span class="color_red">*</span>地理位置</label></div>
+					<div style="float:left;width:80%" id="r-result"><input type="text" id="suggestId" size="20" class="form-control" placeholder="填写位置并从下拉框中选择" /></div>
+					<hr class="space">
+				</div>
+				<div>
+					<div class="col-md-8 col-md-offset-3" id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+					<div id="l-map"></div>
+				</div>
+				<hr class="space">
+				<div class="form-group" id="alert_shopplace" style="display:none">
+					<div class="col-md-8 col-md-offset-3">
+						<div class="alert alert-danger" role="alert">
+						  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						  <span class="sr-only">Error:</span>
+							地理位置不能为空
+						</div>
+					</div>
+				</div>
 				<hr class="space">
 				<form class="form-horizontal" id="ApplyForm">
 					<div class="form-group">
@@ -66,23 +85,7 @@
 							</div>
 						</div>
 					</div>
-					<hr class="space">
-					<div class="form-group">
-						<div class="col-md-2 col-md-offset-1"><label><span class="color_red">*</span>地理位置</label></div>
-						<div class="col-md-1"><label for="longitude">经度</label></div>
-						<div class="col-md-3"><input id="longitude" type="text" class="form-control" onclick="getFocus(alert_shopplace,alert_shopplace)" onblur="loseFocus(this,alert_shopplace)" placeholder="经度"></div>
-						<div class="col-md-1"><label for="latitude">纬度</label></div>
-						<div class="col-md-3"><input id="latitude" type="text" class="form-control" onclick="getFocus(alert_shopplace,alert_shopplace)" onblur="loseFocus(this,alert_shopplace)" placeholder="纬度"></div>
-					</div>
-					<div class="form-group" id="alert_shopplace" style="display:none">
-						<div class="col-md-8 col-md-offset-3">
-							<div class="alert alert-danger" role="alert">
-							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							  <span class="sr-only">Error:</span>
-								地理位置不能为空
-							</div>
-						</div>
-					</div>
+					
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_description">&nbsp;店铺介绍</label></div>
@@ -157,6 +160,8 @@
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2ExFwNEKQ8jBpq7abQWiU3sb"></script>
+	<script charset="utf-8" src="js/shopapplication.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
