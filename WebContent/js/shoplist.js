@@ -195,7 +195,7 @@ function update_List(type,order){
 							+"<div class=\"outer\">"
 								+"<div class = \"top-content\">"
 									+"<div class=\"shop-preview\">"
-										+"<img alt=\"preview\"  src=\"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=398990237,3888602267&fm=58\">"
+										+"<img alt=\"preview\"  src=\"http://p1.meituan.net/208.0/xianfu/e1bcdafeb2a17c7db0115ab062109372112900.jpg\">"
 									+"</div>"
 									+"<div class=\"shop-content clearfix\">"
 										+"<div class=\"clearfix\"><span class=\"shopname\">"+shop_name[i].firstChild.nodeValue+"</span></div>"
