@@ -7,6 +7,73 @@ import java.util.*;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public boolean get_allstore_info(ArrayList<store_Info> data,double lng,double lat,String type,String order,int pageon)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select "+store_Info.dataTable_store_Name+".id,shop_name ,first_type,second_type,shop_owner,shop_address,shop_description,shop_phone,shop_license ,shop_notice,discount,score,sell_num,price_tosend,ave_sendtime from "
+					+store_Info.dataTable_application_name+","+store_Info.dataTable_store_Name
+					+" where "+ store_Info.dataTable_store_Name+".username = "
+					+store_Info.dataTable_application_name+".username "
+					+" and  state='1' and abs(longitude-'"
+					+lng+"')<=0.01 and abs(latitude-'"
+					+lat+"')<=0.01 ";
+			if(type!="")	
+			{
+					sql+="and first_type = '";
+					sql+=type;
+					sql+="'";
+			}
+			if(order!="")
+			{
+				sql+=" order by ";
+				sql+=order;
+			}
+			if(order.equals("sell_num")||order.equals("score"))
+			{
+				sql+=" desc ";
+			}
+			if(pageon!=-1)
+			{
+				pageon=pageon*store_Info.pur_page;
+				sql+="limit ";
+				sql+=pageon;
+				sql+=",";
+				sql+=store_Info.pur_page;
+			}
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs =st.executeQuery(sql);
+			while(rs.next())
+			{
+				store_Info elem= GetDataFromResultSet_shoplist(rs);
+				data.add(elem);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	public boolean check_application_repeat(String username)
 	{
 		conn = DBconn.GetConnection();
@@ -58,7 +125,7 @@ public class store_Bean {
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next())
 			{
-				store_Info elem= GetDataFromResultSet(rs);
+				store_Info elem= GetDataFromResultSet_review(rs);
 				data.add(elem);
 			}
 		}
@@ -286,7 +353,7 @@ public class store_Bean {
 			}
 		}
 	}
-	public store_Info GetDataFromResultSet(ResultSet rs)
+	public store_Info GetDataFromResultSet_review(ResultSet rs)
 	{
 		store_Info info = new store_Info();
 		try
@@ -301,8 +368,35 @@ public class store_Bean {
 			info.setShop_owner(rs.getString("shop_owner"));
 			info.setShop_phone(rs.getString("shop_phone"));
 			info.setSubmit_date(rs.getDate("submit_time"));
+			//System.out.println(rs.getString("shop_notice"));
 			
-			
+		}
+		catch(SQLException e)
+		{
+			System.out.printf( "数据库查询失败\n" + e.getMessage()  );
+		}
+		return info;
+	}
+	public store_Info GetDataFromResultSet_shoplist(ResultSet rs)
+	{
+		store_Info info = new store_Info();
+		try
+		{
+			info.setId(rs.getInt("id"));
+			info.setFirst_type(rs.getString("first_type"));
+			info.setSecond_type(rs.getString("second_type"));
+			info.setShop_address(rs.getString("shop_address"));
+			info.setShop_description(rs.getString("shop_description"));
+			info.setShop_license(rs.getString("shop_license"));
+			info.setShop_name(rs.getString("shop_name"));
+			info.setShop_owner(rs.getString("shop_owner"));
+			info.setShop_phone(rs.getString("shop_phone"));
+			info.setShop_notice(rs.getString("shop_notice"));
+			info.setScore(rs.getDouble("score"));
+			info.setSell_num(rs.getInt("sell_num"));
+			info.setPrice_tosend(rs.getDouble("price_tosend"));
+			info.setAve_sendtime(rs.getInt("ave_sendtime"));
+			info.setDiscount(rs.getString("discount"));
 		}
 		catch(SQLException e)
 		{

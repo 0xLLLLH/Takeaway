@@ -25,10 +25,19 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script charset="utf-8" src="js/ajax.js"></script>
-
+<%
+	String place = request.getParameter("place");
+	double lng = Double.parseDouble(request.getParameter("lng"));
+	double lat = Double.parseDouble(request.getParameter("lat"));
+	String maininfo="ShopList.jsp?place="+place+"&lng="+lng+"&lat="+lat;
+%>
 <title>附近店铺</title>
 </head>
-<body>
+<body>	
+	<input value="<%out.print(lng);%>" id="lng" style="display:none">
+	<input value="<%out.print(lat);%>" id="lat" style="display:none">
+	<input value="" id="type" style="display:none">
+	<input value="" id="order" style="display:none">
 	<div id="top"></div>
 	<div class="fixed-button">
 		<a href="#top">
@@ -37,30 +46,30 @@
 	</div>
 	<div id="commonheader" class="headerbar">
 		<div class="header-content">
-			当前位置:<a href="./LocationSelect.jsp">[切换地址]</a>
+			当前位置:<%out.println(" "+place+" ");%><a href="./LocationSelect.jsp">[切换地址]</a>
 		</div>
 	</div>
 	<div class="search-area">
 		<div class="search-content">
-			<div class="img-area fl"><img class="img-responsive" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg"></div>		
+			<div class="img-area fl"><img class="img-responsive" alt="homepage" src="images/zafu.png"></div>		
 			<div class="linkarea fl">
-				<a href="#" class="headerlink">首页</a>
+				<a href="<%out.println(maininfo);%>" class="headerlink">首页</a>
 				<span class="vertical-line">|</span>
 				<a href="#" class="headerlink">我的外卖</a>
 				<span class="vertical-line">|</span>
-				<a href="#" class="headerlink">加盟合作</a>
+				<a href="ShopApplication.jsp" class="headerlink">加盟合作</a>
 			</div>
 			<form class="search-box-bordered fr">
-				<input class="fl" type="text" placeholder="搜索商家,美食">
-				<input class="fl clearfix" type="button" value="搜索">
+				<input class="fl" type="text" placeholder="搜索商家,美食" id="search_txt1">
+				<input class="fl clearfix " type="button" value="搜索" id="search_bnt1">
 			</form>
 		</div>
 	</div>
 	<div id="searchbar" class="searchbar header--fixed">
 		<div class="img-area"></div>
 		<form class="search-box center-block">
-			<input class="fl" type="text" placeholder="搜索商家,美食">
-			<input class="fl clearfix" type="button" value="搜索">
+			<input class="fl" type="text" placeholder="搜索商家,美食" id="search_txt2">
+			<input class="fl clearfix " type="button" value="搜索" id="search_bnt2">
 		</form>
 	</div>
 	<div class="content">
@@ -68,14 +77,12 @@
 		<div class="restaurant-type clearfix">
 			<div class="left-part clearfix">
 				<div class="type-title">
+					<span class="glyphicon glyphicon-th-list"></span>
 					餐厅分类
 				</div>
 			</div>
-			<div class="right-part clearfix">
-					<span class="rest-type"><a href="#" class="selected">全部</a></span>
-					<%for(int i=0;i<11;i++) { %>
-						<span class="rest-type"> <a href="#" >快餐小吃</a></span>
-					<%} %>
+			<div class="right-part clearfix" id="shop_type">
+					<span class="rest-type"><a href="#" class="shoptype">全部</a></span>
 			</div>
 		</div>
 		<!--
@@ -96,15 +103,15 @@
 		-->
 		<div class="divider"></div>
 		<div class="sort-filter clearfix">
-			<div class="sort"> <a href="http://www.baidu.com">默认排序</a></div>
-			<div class="sort"> <a href="http://www.baidu.com">销量 </a><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></div>
-			<div class="sort"> <a href="http://www.baidu.com">评价</a><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></div>
-			<div class="sort"> <a href="http://www.baidu.com">送餐速度</a><span class="glyphicon glyphicon-sort-by-attributes"></span></div>
+			<div class="sort"> <a href="#" class="sortway">默认排序</a></div>
+			<div class="sort"> <a href="#" class="sortway">销量<span class="glyphicon glyphicon-sort-by-attributes-alt "></span></a></div>
+			<div class="sort"> <a href="#" class="sortway">评价<span class="glyphicon glyphicon-sort-by-attributes-alt "></span></a></div>
+			<div class="sort"> <a href="#" class="sortway">送餐速度<span class="glyphicon glyphicon-sort-by-attributes "></span></a></div>
 		</div>
-		<div class="shop-list clearfix">
-			<ul>
-				<%
-				for (int i=0;i<10;i++){
+		<div class="shop-list clearfix" >
+			<ul id="shop_list">
+			<%-- 	<%
+				for (int i=0;i<4;i++){
 				%>
 				<li class = "restaurant fl clearfix" data-delay='{"show": 432, "hide": 100 }' 
 				data-toggle="popover" data-title="商家详情" data-placement="left auto" data-html="true"
@@ -118,22 +125,22 @@
 								</div>
 								<div class="shop-content clearfix">
 									<div class="clearfix"><span class="shopname">这里是店铺的名字</span></div>
-									<div class="clearfix"><span class="fl">评分</span><span class="fr">销量</span></div>
+									<div class="clearfix"><span class="fl">评分 5.4</span><span class="fr">销量123</span></div>
 									<div class="clearfix"><span class="fl">起送价</span><span class="fr">配送时间</span></div>
 								</div>
 							</div>
 							<div class="other">
-								<span>折扣信息</span>
+								<span>折扣信息 【满-减】</span>
 							</div>
 						</div>
 					</a>
 				</li>
-				<%} %>
+				<%} %> --%>
 			</ul>
 		</div><!-- end of shop-list -->
 	</div><!-- end of content -->
-	<div>
-		<div class="loading"></div>
+	<div  id="load_div" style="display:none">
+		<div  class="loading">玩命加载中...</div>
 	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->

@@ -1,5 +1,6 @@
 ﻿
 //百度地图API功能
+var place;
 function G(id) {
 	return document.getElementById(id);
 }
@@ -35,7 +36,7 @@ function G(id) {
 	var _value = e.item.value;
 		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
 		G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-		
+		place=myValue;
 		setPlace();
 	});
 	//
@@ -63,22 +64,26 @@ function setPlace(){
 		map.centerAndZoom(pp, 18);
 		var marker=new BMap.Marker(pp);
 		map.addOverlay(marker);    //添加标注
-		//marker.addEventListener("click", function(){          
-			var sContent =
+		
+		//marker.addEventListener("click", function(){     
+			//alert(place);
+			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
+			var sContent = 
 				"<div style='margin:0'>"+
 				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
 				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
-				"<a href='Signup.jsp' role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
+				"<a href="+href+" role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
 				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 			marker.openInfoWindow(infoWindow);
 		//});
 		marker.addEventListener("click", function(){          
-			var sContent =
+			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
+			var sContent = 
 				"<div style='margin:0'>"+
 				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
 				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
-				"<a href='www.baidu.com'>查看附近商家</a>"+
+				"<a href="+href+" role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
 				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 			marker.openInfoWindow(infoWindow);

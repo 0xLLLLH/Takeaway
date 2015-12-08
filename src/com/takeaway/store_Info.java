@@ -4,6 +4,7 @@ public class store_Info {
 	public static String dataTable_store_Name="store_list";
 	public static String dataTable_type_Name="category_list";
 	public static String dataTable_application_name="application_list";
+	public static int pur_page=20;
 	private int id;
 	private String username;
 	private String shop_name;
@@ -20,7 +21,10 @@ public class store_Info {
 	private String shop_license;
 	private String shop_description ;
 	private Date submit_date;
-	
+	private String shop_notice;
+	private double score;
+	private int sell_num;
+	private int ave_sendtime;
 	public store_Info(){};
 	public store_Info(String username, String shop_name, String shop_address, String shop_phone, String first_type,
 			String second_type,  String shop_owner,
@@ -166,6 +170,30 @@ public class store_Info {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getShop_notice() {
+		return shop_notice;
+	}
+	public void setShop_notice(String shop_notice) {
+		this.shop_notice = shop_notice;
+	}
+	public double getScore() {
+		return score;
+	}
+	public void setScore(double score) {
+		this.score = score;
+	}
+	public int getSell_num() {
+		return sell_num;
+	}
+	public void setSell_num(int sell_num) {
+		this.sell_num = sell_num;
+	}
+	public int getAve_sendtime() {
+		return ave_sendtime;
+	}
+	public void setAve_sendtime(int ave_sendtime) {
+		this.ave_sendtime = ave_sendtime;
 	}
 	
 }
