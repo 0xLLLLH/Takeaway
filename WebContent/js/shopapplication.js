@@ -73,8 +73,8 @@ function submit_store_info()
 	var form=document.getElementById("ApplyForm");
 	 var shop_name=form.shop_name.value;
 	 var shop_address=form.shop_address.value;
-	 var longitude=form.longitude.value;
-	 var latitude=form.latitude.value;
+	 var longitude=$("#lng").val();
+	 var latitude=$("#lat").val();
 	 var shop_description=form.shop_description.value;
 	 var shop_owner=form.shop_owner.value;
 	 var shop_phone=form.shop_phone.value;
@@ -143,8 +143,8 @@ function isSubmitLegal()
 	 var form=document.getElementById("ApplyForm");
 	 var shop_name=form.shop_name.value;
 	 var shop_address=form.shop_address.value;
-	 var longitude=form.longitude.value;
-	 var latitude=form.latitude.value;
+	 var longitude=$("#lng").val();
+	 var latitude=$("#lat").val();
 	 var shop_description=form.shop_description.value;
 	 var shop_owner=form.shop_owner.value;
 	 var shop_phone=form.shop_phone.value;
@@ -207,6 +207,9 @@ function setPlace(){
 	map.clearOverlays();    //清除地图上所有覆盖物
 	function myFun(){
 		var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+		//alert(pp.lng+" "+pp.lat);
+		$("#lng").val(pp.lng);
+		$("#lat").val(pp.lat);
 		map.centerAndZoom(pp, 18);
 		var marker=new BMap.Marker(pp);
 		map.addOverlay(marker);    //添加标注
@@ -216,11 +219,6 @@ function setPlace(){
 	  onSearchComplete: myFun
 	});
 	local.search(myValue);
-}
-
-function hideguider(){
-	$("#tipclose").fadeTo(0,0);
-	$(".guider").fadeTo(0,0);
 }
 function search(){
 		setPlace();
