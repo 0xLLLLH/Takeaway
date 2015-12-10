@@ -37,6 +37,15 @@ function loseFocus(txt,inform){
 		inform.style.display="block";
 	}
 }
+/*手机号正则表达式*/
+function isPhone(aPhone) {  
+     var bValidate = RegExp(/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/).test(aPhone);  
+     if (bValidate) {  
+         return true;  
+     }  
+     else  
+         return false;  
+} 
 function show_Second_type()
 {
 	var first_type=document.getElementById("select_first_type").value;
@@ -73,8 +82,8 @@ function submit_store_info()
 	var form=document.getElementById("ApplyForm");
 	 var shop_name=form.shop_name.value;
 	 var shop_address=form.shop_address.value;
-	 var longitude=form.longitude.value;
-	 var latitude=form.latitude.value;
+	 var longitude=$("#lng").val();
+	 var latitude=$("#lat").val();
 	 var shop_description=form.shop_description.value;
 	 var shop_owner=form.shop_owner.value;
 	 var shop_phone=form.shop_phone.value;
@@ -143,14 +152,14 @@ function isSubmitLegal()
 	 var form=document.getElementById("ApplyForm");
 	 var shop_name=form.shop_name.value;
 	 var shop_address=form.shop_address.value;
-	 var longitude=form.longitude.value;
-	 var latitude=form.latitude.value;
+	 var longitude=$("#lng").val();
+	 var latitude=$("#lat").val();
 	 var shop_description=form.shop_description.value;
 	 var shop_owner=form.shop_owner.value;
 	 var shop_phone=form.shop_phone.value;
 	 var shop_license=form.shop_license.value;
 	 
-	 if(shop_name!=""&&shop_address!=""&&longitude!=""&&latitude!=""&&shop_owner!=""&&shop_phone!=""&&shop_license!="")
+	 if(shop_name!=""&&shop_address!=""&&longitude!=""&&latitude!=""&&shop_owner!=""&&shop_phone!=""&&shop_license!=""&&isPhone(shop_phone))
 	 {
 		 checkApplicationRepeat();  
 	 }
@@ -162,6 +171,7 @@ function isSubmitLegal()
 		 if(shop_owner=="") document.getElementById("alert_shopowner").style.display="block";
 		 if(shop_phone=="") document.getElementById("alert_shopphone").style.display="block";
 		 if(shop_license=="") document.getElementById("alert_shoplicense").style.display="block";
+		 if(shop_phone!=""&&isPhone(shop_phone)==false) document.getElementById("alert_shopphone_error").style.display="block";
 	 }
 }
 
@@ -207,6 +217,9 @@ function setPlace(){
 	map.clearOverlays();    //清除地图上所有覆盖物
 	function myFun(){
 		var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+		//alert(pp.lng+" "+pp.lat);
+		$("#lng").val(pp.lng);
+		$("#lat").val(pp.lat);
 		map.centerAndZoom(pp, 18);
 		var marker=new BMap.Marker(pp);
 		map.addOverlay(marker);    //添加标注
@@ -216,11 +229,6 @@ function setPlace(){
 	  onSearchComplete: myFun
 	});
 	local.search(myValue);
-}
-
-function hideguider(){
-	$("#tipclose").fadeTo(0,0);
-	$(".guider").fadeTo(0,0);
 }
 function search(){
 		setPlace();
