@@ -37,6 +37,15 @@ function loseFocus(txt,inform){
 		inform.style.display="block";
 	}
 }
+/*手机号正则表达式*/
+function isPhone(aPhone) {  
+     var bValidate = RegExp(/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/).test(aPhone);  
+     if (bValidate) {  
+         return true;  
+     }  
+     else  
+         return false;  
+} 
 function show_Second_type()
 {
 	var first_type=document.getElementById("select_first_type").value;
@@ -150,7 +159,7 @@ function isSubmitLegal()
 	 var shop_phone=form.shop_phone.value;
 	 var shop_license=form.shop_license.value;
 	 
-	 if(shop_name!=""&&shop_address!=""&&longitude!=""&&latitude!=""&&shop_owner!=""&&shop_phone!=""&&shop_license!="")
+	 if(shop_name!=""&&shop_address!=""&&longitude!=""&&latitude!=""&&shop_owner!=""&&shop_phone!=""&&shop_license!=""&&isPhone(shop_phone))
 	 {
 		 checkApplicationRepeat();  
 	 }
@@ -162,6 +171,7 @@ function isSubmitLegal()
 		 if(shop_owner=="") document.getElementById("alert_shopowner").style.display="block";
 		 if(shop_phone=="") document.getElementById("alert_shopphone").style.display="block";
 		 if(shop_license=="") document.getElementById("alert_shoplicense").style.display="block";
+		 if(shop_phone!=""&&isPhone(shop_phone)==false) document.getElementById("alert_shopphone_error").style.display="block";
 	 }
 }
 

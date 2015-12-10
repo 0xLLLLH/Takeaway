@@ -149,12 +149,19 @@
 								<div class="form-group">
 									<span class="inform">*</span>
 									<label for="phone">手机号码</label>
-									<input class="form-control" type="text" id="phone" placeholder="手机号码"  onfocus="getFocus(inform_phone)" onblur="loseFocus(this,inform_phone)"/>
+									<input class="form-control" type="text" id="phone" placeholder="手机号码"  onfocus="getFocus(inform_phone,inform_phone_error)" onblur="loseFocus(this,inform_phone)"/>
 									<div class="inform" id="inform_phone" style="display:none">
 										<div class="alert alert-danger" role="alert">
 										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 										  <span class="sr-only">Error:</span>
 											手机号码不能为空
+										</div>
+									</div>
+									<div class="inform" id="inform_phone_error" style="display:none">
+										<div class="alert alert-danger" role="alert">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+											请输入正确手机号
 										</div>
 									</div>
 								</div>

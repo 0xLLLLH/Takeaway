@@ -35,7 +35,7 @@
 				<hr class="space">
 				<div class="locationbar clearfix">
 					<div style="float:left;width:20%"><label><span class="color_red">*</span>地理位置</label></div>
-					<div style="float:left;width:80%" id="r-result"><input type="text" id="suggestId" size="20" class="form-control" placeholder="填写位置并从下拉框中选择" /></div>
+					<div style="float:left;width:80%" id="r-result"><input type="text" id="suggestId" size="20" class="form-control" onclick="getFocus(alert_shopplace,alert_shopplace)" onblur="loseFocus(this,alert_shopplace)" placeholder="填写位置并从下拉框中选择" /></div>
 					<hr class="space">
 				</div>
 				
@@ -114,7 +114,7 @@
 					<hr class="space">
 					<div class="form-group">
 						<div class="col-md-2 col-md-offset-1"><label for="shop_phone"><span class="color_red">*</span>联系电话</label></div>
-						<div class="col-md-8"><input type="text" id="shop_phone" class="form-control" onclick="getFocus(alert_shopphone,alert_shopphone)" onblur="loseFocus(this,alert_shopphone)" placeholder="填写您的联系电话"></div>
+						<div class="col-md-8"><input type="text" id="shop_phone" class="form-control" onclick="getFocus(alert_shopphone,alert_shopphone_error)" onblur="loseFocus(this,alert_shopphone)" placeholder="填写您的联系电话"></div>
 					</div>
 					<div class="form-group" id="alert_shopphone" style="display:none">
 						<div class="col-md-8 col-md-offset-3">
@@ -122,6 +122,15 @@
 							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							  <span class="sr-only">Error:</span>
 								联系电话不能为空
+							</div>
+						</div>
+					</div>
+					<div class="form-group" id="alert_shopphone_error" style="display:none">
+						<div class="col-md-8 col-md-offset-3">
+							<div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								请输入正确的手机号
 							</div>
 						</div>
 					</div>

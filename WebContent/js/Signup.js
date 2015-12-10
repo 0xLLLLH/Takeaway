@@ -48,7 +48,15 @@
 					});
 		}
 	}
-
+	/*手机号正则表达式*/
+	 function isPhone(aPhone) {  
+          var bValidate = RegExp(/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/).test(aPhone);  
+          if (bValidate) {  
+              return true;  
+          }  
+          else  
+              return false;  
+     } 
  	function isEnterLegal()
 	{
  		var form=document.getElementById("RegForm");
@@ -56,7 +64,7 @@
 		var password=form.password.value;
 		var confirmpass=form.confirmpass.value;
 		var phone=form.phone.value;
-		if(username!=""&&password!=""&&confirmpass==password&&document.getElementById("inform_account_exit").style.display=="none"&&phone!="")
+		if(username!=""&&password!=""&&confirmpass==password&&document.getElementById("inform_account_exit").style.display=="none"&&phone!=""&&isPhone(phone))
 		{
 			submitAccount();
 		}
@@ -70,6 +78,8 @@
 				document.getElementById("confirmpass").style.display="block";
 			if(phone=="")
 				document.getElementById("inform_phone").style.display="block";
+			if(isPhone(phone)==false&&phone!="")
+				document.getElementById("inform_phone_error").style.display="block";
 		}
 	} 
 	function submitAccount()
