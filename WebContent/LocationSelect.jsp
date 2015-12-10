@@ -25,8 +25,6 @@
 <body>
 	<%@ include file='Header.jsp' %>
 	<%@ include file='isLoginTLE.jsp' %>
-	<input id="lng" style="display:none">
-	<input id="lat" style="display:none">
 	<div class="content">
 			<a href="javascript:void(0);" class="cross" id="tipclose" onclick="hideguider()"></a>
 			<div class="guider">

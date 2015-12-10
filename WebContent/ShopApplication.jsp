@@ -27,8 +27,6 @@
 <body>
 	<%@ include file='Header.jsp' %>
 	<%@ include file='isLoginTLE.jsp' %>
-	<input id="lng" type="text" style="display:none">
-	<input id="lat" type="text" style="display:none">
 	<div class="container content">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 shadowed">
@@ -38,7 +36,6 @@
 					<div style="float:left;width:80%" id="r-result"><input type="text" id="suggestId" size="20" class="form-control" placeholder="填写位置并从下拉框中选择" /></div>
 					<hr class="space">
 				</div>
-				
 				<div>
 					<div class="col-md-8 col-md-offset-3" id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
 					<div id="l-map"></div>
