@@ -7,6 +7,50 @@ import java.util.*;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public int get_store_num(double lng,double lat)
+	{
+		conn = DBconn.GetConnection();
+		int num=-1;
+		try
+		{
+			String sql = "select count(*) as num from "
+					+store_Info.dataTable_application_name+","+store_Info.dataTable_store_Name
+					+" where "+ store_Info.dataTable_store_Name+".username = "
+					+store_Info.dataTable_application_name+".username "
+					+" and  state='1' and abs(longitude-'"
+					+lng+"')<=0.01 and abs(latitude-'"
+					+lat+"')<=0.01 ";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs =st.executeQuery(sql);
+			if(rs.next())
+			{
+				num = rs.getInt("num");
+				System.out.println(num);
+				
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return num;
+	}
 	public boolean get_allstore_info(ArrayList<store_Info> data,double lng,double lat,String type,String order,int pageon)
 	{
 		conn = DBconn.GetConnection();
@@ -37,7 +81,7 @@ public class store_Bean {
 			if(pageon!=-1)
 			{
 				pageon=pageon*store_Info.pur_page;
-				sql+="limit ";
+				sql+=" limit ";
 				sql+=pageon;
 				sql+=",";
 				sql+=store_Info.pur_page;
