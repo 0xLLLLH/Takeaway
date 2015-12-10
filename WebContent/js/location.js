@@ -1,12 +1,6 @@
 ﻿
 //百度地图API功能
 var place;
-$(function(){
-	$(window).resize(function(){
-		var height=$(window).height();
-		$(".map").css("height",height*0.6);
-		});
-});
 function G(id) {
 	return document.getElementById(id);
 }
@@ -63,20 +57,6 @@ function G(id) {
 		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 	});*/
 //
-function get_store_num(){
-	var num=0;
-	$.ajax({
-		url:"code/get_Store_Num.jsp",
-		async:false,
-		type:"get",
-		dataType:"text",
-		data:{lng: $("#lng").val(), lat: $("#lat").val()},
-		success:function(data){
-			num=data;
-		}
-	});
-	return num;
-}
 function setPlace(){
 	map.clearOverlays();    //清除地图上所有覆盖物
 	function myFun(){
@@ -84,16 +64,15 @@ function setPlace(){
 		map.centerAndZoom(pp, 18);
 		var marker=new BMap.Marker(pp);
 		map.addOverlay(marker);    //添加标注
+		
 		//marker.addEventListener("click", function(){     
 			//alert(place);
-		$("#lng").val(pp.lng);
-		$("#lat").val(pp.lat);
 			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
 			var sContent = 
 				"<div style='margin:0'>"+
-				"<br><h4 style='margin:0;font-size:13px;color:gray';line-height:1.5;text-indent:2em>地址 : "+place+"</h4>" + 
-				"<p style='margin:0;line-height:3.5;font-size:13px;float:left'>附近有</p><p style='margin:0;line-height:3.5;font-size:13px;float:left;color:green;font-weight:bold'>"+get_store_num()+"</p><p style='margin:0;line-height:3.5;font-size:13px'>家外卖餐厅</p>" + 
-				"<a href="+href+" role='button' class='btn btn-success btn-sm'>立即点餐</a>"+
+				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
+				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
+				"<a href="+href+" role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
 				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 			marker.openInfoWindow(infoWindow);
@@ -102,9 +81,9 @@ function setPlace(){
 			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
 			var sContent = 
 				"<div style='margin:0'>"+
-				"<br><h4 style='margin:0;font-size:13px;color:gray';line-height:1.5;text-indent:2em>地址 : "+place+"</h4>" + 
-				"<p style='margin:0;line-height:3.5;font-size:13px;float:left'>附近有</p><p style='margin:0;line-height:3.5;font-size:13px;float:left;color:green;font-weight:bold'>"+get_store_num()+"</p><p style='margin:0;line-height:3.5;font-size:13px'>家外卖餐厅</p>" + 
-				"<a href="+href+" role='button' class='btn btn-success btn-sm'>立即点餐</a>"+
+				"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>立即点餐</h4>" + 
+				"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
+				"<a href="+href+" role='button' class='btn btn-success btn-sm'>查看附近商家</a>"+
 				"</div";	
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 			marker.openInfoWindow(infoWindow);
@@ -115,7 +94,6 @@ function setPlace(){
 	});
 	local.search(myValue);
 }
-
 
 function hideguider(){
 	$("#tipclose").fadeTo(0,0);
@@ -131,7 +109,7 @@ function search(){
 		hideguider();
 		$("#r-result").animate(
 			{
-				left:"-=220px",
+				left:"-=250px",
 				top:"-=200px"
 			},
 			1500,
@@ -141,8 +119,7 @@ function search(){
 				//hideguider();
 				$("#l-map").removeClass("map-min");
 				$("#l-map").addClass("map");
-				$(".map").css("height",$(window).height()*0.6);
-				$("#l-map").animate({left:"-=100px",top:"-=230px"},0);
+				$("#l-map").animate({left:"-=130px",top:"-=200px"},0);
 				setPlace();
 			}
 			)
