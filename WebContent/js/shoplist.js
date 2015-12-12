@@ -189,7 +189,7 @@ function update_List(type,order){
 				var avetime = ave_sendtime[i].firstChild.nodeValue=="3650"?"暂无":ave_sendtime[i].firstChild.nodeValue+"分钟";
 				var add="<li class = \"restaurant fl clearfix\" data-delay=\'{\"show\": 432, \"hide\": 100 }\'" 
 					+"data-toggle=\"popover\" data-title=\"商家详情\" data-placement=\"left auto\" data-html=\"true\""
-					+"data-template=\"<div class=\'popover\'  style=\'border:2px solid #5cb85c;\' role=\'tooltip\'><div class=\'arrow\'  style=\'border-color:#5cb85c;\'></div><h3 class=\'popover-title\'></h3><div class=\'popover-content\'></div></div>\""
+					+"data-template=\"<div class=\'popover\'  style=\'border:2px solid #5cb85c;width:220px\' role=\'tooltip\'><div class=\'arrow\'  style=\'border-color:#5cb85c;\'></div><h3 class=\'popover-title\'></h3><div class=\'popover-content\'></div></div>\""
 					+"data-content=\"<label style=\'color:#5cb85c;\'>优惠信息</label><hr><p>"+dcnt+"</p><label style=\'color:#5cb85c;\'>商家地址</label><hr><p>"+shop_address[i].firstChild.nodeValue+"</p><label style=\'color:#5cb85c;\'>商家公告</label><hr><p>"+notice+"</p>\" data-trigger=\"hover\">"	
 						+"<a tabindex=\"0\" class=\"restaurant-link\" href=\"https://www.baidu.com\" target=\"_blank\">"
 							+"<div class=\"outer\">"
