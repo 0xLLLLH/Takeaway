@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #f5f5f5;
+}
+
+ul{
+	padding:8px;
+}
+
+.content{
+	width: 1024px;
+	margin: 20px auto;
+	background-color: #f5f5f5;
+	padding:0px;
+	min-height:650px; /*(解决ie8.9.ff.chrome)*/
+	*+height:100%;  /*()解决ie7)*/
+	_height:650px; /*(解决ie6) ie6超出自动溢出*/
+}
+
+.shop-summary{
+	border: 1px #ccc solid;
+}
+
+.shop-summary .detail{
+	position:relative;
+	background:#fff;
+	padding:10px;
+	height:120px;
+	width:350px;
+	border-right:1px #ccc solid;
+}
+
+.shop-summary .pic{
+	float:left;
+	width: 120px;
+	height: 100px;
+	padding:10px;
+}
+
+.shop-summary .title{
+	display:block;
+	float:left;
+	padding:10px;
+	font-size: 1.5em;
+}
+
+.top{
+	width: 350px;
+}
+
+.dropdown-info{
+	display:none;
+	position:absolute;
+	top:120px;
+	left:-1px;
+	background:#fff;
+	width:351px;
+	border:1px #ccc solid;
+	padding:15px;
+}
+
+.score-bar{
+	background-color:#fff;
+	width: 450px;
+	padding: 5px;
+}
+
+.avg{
+	padding: 2px 20px;
+}
+
+.score{
+	text-align:center;
+	font-size: 4em;
+	color:#888;
+}
+
+.desc{
+	text-align:center;
+	color:#888;
+}
+.vertical-line-text{
+	width: 0;
+	height: 50px;
+	border: 1px solid #dcdcdc;
+	margin: 30px 10px;
+}
+.extra-part{
+	width: 0px;
+	height: 0px;
+	border-width: 60px 60px 60px 160px;
+	border-style: solid;
+	border-color: transparent transparent  transparent #fafafa;
+}
+

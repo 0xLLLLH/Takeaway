@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+@CHARSET "UTF-8";
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.headerbar {
+}
+
+.search-area{
+	width: 100%;
+	height: 80px;
+	padding:10px;
+	background-color: #fff;
+	box-shadow:0px 1px 5px #999;
+}
+.search-area .search-content{
+	width: 1024px;
+	margin: 0px auto;
+	background-color: #fff;
+	padding:0px;
+}
+
+.search-area .img-area{
+	display: block;
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+
+.linkarea{
+	display: block;
+	height: 100%;
+	width: 420px;
+	padding: 15px 60px;
+}
+
+
+.header-content{
+	width: 1024px;
+	margin: 0 auto;
+	height: 2.5em;
+	padding:0.5em;
+}
+
+.headerlink{
+	font-size: 1.5em;
+    color: #898989;
+	text-decoration: none;
+    outline: none;
+}
+
+.vertical-line{
+	font-size: 1.5em;
+	color: #dcdcdc;
+}
+
+.search-box-bordered{
+	display:block;
+	width: 520px;
+	height: 100%;
+	padding: 10px 10px;
+}
+
+.search-box-bordered input[type=text]{
+	background:url(../images/search-vector.jpg) no-repeat;
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	border:2px solid #27AE60;
+	border-right-width:0px;
+    font-size: 1.5em;
+    padding-left:2.5em;
+    width:400px;
+    height: 40px;
+    border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.search-box-bordered input[type=button]{
+	border:2px solid #27AE60;
+	border-left-width:0px;
+    font-size: 1.5em;
+    width:100px;
+    height: 40px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: #5cb85c;
+}
