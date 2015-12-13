@@ -10,10 +10,9 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
-
 <!-- Custom styles for this template -->
 <link href="css/mystyle.css" rel="stylesheet">
-<link href="css/customer.css" rel="stylesheet">
+<link href="css/itemlist.css" rel="stylesheet">
 <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,43 +20,44 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script charset="utf-8" src="js/ajax.js"></script>
-
-<title>我的外卖</title>
+<title>这里修改为店铺名</title>
 </head>
 <body>
 	<%@ include file='CommonHeader.jsp' %>
 	
-	<div class="content clearfix">
-		<div class="tab-left">
-			<label>订单查询</label>
-				<a>全部订单</a>
-			<label>账号管理</label>
-				<a>我的账号</a>
-				<a>我的收藏</a>
-		</div>
-		<div class="right-part">
-			<div>
+	<div class="content">
+		<div class="shop-summary clearfix">
+			<div class="detail fl">
+				<div class="top clearfix">
+					<div  class="pic"><img class="img-responsive" src="http://p0.meituan.net/120.0/xianfu/bdcafce11742063f3d3091dd389bb49e414723.jpg"></div>
+					<div class="title fl"><label>这里是店铺名</label></div>
+					<div class="fl"></div>
+				</div>
+				<div class="dropdown-info">
+					<p><b>商家地址:</b>aaaaaaaaa</p>
+					<p><b>商家电话:</b>aaaaaaaaaaa</p>
+					<p><b>营业执照:</b>aaaaaaaaaaaa</p>
+				</div>
 			</div>
-			<nav>
-			  <ul class="pagination">
-			    <li class="disabled">
-			      <a href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="active" class="disabled"><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
+			<div class="score-bar fl clearfix">
+				<div class="avg fl">
+					<div class="score">4.5</div>
+					<div class="desc">商家评分</div>
+				</div>
+				<div class="vertical-line-text fl"></div>
+				<div  class="avg fl">
+					<div class="score">4.5</div>
+					<div class="desc">商家评分</div>
+				</div>
+				<div class="vertical-line-text fl"></div>
+				<div class="avg fl">
+					<div class="score">4.5</div>
+					<div class="desc">商家评分</div>
+				</div>
+			</div>
+			<div class="extra-part fl">
+					
+				</div>
 		</div>
 	</div>
 	
@@ -68,5 +68,6 @@
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/itemlist.js"></script>
 </body>
 </html>
