@@ -7,13 +7,14 @@
 	String type = request.getParameter("type");
 	String order = request.getParameter("order");
 	String pg = request.getParameter("page");
+	String search = request.getParameter("search");
 	int pgnum=-1;
 	if(pg!=null)
 		pgnum=Integer.parseInt(pg);
 	System.out.println(pgnum);
 	store_Bean bean = new store_Bean();
 	ArrayList<store_Info> data = new ArrayList<store_Info>();
-	boolean result = bean.get_allstore_info(data, lng, lat,type,order,pgnum);
+	boolean result = bean.get_allstore_info(data, lng, lat,type,order,pgnum,search);
 	Iterator<store_Info> iter = data.iterator();
 	response.setContentType("text/xml; charset=UTF-8");  
     response.setHeader("Cache-Control","no-cache"); 
