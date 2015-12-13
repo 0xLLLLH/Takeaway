@@ -8,7 +8,7 @@
 	</div>
 </div>
 <div class="search-area">
-	<div class="search-content">
+	<div class="search-content clearfix">
 		<div class="img-area fl"><img class="img-responsive" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg"></div>		
 		<div class="linkarea fl">
 			<a href="ShopList.jsp" class="headerlink">首页</a>
