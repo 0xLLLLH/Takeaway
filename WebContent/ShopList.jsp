@@ -44,6 +44,8 @@
 			<div class="return-top"></div>
 		</a>
 	</div>
+	<%@ include file='CommonHeader.jsp' %>
+	<!--
 	<div id="commonheader" class="headerbar">
 		<div class="header-content">
 			当前位置:<%out.println(" "+place+" ");%><a href="./LocationSelect.jsp">[切换地址]</a>
@@ -65,6 +67,7 @@
 			</form>
 		</div>
 	</div>
+	 -->
 	<div id="searchbar" class="searchbar header--fixed">
 		<div class="img-area"></div>
 		<form class="search-box center-block">

@@ -20,26 +20,28 @@
 	background-color: #fff;
 	box-shadow:0px 1px 5px #999;
 }
-.search-area .search-content{
+.search-content{
 	width: 1024px;
 	margin: 0px auto;
 	background-color: #fff;
-	padding:0px;
+	padding:0px 20px;
 }
 
 .search-area .img-area{
 	display: block;
-	width: 60px;
+	width: 160px;
 	height: 60px;
 	float: left;
+	padding: 0 50px;
 }
 
 
 .linkarea{
 	display: block;
 	height: 100%;
-	width: 420px;
+	width: 320px;
 	padding: 15px 60px;
+	margin-left: 60px;
 }
 
 
@@ -51,20 +53,20 @@
 }
 
 .headerlink{
-	font-size: 1.5em;
+	font-size: 16px;
     color: #898989;
 	text-decoration: none;
     outline: none;
 }
 
 .vertical-line{
-	font-size: 1.5em;
+	font-size: 16px;
 	color: #dcdcdc;
 }
 
 .search-box-bordered{
 	display:block;
-	width: 520px;
+	width: 422px;
 	height: 100%;
 	padding: 10px 10px;
 }
@@ -74,12 +76,13 @@
 	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
 	border:2px solid #27AE60;
 	border-right-width:0px;
-    font-size: 1.5em;
+    font-size: 16px;
     padding-left:2.5em;
-    width:400px;
+    width:300px;
     height: 40px;
     border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
+	outline: none;
 }
 
 .search-box-bordered input[type=button]{
