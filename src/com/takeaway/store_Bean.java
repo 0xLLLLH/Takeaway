@@ -7,6 +7,46 @@ import java.util.*;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public boolean get_store_info_byid(store_Info data,int id)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select shop_name,price_tosend,score from "+store_Info.dataTable_store_Name + " where id = "+id;
+			System.out.println(sql);
+			Statement st =conn.createStatement();
+			ResultSet  rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				data.setShop_name(rs.getString("shop_name"));
+				data.setPrice_tosend(rs.getDouble("price_tosend"));
+				data.setScore(rs.getDouble("score"));
+			}
+			System.out.println(data.toString());
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	public int get_store_num(double lng,double lat)
 	{
 		conn = DBconn.GetConnection();
@@ -51,7 +91,7 @@ public class store_Bean {
 		}
 		return num;
 	}
-	public boolean get_allstore_info(ArrayList<store_Info> data,double lng,double lat,String type,String order,int pageon)
+	public boolean get_allstore_info(ArrayList<store_Info> data,double lng,double lat,String type,String order,int pageon,String search)
 	{
 		conn = DBconn.GetConnection();
 		try
@@ -68,6 +108,12 @@ public class store_Bean {
 					sql+="and first_type = '";
 					sql+=type;
 					sql+="'";
+			}
+			if(search!="")
+			{
+				sql+=" and shop_name like '%";
+				sql+=search;
+				sql+="%' ";
 			}
 			if(order!="")
 			{

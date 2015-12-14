@@ -1,6 +1,7 @@
 ﻿
 //百度地图API功能
 var place;
+var hasmove=0;
 $(function(){
 	$(window).resize(function(){
 		var height=$(window).height();
@@ -126,8 +127,9 @@ function search(){
 	{
 		setPlace();
 	}
-	else
+	else if(!hasmove)
 	{
+		hasmove=1;
 		hideguider();
 		$("#r-result").animate(
 			{
@@ -148,7 +150,11 @@ function search(){
 			)
 	}
 }
-
+$("#suggestId").keydown(function(event){
+	if (event.keyCode == 13){
+		search();
+	}
+});
 function getPositionByBrowser(){
 	var geolocation = new BMap.Geolocation();
 	geolocation.getCurrentPosition(function(r){

@@ -45,32 +45,10 @@
 		</a>
 	</div>
 	<%@ include file='CommonHeader.jsp' %>
-	<!--
-	<div id="commonheader" class="headerbar">
-		<div class="header-content">
-			当前位置:<%out.println(" "+place+" ");%><a href="./LocationSelect.jsp">[切换地址]</a>
-		</div>
-	</div>
-	<div class="search-area">
-		<div class="search-content">
-			<div class="img-area fl"><img class="img-responsive" alt="homepage" src="images/zafu.png"></div>		
-			<div class="linkarea fl">
-				<a href="<%out.println(maininfo);%>" class="headerlink">首页</a>
-				<span class="vertical-line">|</span>
-				<a href="#" class="headerlink">我的外卖</a>
-				<span class="vertical-line">|</span>
-				<a href="ShopApplication.jsp" class="headerlink">加盟合作</a>
-			</div>
-			<form class="search-box-bordered fr">
-				<input class="fl" type="text" placeholder="搜索商家,美食" id="search_txt1">
-				<input class="fl clearfix " type="button" value="搜索" id="search_bnt1">
-			</form>
-		</div>
-	</div>
-	 -->
 	<div id="searchbar" class="searchbar header--fixed">
 		<div class="img-area"></div>
 		<form class="search-box center-block">
+			<input type="text" style='display:none' />  <!-- 取消回车自动提交表单 -->
 			<input class="fl" type="text" placeholder="搜索商家,美食" id="search_txt2">
 			<input class="fl clearfix " type="button" value="搜索" id="search_bnt2">
 		</form>
@@ -88,22 +66,6 @@
 					<span class="rest-type"><a href="#" class="shoptype">全部</a></span>
 			</div>
 		</div>
-		<!--
-		<hr>
-		<div class="discount-filter clearfix">
-			<div class="left-part clearfix">
-				<div class="discount-title">
-					优惠筛选
-				</div>
-			</div>
-			<div class="right-part clearfix">
-					<span class="discount-type"><a href="#" class="selected">全部</a></span>
-					<%for(int i=0;i<11;i++) { %>
-						<span class="discount-type"> <a href="#" >快餐小吃</a></span>
-					<%} %>
-			</div>
-		</div>
-		-->
 		<div class="divider"></div>
 		<div class="sort-filter clearfix">
 			<div class="sort"> <a href="#" class="sortway">默认排序</a></div>
@@ -141,6 +103,63 @@
 				<%} %> --%>
 			</ul>
 		</div><!-- end of shop-list -->
+		
+		<!-- search_result -->
+		
+		<div class="tab-bar" style="display:none">
+			<button class="button-active" data-toggle="rest">餐厅</button>
+			<button data-toggle="food">美食</button>
+		</div>
+		<div class="text-field" style="display:none"><label>搜索"<span id="search_name" style="color:#27AE60">*</span>"的<span style="color:#27AE60">餐厅</span>结果</label></div>
+		<div id="tab-container" style="display:none">
+			<div id="rest" class="rest-result clearfix" >
+				<ul class="rest-result-list clearfix" id="search_shop_List">
+					<%-- <%
+					for (int i=0;i<10;i++){
+					%>
+					<li class = "restaurant fl clearfix" data-delay='{"show": 432, "hide": 100 }' 
+					data-toggle="popover" data-title="商家详情" data-placement="left auto" data-html="true"
+					data-template="<div class='popover'  style='border:2px solid #5cb85c;width:300px;' role='tooltip'><div class='arrow'  style='border-color:#5cb85c;'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>"
+					data-content="<label style='color:#5cb85c;'>优惠信息</label><hr><p>优惠信息内容</p><label style='color:#5cb85c;'>商家地址</label><hr><p>商家地址内容</p><label style='color:#5cb85c;'>商家公告</label><hr><p>商家公告内容</p>" data-trigger="hover">	
+						<a tabindex="0" class="restaurant-link" href="https://www.baidu.com" target="_blank">
+							<div class="outer">
+								<div class = "top-content">
+									<div class="shop-preview">
+										<img alt="preview"  src="http://p1.meituan.net/208.0/xianfu/e1bcdafeb2a17c7db0115ab062109372112900.jpg">
+									</div>
+									<div class="shop-content clearfix">
+										<div class="clearfix"><span class="shopname">这里是店铺的名字</span></div>
+										<div class="clearfix"><span class="fl">评分 5.4</span><span class="fr">销量123</span></div>
+										<div class="clearfix"><span class="fl">起送价</span><span class="fr">配送时间</span></div>
+									</div>
+								</div>
+								<div class="other">
+									<span>折扣信息 【满-减】</span>
+								</div>
+							</div>
+						</a>
+					</li>
+					<%} %> --%>
+				</ul>
+			</div>
+			<div id="food" class="food-result" style="display:none">
+				<%-- <%for (int i=0;i<10;i++){ %> --%>
+				<div class="food-result-rest">
+					<div class="result-title">
+						<div class="name clearfix"><label class="fl"><b>这里是店铺名</b></label><div class="fl"><span>折扣信息 【满-减】</span></div></div>
+						<div class="info clearfix"><span>评分 4.5</span><span>|</span><span>起送价</span></div>
+					</div>
+					<div class="result-item">
+						<a href="#">
+							<div class="result-item-row clearfix">
+								<span class="name fl"><b>菜品的名字</b></span><span class="price fl">菜品的单价</span><span class="sold fl">月销0单</span><span class="buy fr">购买</span>
+							</div>
+						</a>
+					</div>
+				</div>
+				<%-- <%} %> --%>
+			</div>
+		</div><!-- end of tab-container -->
 	</div><!-- end of content -->
 	<div  id="load_div" style="display:none">
 		<div  class="loading">玩命加载中...</div>

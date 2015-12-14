@@ -195,5 +195,15 @@ public class store_Info {
 	public void setAve_sendtime(int ave_sendtime) {
 		this.ave_sendtime = ave_sendtime;
 	}
+	@Override
+	public String toString() {
+		return "store_Info [id=" + id + ", username=" + username + ", shop_name=" + shop_name + ", shop_address="
+				+ shop_address + ", shop_phone=" + shop_phone + ", first_type=" + first_type + ", second_type="
+				+ second_type + ", price_tosend=" + price_tosend + ", discount=" + discount + ", shop_owner="
+				+ shop_owner + ", id_card=" + id_card + ", longitude=" + longitude + ", latitude=" + latitude
+				+ ", shop_license=" + shop_license + ", shop_description=" + shop_description + ", submit_date="
+				+ submit_date + ", shop_notice=" + shop_notice + ", score=" + score + ", sell_num=" + sell_num
+				+ ", ave_sendtime=" + ave_sendtime + "]";
+	}
 	
 }
