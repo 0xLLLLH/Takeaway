@@ -2,6 +2,24 @@
 //百度地图API功能
 var place;
 var hasmove=0;
+/*设置cookie*/
+function setCookie(c_name, value, expiredays){
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate() + expiredays);
+	document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+function getCookie(c_name){
+	if (document.cookie.length>0){
+		c_start=document.cookie.indexOf(c_name + "=")
+		if (c_start!=-1){ 
+			c_start=c_start + c_name.length+1;
+			c_end=document.cookie.indexOf(";",c_start);
+			if (c_end==-1) c_end=document.cookie.length;
+			return unescape(document.cookie.substring(c_start,c_end))
+			} 
+		}
+	return "";
+}
 $(function(){
 	$(window).resize(function(){
 		var height=$(window).height();
@@ -44,6 +62,7 @@ function G(id) {
 		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
 		G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
 		place=myValue;
+		setCookie('place',place,Number.MAX_SAFE_INTEGER);//add cookie
 		setPlace();
 	});
 	//
@@ -64,6 +83,7 @@ function G(id) {
 		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 	});*/
 //
+
 function get_store_num(){
 	var num=0;
 	$.ajax({
@@ -89,7 +109,10 @@ function setPlace(){
 			//alert(place);
 		$("#lng").val(pp.lng);
 		$("#lat").val(pp.lat);
-			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
+		//add cookie
+		setCookie('lng',pp.lng+"",Number.MAX_SAFE_INTEGER);
+		setCookie('lat',pp.lat+"",Number.MAX_SAFE_INTEGER);
+			var href="ShopList.jsp";
 			var sContent = 
 				"<div style='margin:0'>"+
 				"<br><h4 style='margin:0;font-size:13px;color:gray';line-height:1.5;text-indent:2em>地址 : "+place+"</h4>" + 
@@ -100,7 +123,7 @@ function setPlace(){
 			marker.openInfoWindow(infoWindow);
 		//});
 		marker.addEventListener("click", function(){          
-			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
+			var href="ShopList.jsp";
 			var sContent = 
 				"<div style='margin:0'>"+
 				"<br><h4 style='margin:0;font-size:13px;color:gray';line-height:1.5;text-indent:2em>地址 : "+place+"</h4>" + 
@@ -153,6 +176,7 @@ function search(){
 $("#suggestId").keydown(function(event){
 	if (event.keyCode == 13){
 		search();
+		//alert(getCookie('place')+getCookie('lng')+getCookie('lat'));
 	}
 });
 function getPositionByBrowser(){
