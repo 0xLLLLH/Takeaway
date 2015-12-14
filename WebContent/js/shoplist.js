@@ -27,7 +27,7 @@ function LoadPage(){
 		url: "code/get_Shop_Info.jsp",
 		type: "get",
 		//dataType:"json",
-		data: { lng: $("#lng").val(), lat: $("#lat").val() ,type:$("#type").val(),order:$("#order").val(),page:pg},
+		data: { lng: getCookie('lng'), lat: getCookie('lat') ,type:$("#type").val(),order:$("#order").val(),page:pg},
 		success:function(data)
 		{
 			var id= $(data).find("id");
@@ -143,7 +143,7 @@ function update_Search_Food_List(id,search){
 function update_Food_List(search){
 	$.ajax({
 		url:"code/search_Shop.jsp",
-		data:{search:search,lng: $("#lng").val(), lat: $("#lat").val()},
+		data:{search:search,lng: getCookie('lng'), lat: getCookie('lat')},
 		type:"get",
 		success:function(data){
 			var store_id = $(data).find("store_id");
@@ -173,8 +173,24 @@ function go_search_page(search_name){
 		pg=0;
 	}
 }
+function getCookie(c_name){
+	if (document.cookie.length>0){
+		c_start=document.cookie.indexOf(c_name + "=")
+		if (c_start!=-1){ 
+			c_start=c_start + c_name.length+1;
+			c_end=document.cookie.indexOf(";",c_start);
+			if (c_end==-1) c_end=document.cookie.length;
+			return unescape(document.cookie.substring(c_start,c_end))
+			} 
+		}
+	return "";
+}
+$(function(){
+	$("#place").text(getCookie('place'));
+})
 $("#search_txt1").keydown(function(event){
 	if (event.keyCode == 13){
+		//alert(getCookie('place')+getCookie('lng')+getCookie('lat'));
 		var search_name=$("#search_txt1").val();
 		go_search_page(search_name.trim());
 	}
@@ -255,7 +271,7 @@ function update_List(type,order,search){
 		url: "code/get_Shop_Info.jsp",
 		type: "get",
 		//dataType:"json",
-		data: { lng: $("#lng").val(), lat: $("#lat").val() ,type:type,order:order,search:search},
+		data: { lng: getCookie('lng'), lat: getCookie('lat') ,type:type,order:order,search:search},
 		success:function(data)
 		{
 			var id= $(data).find("id");

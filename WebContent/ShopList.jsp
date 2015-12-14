@@ -25,17 +25,9 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script charset="utf-8" src="js/ajax.js"></script>
-<%
-	String place = request.getParameter("place");
-	double lng = Double.parseDouble(request.getParameter("lng"));
-	double lat = Double.parseDouble(request.getParameter("lat"));
-	String maininfo="ShopList.jsp?place="+place+"&lng="+lng+"&lat="+lat;
-%>
 <title>附近店铺</title>
 </head>
 <body>	
-	<input value="<%out.print(lng);%>" id="lng" style="display:none">
-	<input value="<%out.print(lat);%>" id="lat" style="display:none">
 	<input value="" id="type" style="display:none">
 	<input value="" id="order" style="display:none">
 	<div id="top"></div>
