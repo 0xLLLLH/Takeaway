@@ -48,6 +48,7 @@
 	<div id="searchbar" class="searchbar header--fixed">
 		<div class="img-area"></div>
 		<form class="search-box center-block">
+			<input type="text" style='display:none' />  <!-- 取消回车自动提交表单 -->
 			<input class="fl" type="text" placeholder="搜索商家,美食" id="search_txt2">
 			<input class="fl clearfix " type="button" value="搜索" id="search_bnt2">
 		</form>

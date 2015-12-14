@@ -18,6 +18,7 @@
 			<a href="#" class="headerlink">加盟合作</a>
 		</div>
 		<form class="search-box-bordered fr clearfix">
+			<input type="text" style='display:none' />  <!-- 取消回车自动提交表单 -->
 			<input class="fl clearfix" type="text" placeholder="搜索商家,美食" id="search_txt1">
 			<input class="fl clearfix" type="button" value="搜索" id="search_bnt1">
 		</form>

@@ -156,9 +156,7 @@ function update_Food_List(search){
 		}
 	})
 }
-
-$("#search_bnt1").bind("click",function(){
-	var search_name=$("#search_txt1").val()
+function go_search_page(search_name){
 	if(search_name!=""){
 		$(".food-result-rest").empty();
 		$(".restaurant-type").hide();
@@ -174,27 +172,28 @@ $("#search_bnt1").bind("click",function(){
 		update_Food_List(search_name);
 		pg=0;
 	}
+}
+$("#search_txt1").keydown(function(event){
+	if (event.keyCode == 13){
+		var search_name=$("#search_txt1").val();
+		go_search_page(search_name.trim());
+	}
+});
+$("#search_txt2").keydown(function(event){
+	if (event.keyCode == 13){
+		var search_name=$("#search_txt2").val()
+		go_search_page(search_name.trim());
+	}
+});
+$("#search_bnt1").bind("click",function(){
+	var search_name=$("#search_txt1").val()
+	go_search_page(search_name.trim());
 	//alert($("#search_txt1").val());
 });
 
 $("#search_bnt2").bind("click",function(){
 	var search_name=$("#search_txt2").val()
-	
-	if(search_name!=""){
-		$(".food-result-rest").empty();
-		$(".restaurant-type").hide();
-		$(".sort-filter").hide();
-		$(".shop-list").hide();
-		$(".divider").hide();
-		//$(".space").hide();
-		$(".tab-bar").show();
-		$(".text-field").show();
-		$("#tab-container").show();
-		$("#search_name").text(search_name);
-		update_List("","",search_name);
-		update_Food_List(search_name);
-		pg=0;
-	}
+	go_search_page(search_name.trim());
 	//alert($("#search_txt2").val());
 });
 $(function(){

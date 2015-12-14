@@ -43,6 +43,7 @@
 			<!-- <div><button class="auto-get">自动定位</button></div> -->
 			<div id="r-result">
 				<form class="input-group">
+					<input type="text" style='display:none' />  <!-- 取消回车自动提交表单 -->
 					<input type="text" id="suggestId" size="20" class="form-control" placeholder="输入地址搜索周边美食" /><input type="button" class="input-group-addon" id="bnt_search" value="搜索" onclick="search()"/>
 				</form>
 			</div>
