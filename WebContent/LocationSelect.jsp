@@ -24,7 +24,6 @@
 </head>
 <body>
 	<%@ include file='Header.jsp' %>
-	<%@ include file='isLoginTLE.jsp' %>
 	<input id="lng" style="display:none">
 	<input id="lat" style="display:none">
 	<div class="content">
