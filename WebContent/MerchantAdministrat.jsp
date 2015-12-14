@@ -30,42 +30,7 @@
 <!--zhezhao end-->
 </div>
 <div style="z-index:0;">                     		  <!-- 总 -->
-  	  <div class="header">           			  <!-- 黄白 page-header-->
-        <div class="top-nav">			  <!-- 黄 top-nav -->
-          <div class="topnav-wrap">       
-            <div class="fr">              <!-- 右 -->
-    		  <div id="is-login" class="fl">
-      			<span class="fl">欢迎你，亲</span>
-    		  </div>
-            </div>
-                   
-              <span class="fl" id="address">
-                <span id="curr-location" class="fl">当前位置</span>
-                <div class="fl" id="changePosition">
-                  <a href="LocationSelect.jsp" class="change-link">
-                    <span class="fl">-[切换地址]</span>
-                  </a>
-                </div>
-              </span>
-            
-          </div>
-        </div>
-        <div class="middle-nav">          <!-- 白 -->
-          <div class="middlenav-wrap">
-            <h1 class="logo fl">
-              <img class="img-responsive" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg">
-            </h1>
-            <div class="desire fl">			<!-- 左 -->
-              <a href="" class="ca-lightgrey"><span>首页</span></a>
-              <span class="vertical-line">|</span>
-              <a href="" class="ca-lightgrey" rel="nofollow"><span>我的外卖</span></a>
-              <span class="vertical-line">|</span>
-              <a href="" class="ca-lightgrey"><span>加盟合作</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+
 <div id="loginDiv" class="window col-md-10 col-md-offset-1 shadowed">
 	<h4 class="modal-title" style="line-height: 2.5;">详细信息</h4>
    <div class="modal-footer">

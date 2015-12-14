@@ -4,7 +4,7 @@
 <link href="css/commonheader.css" rel="stylesheet">
 <div id="commonheader" class="headerbar">
 	<div class="header-content">
-		<span class="glyphicon glyphicon-map-marker" style='margin:0;font-size:13px';line-height:1.5;text-indent:2em><%out.println(place);%> </span><a href="./LocationSelect.jsp">[切换地址]</a>
+		<span class="glyphicon glyphicon-map-marker" style='margin:0;font-size:13px;line-height:1.5;text-indent:2em;'><%out.println(place);%> </span><a href="./LocationSelect.jsp">[切换地址]</a>
 	</div>
 </div>
 <div class="search-area">
