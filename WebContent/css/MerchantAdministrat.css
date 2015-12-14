@@ -1,0 +1,256 @@
+@CHARSET "UTF-8";
+
+.fr{float:right;}.fl{float:left;}
+
+body {
+background-color: #F5F5F5;
+color: #666;
+}
+
+a {
+text-decoration: none;
+outline: none;
+}
+
+.header {
+margin-bottom: 10px;
+border-bottom: 1px solid #ebebeb;
+}
+
+.top-nav{height:36px;background-color:#27AE60;}
+
+.topnav-wrap{width:980px;margin:0 auto;color:#004000;height:36px;line-height:36px;font-size:15px}
+
+.change-link{color:#004882;}
+
+.middle-nav{height:80px;background-color:#FFFFFF;box-shadow:0px 2px 3px #ccc;}
+
+.middlenav-wrap{width:980px;margin:0 auto;height:80px;}
+
+.logo{margin-top:0px;line-height:normal;height:67px;width:80px;}
+
+.desire span{margin-left:14px;}
+.desire{margin-left:50px; line-height:80px;color:#898989;}
+.desire a{font-size:16px;color:#898989;text-decoration: none;}
+.desire a:hover{color:#27AE60;}
+.vertical-line{font-size:18px;color:#dcdcdc;}
+
+.ca-lightgrey{color:#898989;} <!-- 字体颜色 -->
+
+
+.search-bar 
+.img-area{
+	width: 100px;
+	height: 100px;
+	background-image:url(http://www.hostime.cn/images/waimai_icon.png);/*图片地址*/
+	background-origin:content;/*从content区域开始显示背景*/
+	background-position:50%50%;/*图片上下左右居中*/
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	background-repeat:no-repeat;/*图像不重复显示*/
+}
+
+.search-box-bordered{
+	display:block;
+	width: 500px;
+	height: 40px;
+	margin-top:21px;
+	margin-right:20px;
+}
+
+.search-box-bordered input[type=text]{
+	background:url(../images/search-vector.jpg) no-repeat;
+	background-size:contain;/*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+	border:2px solid #27AE60;
+	border-right-width:0px;
+    font-size: 1.5em;
+    padding-left:2.5em;
+    width:400px;
+    height: 40px;
+    border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.search-box-bordered input[type=button]{
+	border:2px solid #27AE60;
+	border-left-width:0px;
+    font-size: 1.5em;
+    width:100px;
+    height: 40px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: #5cb85c;
+}
+
+.header--fixed {
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.page-wrap{background-color:#F5F5F5;}
+
+.inner-wrap{width:980px;margin:0 auto;}
+
+.orders-cont{
+	background-color:#fafafa;
+	border:1px solid #e5e5e5;
+	}
+
+ul,ol,li{
+margin:0;/*设置外补白为0*/
+padding:0;/*设置内补白为0*/
+list-style-type:none;
+}
+
+.orders-tab{padding:17px 0;}
+.orders-tab li a{text-decoration: none;text-align:center;font-weight:550;font-size:16px;display:block;color:#898989;height:35px;line-height:35px;padding-left:0px;width:135px;}
+.orders-tab li a:hover,
+.orders-tab li a.active{background-color:#4dd787;color:#155e34;}
+
+.orders-list{background-color:#ffffff;margin-left:135px;border-left:1px solid #e5e5e5;padding:0 24px 24px;overflow:hidden;}
+
+.curr_div{display: block !important;min-height:350px;}
+
+.curr_btn{background-color:#2bc66c;}
+.tab_div{display: none;}
+.tab_btn{display: block;}
+
+.ct-commonblack{color:#313131;font-size: 16px;font-weight:700;}
+
+.ticket-list{background-color:#ffffff;margin-left:135px;border-left:1px solid #e5e5e5;padding:30px;min-height:500px;_height:500px;_overflow:visible;}
+.tabs{font: 14px/1.125 Microsoft Yahei,Arial,Helvetica,sans-serif;background-color:#F5F5F5;margin-top:12px;}
+.tabs a{text-decoration: none;display:block;height:12px;border-right:1px solid #DCDCDC;text-align:center;margin-top:7px;}
+.tabs ul{overflow:hidden;}
+.tabs li{float:left;width:120px;height:28px;}
+.tabs li.active{border-bottom:2px solid #6b450a;}
+.tabs li a{color:#535353;}
+.tabs li.active a{color:#6b450a;}
+
+.currr_div{display: block !important;}
+.currr_btn{border-bottom:2px solid #114a29;}
+.tabb_div{display: none;margin-top:21px;}
+.tabb_btn{display: block;}
+
+.curdan_div{display: block !important;}
+.curdan_btn{border-bottom:2px solid #114a29;}
+.dan_div{display: none;margin-top:21px;}
+.dan_btn{display: block;}
+
+.mid{text-align:center;}
+.message-box textarea{
+	font:12px;
+	border:1px solid #DCDCDC;
+	padding:5px;
+	margin:0;
+	width:760px;
+	height:120px;
+	outline:none;
+	display:block;
+	-moz-box-shadow:1px 1px 5px #f6f6f6 inset;
+	-webkit-box-shadow:1px 1px 5px #f6f6f6 inset;
+	box-shadow:1px 1px 5px #f6f6f6 inset;
+	resize:vertical;
+	}
+
+.black{margin-bottom: 10px;}
+
+.button{
+width: 80px;
+line-height: 20px;
+text-align: center;
+font-weight: bold;
+color: #fff;
+text-shadow:1px 1px 1px #333;
+border-radius: 5px;
+position: relative;
+overflow: hidden;
+}
+.button.gray{
+color: #8c96a0;
+text-shadow:1px 1px 1px #fff;
+border:1px solid #dce1e6;
+box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+background: -webkit-linear-gradient(top,#f2f3f7,#e4e8ec);
+background: -moz-linear-gradient(top,#f2f3f7,#e4e8ec);
+background: linear-gradient(top,#f2f3f7,#e4e8ec);
+}
+.gray:active{
+top:1px;
+box-shadow: 0 1px 3px #a8abae inset,0 3px 0 #fff;
+background: -webkit-linear-gradient(top,#e4e8ec,#e4e8ec);
+background: -moz-linear-gradient(top,#e4e8ec,#e4e8ec);
+background: linear-gradient(top,#e4e8ec,#e4e8ec);
+}
+
+.inform{
+	color:#f00;
+}
+
+.informerr{
+	color:#f00;
+	font-size: 16px;
+	line-height:21px;
+}
+.form-control{
+  	font-size: 14px;
+	border-color:#2fcc72;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,.075)
+	}
+	
+.form-field{margin:0;padding-left:80px;}
+
+.form-field--text{padding:0 0 4px 110px;}
+
+.inline-link{
+	margin:0 0 0 114px;
+	font-size:13px;
+	line-height:36px;
+	vertical-align:top;
+	zoom:1
+	}
+
+
+.form-group{margin-top:21px;height:35px;}
+
+.col-md-2{
+	color:#414141;font-size: 14px;font-weight:700;
+}
+
+.result-list{border:1px solid #ebebeb;min-height:20px;}
+
+.poi-info{padding-left:20px;padding-top:1px;height:50px;background-color:#f5f5f5;}
+.poi-info .name{margin-bottom:10px;color:#535353;height:16px;line-height:16px;font-size:16px; font-weight:700;}
+.poi-info .info-content{line-height:12px;}
+
+.food-list{padding:5px 0;}
+.food-list li{heifht:35px;line-height:35px;}
+.food-list .food{width:793px;height:35px;line-height:35px;}
+.food-list .food:hover{background-color:#eafbf0;}
+.food-list .details{width:300px;}
+.food-list .details .food-name{font-size:14px;padding-left:120px;}
+.food-list .hasDesc .food-name{height:16px;line-height:16px;}
+.food-list .food-price{width:225px;margin-left:200px;font-size:14px;}
+
+.window {
+border: 1px solid #d5d5d5;
+box-shadow: 0px 1px 11px #999;
+border-radius: 5px;
+background-color:white;
+width:500px;
+height:250px;
+z-index:2;
+display:none;
+position:absolute;
+border-top:none;
+margin-left: 32%;
+}
+
+.field-group {
+margin: 5px 0;
+padding: 10px 30px 7px 50px;
+line-height: 22px;
+font-size:18px;
+}
