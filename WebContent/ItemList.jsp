@@ -24,13 +24,14 @@
 </head>
 <body>
 	<%@ include file='CommonHeader.jsp' %>
-	
-	<div class="content">
+	<div class="cart"></div>
+	<div class="content clearfix">
 		<div class="shop-summary clearfix">
+			<div class="detail-block fl" style="position: relative;"></div><!-- 占位用 -->
 			<div class="detail fl">
 				<div class="top clearfix">
 					<div  class="pic"><img class="img-responsive" src="http://p0.meituan.net/120.0/xianfu/bdcafce11742063f3d3091dd389bb49e414723.jpg"></div>
-					<div class="title fl"><label>这里是店铺名</label></div>
+					<div class="title fl"><label>这里是店铺名,可以取得很长,比如现在这个</label></div>
 					<div class="fl"></div>
 				</div>
 				<div class="dropdown-info">
@@ -41,23 +42,67 @@
 			</div>
 			<div class="score-bar fl clearfix">
 				<div class="avg fl">
-					<div class="score">4.5</div>
+					<div class="score"><strong>4.5</strong><span class="desc">分</span></div>
 					<div class="desc">商家评分</div>
 				</div>
 				<div class="vertical-line-text fl"></div>
 				<div  class="avg fl">
-					<div class="score">4.5</div>
-					<div class="desc">商家评分</div>
+					<div class="score"><strong>39</strong>分钟</div>
+					<div class="desc">平均送餐时间</div>
 				</div>
 				<div class="vertical-line-text fl"></div>
 				<div class="avg fl">
-					<div class="score">4.5</div>
-					<div class="desc">商家评分</div>
+					<div class="score"><strong>64</strong>%</div>
+					<div class="desc">及时送餐率</div>
 				</div>
 			</div>
 			<div class="extra-part fl">
-					
+				<div class="fold-3d fl"></div>	
+				<div class="favor fl"></div>
+			</div>
+		</div>
+		<div class="left-part">
+			<div class="tab-area">
+				<div class="tab-bar"><button class="button-pressed">菜单</button><button>评价</button></div>
+				<div class="food-type clearfix">
+					<div class="type" ><a class="selected" href="#">当前菜品分类</a></div>
+					<%for (int i=0;i<10;i++) { %>
+						<div class="type" ><a href="#">菜品分类</a></div>
+					<%} %>
 				</div>
+			</div>
+			<div class="item-list">
+				<div class="list-title">这里是标题</div>
+				<div class="list-desc">这里是描述，可选</div>
+				<div class="list-content">
+					<%for (int i=0;i<10;i++) { %>
+					<div class="list-item">
+						<div class="title fl">菜品名称</div>
+						<div class="sold fr">总销量1231</div>
+						<div class="plus fr">+</div>
+						<div class="price fr">&yen;15元/份</div>
+					</div>
+					<%} %>
+				</div>
+			</div>
+		</div>
+		<div class="right-part">
+			<div class="wiget broadcast">
+				<div class="broadcast-title">
+					<label>订餐必读&amp;商家公告</label>
+				</div>
+				<div  class="broadcast-body">
+					<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
+					<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+				</div>
+			</div>
+			<div class="wiget discount">
+				在此处显示各类优惠信息
+				在此处显示各类优惠信息
+				在此处显示各类优惠信息
+				在此处显示各类优惠信息
+			</div>
+			
 		</div>
 	</div>
 	
