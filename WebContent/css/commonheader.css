@@ -11,6 +11,7 @@
 }
 
 .headerbar {
+	color:#333;	
 }
 
 .search-area{
@@ -25,6 +26,22 @@
 	margin: 0px auto;
 	background-color: #fff;
 	padding:0px 20px;
+}
+
+.acount-link{
+	width: 200px;	
+}
+
+.account-link a{
+	text-decoration:none;
+	padding:0 20px;
+	color : #333;
+}
+
+.account-link a:hover{
+	text-decoration:none;
+	color:#333;
+	cursor: pointer;
 }
 
 .search-area .img-area{
