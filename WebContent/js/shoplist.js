@@ -125,7 +125,7 @@ function update_Search_Food_List(id,search){
 			var dish_name=$(data).find("dish_name");
 			var price = $(data).find("price");
 			var sell_num = $(data).find("sell_num");
-			alert(dish_name.length);
+			//alert(dish_name.length);
 			for(var i=0;i<dish_name.length;++i){	
 				var search_item="<div class=\"result-item\">"
 					+"<a href=\"#\">"
