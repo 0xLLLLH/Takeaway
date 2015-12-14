@@ -112,7 +112,7 @@ function setPlace(){
 		//add cookie
 		setCookie('lng',pp.lng+"",Number.MAX_SAFE_INTEGER);
 		setCookie('lat',pp.lat+"",Number.MAX_SAFE_INTEGER);
-			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
+			var href="ShopList.jsp";
 			var sContent = 
 				"<div style='margin:0'>"+
 				"<br><h4 style='margin:0;font-size:13px;color:gray';line-height:1.5;text-indent:2em>地址 : "+place+"</h4>" + 
@@ -123,7 +123,7 @@ function setPlace(){
 			marker.openInfoWindow(infoWindow);
 		//});
 		marker.addEventListener("click", function(){          
-			var href="ShopList.jsp?place="+place+"&lng="+pp.lng+"&lat="+pp.lat;
+			var href="ShopList.jsp";
 			var sContent = 
 				"<div style='margin:0'>"+
 				"<br><h4 style='margin:0;font-size:13px;color:gray';line-height:1.5;text-indent:2em>地址 : "+place+"</h4>" + 
