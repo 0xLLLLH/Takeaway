@@ -6,7 +6,7 @@
 <script src="js/commonheader.js"></script>
 <div id="commonheader" class="headerbar">
 	<div class="header-content">
-		<span class="glyphicon glyphicon-map-marker" style="margin:0;font-size:13px;line-height:1.5em;text-indent:2em;"><%out.println(place);%> </span><a href="./LocationSelect.jsp">[切换地址]</a>
+		<span class="glyphicon glyphicon-map-marker" style="margin:0;font-size:13px;line-height:1.5em;text-indent:2em;" id="place"> </span><a href="./LocationSelect.jsp">[切换地址]</a>
 		<div class="account-area fr">
 			<div class="account-link" style="display: none"><a href="#">注册</a>|<a href="#">登录</a></div>
 			<div class="account-link">

@@ -1,3 +1,14 @@
 //$("#dLabel").mouseover(function (){
-//	$('.dropdown-toggle').dropdown('toggle');
+	//$('.dropdown').dropdown();
 //});
+
+
+$(function(){
+/*	$("#dLabel").mouseover(function (){
+		$(this).dropdown();
+	});
+	$("#dLabel").mouseout(function (){
+		$(this).dropdown();
+	});*/
+	$("#place").text(getCookie('place'));
+})

@@ -62,7 +62,7 @@ function G(id) {
 		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
 		G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
 		place=myValue;
-		setCookie('place',place,Number.MAX_SAFE_INTEGER);//add cookie
+		setCookie('place',place,365*5);//add cookie
 		setPlace();
 	});
 	//
@@ -110,8 +110,8 @@ function setPlace(){
 		$("#lng").val(pp.lng);
 		$("#lat").val(pp.lat);
 		//add cookie
-		setCookie('lng',pp.lng+"",Number.MAX_SAFE_INTEGER);
-		setCookie('lat',pp.lat+"",Number.MAX_SAFE_INTEGER);
+		setCookie('lng',pp.lng+"",365*5);
+		setCookie('lat',pp.lat+"",365*5);
 			var href="ShopList.jsp";
 			var sContent = 
 				"<div style='margin:0'>"+
