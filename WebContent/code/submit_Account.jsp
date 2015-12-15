@@ -14,7 +14,7 @@
 	boolean result = bean.insert_Info(info);
 	if(result)
 	{
-		session.setMaxInactiveInterval(60);//设置过期时间
+		session.setMaxInactiveInterval(300);//设置过期时间
 		session.setAttribute("username", username.trim());
 		response.setContentType("text/xml; charset=UTF-8");  
 		response.setHeader("Cache-Control","no-cache"); 

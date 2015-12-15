@@ -29,6 +29,10 @@
 </head>
 <body>
 	<%@ include file='Header.jsp' %>
+	<%
+		String state = request.getParameter("state");
+	%>
+	<input type="text" style='display:none' id="state" value="<%out.println(state);%>" />
 	<div class="container content">
 	<div class="row">
 	<div class="col-md-10 col-md-offset-1">

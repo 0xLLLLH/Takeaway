@@ -3,10 +3,12 @@
 var place;
 var hasmove=0;
 /*设置cookie*/
-function setCookie(c_name, value, expiredays){
-	var exdate=new Date();
-	exdate.setDate(exdate.getDate() + expiredays);
-	document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+function setCookie(c_name,value,expiredays)
+{
+	var exdate=new Date()
+	exdate.setTime(exdate.getTime()+expiredays)
+	//alert(exdate.toGMTString());
+	document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
 }
 function getCookie(c_name){
 	if (document.cookie.length>0){
@@ -62,7 +64,7 @@ function G(id) {
 		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
 		G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
 		place=myValue;
-		setCookie('place',place,365*5);//add cookie
+		setCookie('place',place,365*24*60*60*1000);//add cookie
 		setPlace();
 	});
 	//
@@ -110,8 +112,8 @@ function setPlace(){
 		$("#lng").val(pp.lng);
 		$("#lat").val(pp.lat);
 		//add cookie
-		setCookie('lng',pp.lng+"",365*5);
-		setCookie('lat',pp.lat+"",365*5);
+		setCookie('lng',pp.lng,365*24*60*60*1000);
+		setCookie('lat',pp.lat,365*24*60*60*1000);
 			var href="ShopList.jsp";
 			var sContent = 
 				"<div style='margin:0'>"+

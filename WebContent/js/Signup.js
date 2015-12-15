@@ -7,6 +7,9 @@
 		document.getElementById("login_username").value=temp[0];
 		document.getElementById("login_password").value=temp[1];
 		LoginForm.remember.checked = true;
+		if($("#state").val()==0){
+			$("#regtab").click();
+			}
 		}
 	}
 	function getFocus(inform1,inform2){

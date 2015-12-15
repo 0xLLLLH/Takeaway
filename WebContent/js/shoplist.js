@@ -33,7 +33,10 @@ $("#searchbar").headroom({
 		"unpinned": "swingInX"
 	  }
 });
-
+$(function(){
+	if(getCookie("place")=="")
+		window.location.href="LocationSelect.jsp";
+})
 function LoadPage(){
 	$.ajax({
 		url: "code/get_Shop_Info.jsp",
