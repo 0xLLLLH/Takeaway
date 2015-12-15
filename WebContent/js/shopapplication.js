@@ -141,7 +141,7 @@ function checkApplicationRepeat()
 			}
 			else
 			{
-				 alert("您的登陆信息已过期!");
+				 alert("请先登录账号!");
 				 window.location.href="Signup.jsp";
 			}
 		 }
