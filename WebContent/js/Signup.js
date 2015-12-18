@@ -137,6 +137,7 @@
 		var ms = objHours*3600*1000;
 		date.setTime(date.getTime() + ms);
 		str += "; expires=" + date.toGMTString();
+		//alert(date.toGMTString());
 		}
 		document.cookie = str;
 		//alert("添加cookie成功");
@@ -181,7 +182,7 @@
 							  {
 								  var cookie_name = fun("LoginForm","login_username");
 								  var cookie_value = fun("LoginForm","login_password");
-								  addCookie(cookie_name,cookie_value,3);
+								  addCookie(cookie_name,cookie_value,24*365);
 								  //alert("登陆成功");
 							  }
 							  window.location.href="LocationSelect.jsp";

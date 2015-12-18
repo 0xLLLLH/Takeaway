@@ -31,13 +31,13 @@
 
 <div class="search-area">
 	<div class="search-content clearfix">
-		<div class="img-area fl"><img class="img-responsive" alt="homepage" src="http://2a.zol-img.com.cn/product/61/566/ceP9S3zQbVvj6.jpg"></div>		
+		<div class="img-area fl"><img class="img-responsive" alt="homepage" src="images/zafu.png"></div>		
 		<div class="linkarea fl">
-			<a href="ShopList.jsp" class="headerlink">首页</a>
+			<a href="ShopList.jsp" class="headerlink"><span>首页 </span></a>
 			<span class="vertical-line">|</span>
-			<a href="#" class="headerlink">我的外卖</a>
+			<a href="#" class="headerlink"><span>我的外卖</span></a>
 			<span class="vertical-line">|</span>
-			<a href="#" class="headerlink">加盟合作</a>
+			<a href="#" class="headerlink"><span>加盟合作</span></a>
 		</div>
 		<form class="search-box-bordered fr clearfix">
 			<input type="text" style='display:none' />  <!-- 取消回车自动提交表单 -->

@@ -7,6 +7,43 @@ import java.util.*;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public int get_store_id_by_username(String username)
+	{	
+		int store_id=-1;
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select id from "+store_Info.dataTable_store_Name
+					+" where username ='"+username+"'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				store_id=rs.getInt("id");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return store_id;
+	}
 	public boolean get_store_info_byid(store_Info data,int id)
 	{
 		conn = DBconn.GetConnection();
