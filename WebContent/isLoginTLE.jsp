@@ -6,6 +6,9 @@
 		if(username==null)
 		{
 			System.out.println("Lodin_outoftime");
-			request.getRequestDispatcher("Signup.jsp").forward(request, response);
+			//request.getRequestDispatcher("Signup.jsp").forward(request, response);
+			response.sendRedirect("Signup.jsp");
 		}
+		
 %>
+		<input id="username" type="text" value="<%out.println(username);%>" style="display:none">
