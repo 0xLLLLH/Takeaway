@@ -35,6 +35,7 @@ ul{
 	margin-left:5px;
 	margin-right:2px;
 	max-width: 20px;
+	text-align: right;
 }
 
 .cart .cart-title{
@@ -57,7 +58,7 @@ ul{
 
 }
 
-.cart-body .plus{
+.cart-body .plus,.minus{
 	display: block;
 	width: 20px;
 	height: 20px;
@@ -68,6 +69,7 @@ ul{
 	text-align: center;
 	line-height: 15px;
 	color: #7f7f7f;
+	cursor: pointer;
 }
 
 .cart .cart-footer{
@@ -285,6 +287,14 @@ ul{
 	border-bottom: 1px solid #ebebeb;
 }
 
+
+.list-title-fixed{
+	position: fixed;
+	top:0;
+	display: none;
+}
+
+
 .list-desc{
 	height: 50px;
 	padding:15px 30px;
@@ -420,6 +430,12 @@ ul{
 
 .broadcast{
 	line-height: 1.4em;
+}
+
+.broadcast-fixed{
+	display: none;
+	position: fixed;
+	top:0;
 }
 
 .broadcast-title{

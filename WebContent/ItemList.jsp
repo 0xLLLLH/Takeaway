@@ -31,14 +31,12 @@
 				<div class="cart-body">
 					<table id="cart-items" class="table table-hover" style="margin:0;">
 						<tr><th>菜品</th><th>份数</th><th>单价</th></tr>
-						<%for(int i=0;i<3;i++) { %>
-						<tr data-id="<%= i%>"><td>菜品名</td><td><span class="plus fl">-</span><input type="text" class="count fl" value="99"/><span class="plus fl">+</span></td><td>&yen;121</td></tr>
-						<%} %>
+						
 					</table>
 				</div>
 				<div class="cart-footer">
 					<div class="total-price fl">
-						<span class="glyphicon glyphicon-shopping-cart"></span>共&yen;10元
+						<span class="glyphicon glyphicon-shopping-cart"></span>共&yen;<span id="total_price">0</span>元
 					</div>
 					<div class="buy fr"><a style="color:white;">去下单</a></div>
 				</div>
@@ -98,11 +96,13 @@
 			<div class="tab-container">
 				<div class="tab-item">
 					<div class="item-list">
-						<div class="list-title">这里是标题</div>
+						<%for (int k=0;k<10;k++) {%>
+						<div class="list-title">这里是标题<%=k %></div>
+						<div class="list-title list-title-fixed">这里是标题<%=k %></div>
 						<div class="list-desc">这里是描述，可选</div>
 						<div class="list-content">
-							<%for (int i=0;i<10;i++) { %>
-							<div class="list-item" data-id="<%= i%>">
+							<%for (int i=0;i<15;i++) { %>
+							<div class="list-item" data-id="<%=i%>" data-price="15">
 								<div class="title fl">菜品名称</div>
 								<div class="sold fr">总销量1231</div>
 								<div class="plus fr">+</div>
@@ -110,6 +110,7 @@
 							</div>
 							<%} %>
 						</div>
+						<%} %>
 					</div>
 				</div>
 				<div class="tab-comment" style="display: none;">
@@ -167,6 +168,15 @@
 						在此处显示各类优惠信息
 						在此处显示各类优惠信息
 						在此处显示各类优惠信息
+					</div>
+					<div class="wiget broadcast broadcast-fixed">
+						<div class="broadcast-title">
+							<label>订餐必读&amp;商家公告</label>
+						</div>
+						<div  class="broadcast-body">
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+						</div>
 					</div>
 				</div>
 				<div class="tab-comment" style="display: none;">
