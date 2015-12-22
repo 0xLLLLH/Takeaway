@@ -6,8 +6,8 @@
 		if(username==null)
 		{
 			System.out.println("Lodin_outoftime");
-			//request.getRequestDispatcher("Signup.jsp").forward(request, response);
-			response.sendRedirect("Signup.jsp");
+			request.getRequestDispatcher("Signup.jsp").forward(request, response);
+			//response.sendRedirect("Signup.jsp");
 		}
 		
 %>

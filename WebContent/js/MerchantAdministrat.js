@@ -104,6 +104,8 @@ function getCookie(c_name){
         
         
  /*华丽的三八线*/
+        
+
 function addbind(id){
 	$(".type_list").hide();
 	$("#"+id+"zt").bind("click",function(){
@@ -131,6 +133,10 @@ function un_change_del(){
 	$(".delete_food").unbind("click");
 }
 function change_del(){
+	$(".chang_type").unbind("click");
+	$(".delete_type").unbind("click");
+	$(".chang_food").unbind("click");
+	$(".delete_food").unbind("click");
 	$(".change_type").bind("click",function(){
 		var bf_name=$(this).parent().prev().find(".name").text();
 		if(bf_name!=""){//防止点两次修改出现bug
@@ -152,35 +158,49 @@ function change_del(){
 						alert("名称不能为空");
 					}
 					else{
-						var add_type_list="<div><a href=\"javascript:void(0)\" class=\"type_title\" id=\""+type_id+"zt"+"\">"
-						+"<div class=\"poi-info\" >"
-						+"<h3 class=\"name fl\">"+newname+"</h3><span style=\"display:block;margin-right:20px;margin-top:20px;color:black;\" class=\"glyphicon glyphicon-chevron-up fr\"></span>"
-						+"</div></a><div style=\"height:1px;color:white\"></div></div>"
-						$(this).parent().parent().replaceWith(add_type_list);
-						//重新绑定展开动画
-						$("#"+type_id+"zt").bind("click",function(){
-							var pt=$(this).find(".glyphicon");
-							if(pt.hasClass("glyphicon-chevron-down"))
-							{
-								$(this).parent().parent().find("#"+type_id).slideDown("slow",function(){
-									pt.removeClass("glyphicon-chevron-down");
-									pt.addClass("glyphicon-chevron-up");
-								});
-							}
-							else
-							{
-								$(this).parent().parent().find("#"+type_id).slideUp("slow",function(){
-									pt.removeClass("glyphicon-chevron-up");
-									pt.addClass("glyphicon-chevron-down");
-								});
-							}
-						});
+						$iter=$(this);
 						$.ajax({
-							url:"code/update_Dish_Type.jsp",
+							url:"code/deal_Bug_checkDishType_repeat.jsp",
+							data:{type:newname,store_id:$("#store_id").val()},
 							type:"get",
-							data:{type_id:type_id,type:newname},
 							success:function(data){
-								alert("changed");
+								//alert(data);
+								if(data.trim()=="repeat")
+									alert("已经存在该标签");
+								else{
+									//alert("1");
+									var add_type_list="<div><a href=\"javascript:void(0)\" class=\"type_title\" id=\""+type_id+"zt"+"\">"
+									+"<div class=\"poi-info\" >"
+									+"<h3 class=\"name fl\">"+newname+"</h3><span style=\"display:block;margin-right:20px;margin-top:20px;color:black;\" class=\"glyphicon glyphicon-chevron-up fr\"></span>"
+									+"</div></a><div style=\"height:1px;color:white\"></div></div>"
+									$iter.parent().parent().replaceWith(add_type_list);
+									//重新绑定展开动画
+									$("#"+type_id+"zt").bind("click",function(){
+										var pt=$(this).find(".glyphicon");
+										if(pt.hasClass("glyphicon-chevron-down"))
+										{
+											$(this).parent().parent().find("#"+type_id).slideDown("slow",function(){
+												pt.removeClass("glyphicon-chevron-down");
+												pt.addClass("glyphicon-chevron-up");
+											});
+										}
+										else
+										{
+											$(this).parent().parent().find("#"+type_id).slideUp("slow",function(){
+												pt.removeClass("glyphicon-chevron-up");
+												pt.addClass("glyphicon-chevron-down");
+											});
+										}
+									});
+									$.ajax({
+										url:"code/update_Dish_Type.jsp",
+										type:"get",
+										data:{type_id:type_id,type:newname},
+										success:function(data){
+											//alert("changed");
+										}
+									});
+								}
 							}
 						});
 					}
@@ -227,13 +247,80 @@ function change_del(){
 		}
 		//alert($(this).parent().attr("id"));/*类型删除按钮*/
 	});
-	$(".change_food").bind("click",function(){
-		alert($(this).attr("id").replace("fcg",""));
+	$(document).on("click",".change_food",function(){
+		$bf_dish_name=$(this).prev().find(".food-name").text();
+		$bf_dish_price=$(this).prev().find(".food-price").text();
+		if($bf_dish_name!=""){//防止多次点击修改
+		$(".update_food_bnt_yes").unbind("click");
+		$(".update_food_bnt_no").unbind("click");
+		//alert($(this).attr("id").replace("fcg",""));
+		$dish_id=$(this).attr("id").replace("fcg","");
+		$bf_dish_price=$bf_dish_price.replace("￥","");
+		$bf_dish_price=$bf_dish_price.replace("元","");
+		$bf_dish_price=$bf_dish_price.trim();
+		//alert($dish_id);
+		//alert($bf_dish_name+" "+$bf_dish_price);
+		var add_div="<div><ul class=\"food-list\"><li class=\"clearfix\">"
+			+"<a href=\"javascript:void(0)\" class=\"food fl\">"
+			+"<p class=\"details fl \">"
+			+"<input type=\"text\" class=\"form-control fl in_dish_name\" style=\"width:150px;height:26px;margin-left:85px\" placeholder=\"新的菜名\" value=\""+$bf_dish_name+"\">"
+			+"</p><div class=\"food-div fl\"><span class=\"fl\">￥    </span><input type=\"text\" class=\"form-control fl in_dish_price\" style=\"width:80px;height:26px;\" placeholder=\"菜的价格\" value=\""+$bf_dish_price+"\"><span class=\"fl\" style=\"margin-left:5px\">元</span></div></a>"
+			+"<a href=\"javascript:void(0)\" class=\"update_food_bnt_yes fl food-sel-yes\"><span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span></a>"
+			+"<a href=\"javascript:void(0)\" class=\"update_food_bnt_no food-sel-no\"><span class=\"glyphicon glyphicon-remove \" style=\"color:red\"></span></a>"
+			+"</li></ul></div>";
+		$temp=$(this).parent().parent().parent();
+		$(this).parent().parent().parent().replaceWith(add_div);
+		$(".update_food_bnt_yes").bind("click",function(){
+			$new_dish_name=$(this).prev().find(".in_dish_name").val();
+			$new_dish_price=$(this).prev().find(".in_dish_price").val();
+			$type_id=$(this).parent().parent().parent().parent().attr("id");
+			$iter=$(this).parent().parent().parent();
+			//alert($new_dish_name+" "+$new_dish_price+" "+$type_id);
+			$.ajax({
+				url:"code/update_Dish.jsp",
+				type:"get",
+				data:{dish_name:$new_dish_name,dish_price:$new_dish_price,dish_id:$dish_id},
+				success:function(data){
+					if(data.trim()=="repeat")
+						alert("这个分类已经有这道菜了");
+					else{
+						var add_dish_list="<div><ul class=\"food-list\"><li class=\"clearfix\">"
+							+"<a href=\"javascript:void(0)\" class=\"food fl\">"
+							+"<p class=\"details fl \">"
+							+"<span class=\"food-name\">"+$new_dish_name+"</span></p>"
+							+"<span class=\"food-price fl\">￥    "+$new_dish_price+"元</span></a>"
+							+"<a href=\"javascript:void(0) \" style=\"color:black;\" class=\"change_food\" id=\""+$dish_id+"fcg"+"\"><span class=\"glyphicon glyphicon-edit\" ></span></a>"
+							+"<span> | </span>"
+							+"<a href=\"javascript:void(0)\" style=\"color:black;\" class=\"delete_food\" id=\""+$dish_id+"fdel"+"\"><span class=\"glyphicon glyphicon-trash\"></span></a>"
+							+"</li></ul></div>";
+						$iter.replaceWith(add_dish_list);
+					}
+				}
+			});
+		});
+		$(".update_food_bnt_no").on("click",function(){
+			$(this).parent().parent().parent().replaceWith($temp);
+		});
+		}
 	});
 	$(".delete_food").bind("click",function(){
-		alert($(this).attr("id").replace("fdel",""));
+		$it=$(this);
+		$dish_id=$(this).attr("id").replace("fdel","");
+		//alert($(this).attr("id").replace("fdel",""));
+		$.ajax({
+			url:"code/delete_Dish.jsp",
+			type:"get",
+			data:{dish_id:$dish_id},
+			success:function(data){
+				//alert(data);
+				$it.parent().parent().parent().hide("slow",function(){
+					$(this).remove();
+				});
+			}
+		});
 	});
 }
+
 function bind_bnt(){//绑定按钮
 	change_del();
 	//增加标签按钮
@@ -280,25 +367,44 @@ function bind_bnt(){//绑定按钮
 							$it.parent().parent().replaceWith(add_type_list);//打勾替换内容
 							un_change_del()
 							change_del();//绑定click
-							addbind(data.trim());
+							
+							$("#"+data.trim()).hide();
+							$("#"+data.trim()+"zt").bind("click",function(){
+								var pt=$(this).find(".glyphicon");
+								if(pt.hasClass("glyphicon-chevron-down"))
+								{
+									$(this).parent().parent().find("#"+data.trim()).slideDown("slow",function(){
+										pt.removeClass("glyphicon-chevron-down");
+										pt.addClass("glyphicon-chevron-up");
+									});
+								}
+								else
+								{
+									$(this).parent().parent().find("#"+data.trim()).slideUp("slow",function(){
+										pt.removeClass("glyphicon-chevron-up");
+										pt.addClass("glyphicon-chevron-down");
+									});
+								}
+							});
 						}
 					}
 				});
 			}
+			else alert("名称不能为空");
 			//$(this).prev().val();
 		});
 		
 	});
 
 	//增加菜品按钮
-	$(".add_food_bnt").bind("click",function(){
-		$(".add_food_bnt_remove").unbind("click");
+	$(document).on("click",".add_food_bnt",function(){
+		$(".add_food_bnt_remove").unbind("click");//解绑
 		$(".add_food_bnt_yes").unbind("click");
 		var add_div="<div><ul class=\"food-list\"><li class=\"clearfix\">"
 			+"<a href=\"javascript:void(0)\" class=\"food fl\">"
 			+"<p class=\"details fl \">"
-			+"<input type=\"text\" class=\"form-control fl\" style=\"width:150px;height:26px;margin-left:85px\" placeholder=\"新的菜名\">"
-			+"</p><div class=\"food-div fl\"><span class=\"fl\">￥    </span><input type=\"text\" class=\"form-control fl\" style=\"width:80px;height:26px;\" placeholder=\"菜的价格\"><span class=\"fl\" style=\"margin-left:5px\">元</span></div></a>"
+			+"<input type=\"text\" class=\"form-control fl in_dish_name\" style=\"width:150px;height:26px;margin-left:85px\" placeholder=\"新的菜名\">"
+			+"</p><div class=\"food-div fl\"><span class=\"fl\">￥    </span><input type=\"text\" class=\"form-control fl in_dish_price\" style=\"width:80px;height:26px;\" placeholder=\"菜的价格\"><span class=\"fl\" style=\"margin-left:5px\">元</span></div></a>"
 			+"<a href=\"javascript:void(0)\" class=\"add_food_bnt_yes fl food-sel-yes\"><span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span></a>"
 			+"<a href=\"javascript:void(0)\" class=\"add_food_bnt_remove food-sel-no\"><span class=\"glyphicon glyphicon-remove \" style=\"color:red\"></span></a>"
 			+"</li></ul></div>";
@@ -309,7 +415,40 @@ function bind_bnt(){//绑定按钮
 		});
 		//新增行的确认按钮√
 		$(".add_food_bnt_yes").bind("click",function(){
-			
+			$dish_name = $(this).prev().find(".in_dish_name").val().trim();
+			$dish_price = $(this).prev().find(".in_dish_price").val().trim();
+			$father_type_id=$(this).parent().parent().parent().parent().attr("id");
+			//alert($father_type_id);
+			$it=$(this);
+			//alert($dish_name+" "+$dish_price);
+			if($dish_name =="") alert("菜名不能为空");
+			else if($dish_price=="") alert("价格不能为空");
+			else{
+				$.ajax({
+					url:"code/check_Dish_Repeat.jsp",
+					type:"get",
+					data:{type_id:$father_type_id,dish_name:$dish_name,dish_price:$dish_price},
+					success:function(data){
+						if(data.trim()=="repeat")
+							alert("这个分类已经添加了这道菜");
+						else{
+							//alert(data);
+							var add_dish_list="<div><ul class=\"food-list\"><li class=\"clearfix\">"
+								+"<a href=\"javascript:void(0)\" class=\"food fl\">"
+								+"<p class=\"details fl \">"
+								+"<span class=\"food-name\">"+$dish_name+"</span></p>"
+								+"<span class=\"food-price fl\">￥    "+$dish_price+"元</span></a>"
+								+"<a href=\"javascript:void(0) \" style=\"color:black;\" class=\"change_food\" id=\""+data.trim()+"fcg"+"\"><span class=\"glyphicon glyphicon-edit\" ></span></a>"
+								+"<span> | </span>"
+								+"<a href=\"javascript:void(0)\" style=\"color:black;\" class=\"delete_food\" id=\""+data.trim()+"fdel"+"\"><span class=\"glyphicon glyphicon-trash\"></span></a>"
+								+"</li></ul></div>";
+							$it.parent().parent().parent().replaceWith(add_dish_list);
+							change_del();
+						}
+					}
+				});
+				
+			}
 		});
 		
 	});
@@ -362,7 +501,71 @@ $(function(){
 		
 	});
 })
-
+$(function(){
+	$.ajax({
+		url:"code/get_store_id.jsp",
+		type:"get",
+		data:{username:$("#username").val()},
+		success:function(data){
+			if(data.trim()=="-1"){
+				//alert("请先申请您的店铺");
+				window.location.href="ShopApplication.jsp";
+			}
+			$("#store_id").val(data.trim());
+			//alert($("#store_id").val());
+			$.ajax({
+				url:"code/get_Shop_price.jsp",
+				type:"get",
+				data:{store_id:$("#store_id").val()},
+				success:function(data){
+					var pricetsd = $(data).find("price_tosend");
+					var cut1 = $(data).find("cut1");
+					var cut2 = $(data).find("cut2");
+					//alert(pricetsd[0].firstChild.nodeValue);
+					$("#pricetosnd").val(pricetsd[0].firstChild.nodeValue);
+					$("#cut1").val(cut1[0].firstChild.nodeValue);
+					$("#cut2").val(cut2[0].firstChild.nodeValue);
+					
+				}
+			});
+			$.ajax({
+				url:"code/get_Shop_Notice.jsp",
+				type:"get",
+				data:{store_id:$("#store_id").val()},
+				success:function(data){
+					//alert(data);
+					var notice = $(data).find("notice");
+					$("#shop_notice").val(notice[0].firstChild.nodeValue);
+				}
+			});
+		}
+	})
+	$("#price_smt").on("click",function(){
+		//alert("11");
+		$pricetosend=$("#pricetosnd").val().trim();
+		$cut1=$("#cut1").val().trim();
+		$cut2=$("#cut2").val().trim();
+		//alert($pricetosend+" "+$cut1+" "+$cut2);
+		$.ajax({
+			url:"code/set_Shop_price.jsp",
+			type:"get",
+			data:{pricetosend:$pricetosend,cut1:$cut1,cut2:$cut2,store_id:$("#store_id").val()},
+			success:function(){
+				alert("已更新！");
+			}
+		});
+	});
+	$("#notice_smt").on("click",function(){
+		$.ajax({
+			url:"code/set_Shop_Notice.jsp",
+			type:"get",
+			data:{notice:$("#shop_notice").val(),store_id:$("#store_id").val()},
+			success:function(){
+				alert("已更新！");
+			}
+		});
+	});
+})
 
 
     

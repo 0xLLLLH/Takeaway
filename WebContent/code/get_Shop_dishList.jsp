@@ -21,8 +21,8 @@
 		dish_Type_Info elem = type_iter.next();
 		out.println("<type_id>"+elem.getId()+"</type_id>");
 		out.println("<type>"+elem.getType()+"</type>");
-		System.out.println("<type_id>"+elem.getId()+"</type_id>");
-		System.out.println("<type>"+elem.getType()+"</type>");
+		//System.out.println("<type_id>"+elem.getId()+"</type_id>");
+		//System.out.println("<type>"+elem.getType()+"</type>");
 		ArrayList<dish_Info> dish = new ArrayList<dish_Info>();
 		bean.get_dish_Info_by_type_id(dish, elem.getId());
 		Iterator<dish_Info> dish_iter = dish.iterator();
@@ -33,8 +33,8 @@
 			out.println("<dish_id>"+info.getId()+"</dish_id>");
 			out.println("<dish_name>"+info.getDish_name()+"</dish_name>");
 			out.println("<price>"+info.getPrice()+"</price>");
-			System.out.println("<dish_id>"+info.getId()+"</dish_id>");
-			System.out.println("<dish_name>"+info.getDish_name()+"</dish_name>");
+			//System.out.println("<dish_id>"+info.getId()+"</dish_id>");
+			//System.out.println("<dish_name>"+info.getDish_name()+"</dish_name>");
 		}
 	}
 	 out.println("</type_data>");

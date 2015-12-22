@@ -65,7 +65,14 @@ function LoadPage(){
 			{
 				var sc=score[i].firstChild.nodeValue==-1?"暂无":score[i].firstChild.nodeValue;
 				var notice = shop_notice[i].firstChild.nodeValue == "null"?"暂无公告":shop_notice[i].firstChild.nodeValue;
-				var dcnt = discount[i].firstChild.nodeValue =="null"?"无":discount[i].firstChild.nodeValue;
+				var dcnt;
+				if(discount[i].firstChild.nodeValue!=null){
+					var dt =  discount[i].firstChild.nodeValue.split("-");
+					dcnt="满"+dt[0]+"减"+dt[1];
+				}
+				else dcnt="无";
+				
+				//var dcnt = discount[i].firstChild.nodeValue =="null"?"无":"满"+discount[i].firstChild.nodeValue;
 				var avetime = ave_sendtime[i].firstChild.nodeValue=="3650"?"暂无":ave_sendtime[i].firstChild.nodeValue+"分钟";
 				var add="<li class = \"restaurant fl clearfix\" data-delay=\'{\"show\": 432, \"hide\": 100 }\'" 
 					+"data-toggle=\"popover\" data-title=\"商家详情\" data-placement=\"left auto\" data-html=\"true\""
@@ -299,7 +306,13 @@ function update_List(type,order,search){
 			{
 				var sc=score[i].firstChild.nodeValue==-1?"暂无":score[i].firstChild.nodeValue;
 				var notice = shop_notice[i].firstChild.nodeValue == "null"?"暂无公告":shop_notice[i].firstChild.nodeValue;
-				var dcnt = discount[i].firstChild.nodeValue =="null"?"无":discount[i].firstChild.nodeValue;
+				var dcnt;
+				if(discount[i].firstChild.nodeValue!=null){
+					var dt =  discount[i].firstChild.nodeValue.split("-");
+					dcnt="满"+dt[0]+"减"+dt[1];
+				}
+				else dcnt="无";
+				//var dcnt = discount[i].firstChild.nodeValue =="null"?"无":discount[i].firstChild.nodeValue;
 				var avetime = ave_sendtime[i].firstChild.nodeValue=="3650"?"暂无":ave_sendtime[i].firstChild.nodeValue+"分钟";
 				var add="<li class = \"restaurant fl clearfix\" data-delay=\'{\"show\": 432, \"hide\": 100 }\'" 
 					+"data-toggle=\"popover\" data-title=\"商家详情\" data-placement=\"left auto\" data-html=\"true\""
