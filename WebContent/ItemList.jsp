@@ -24,7 +24,25 @@
 </head>
 <body>
 	<%@ include file='CommonHeader.jsp' %>
-	<div class="cart"></div>
+	<div class="tab-container">
+		<div class="tab-item">
+			<div class="cart"><!-- 购物车 -->
+				<div class="cart-title">购物车<div class="clear fr"><span class="glyphicon glyphicon-trash"></span>清空</div></div>
+				<div class="cart-body">
+					<table id="cart-items" class="table table-hover" style="margin:0;">
+						<tr><th>菜品</th><th>份数</th><th>单价</th></tr>
+						
+					</table>
+				</div>
+				<div class="cart-footer">
+					<div class="total-price fl">
+						<span class="glyphicon glyphicon-shopping-cart"></span>共&yen;<span id="total_price">0</span>元
+					</div>
+					<div class="buy fr"><a style="color:white;">去下单</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="content clearfix">
 		<div class="shop-summary clearfix">
 			<div class="detail-block fl" style="position: relative;"></div><!-- 占位用 -->
@@ -63,47 +81,166 @@
 		</div>
 		<div class="left-part">
 			<div class="tab-area">
-				<div class="tab-bar"><button class="button-pressed">菜单</button><button>评价</button></div>
-				<div class="food-type clearfix">
-					<div class="type" ><a class="selected" href="#">当前菜品分类</a></div>
-					<%for (int i=0;i<10;i++) { %>
-						<div class="type" ><a href="#">菜品分类</a></div>
-					<%} %>
-				</div>
-			</div>
-			<div class="item-list">
-				<div class="list-title">这里是标题</div>
-				<div class="list-desc">这里是描述，可选</div>
-				<div class="list-content">
-					<%for (int i=0;i<10;i++) { %>
-					<div class="list-item">
-						<div class="title fl">菜品名称</div>
-						<div class="sold fr">总销量1231</div>
-						<div class="plus fr">+</div>
-						<div class="price fr">&yen;15元/份</div>
+				<div class="tab-bar"><button class="button-pressed" data-target="tab-item">菜单</button><button data-target="tab-comment" >评价</button></div>	
+				<div class="tab-container">
+					<div class="tab-item">
+						<div class="food-type clearfix">
+							<div class="type" ><a class="selected" href="#">当前菜品分类</a></div>
+							<%for (int i=0;i<10;i++) { %>
+								<div class="type" ><a href="#">菜品分类</a></div>
+							<%} %>
+						</div>
 					</div>
-					<%} %>
 				</div>
 			</div>
-		</div>
+			<div class="tab-container">
+				<div class="tab-item">
+					<div class="item-list">
+						<%for (int k=0;k<10;k++) {%>
+						<div class="list-title">这里是标题<%=k %></div>
+						<div class="list-title list-title-fixed">这里是标题<%=k %></div>
+						<div class="list-desc">这里是描述，可选</div>
+						<div class="list-content">
+							<%for (int i=0;i<15;i++) { %>
+							<div class="list-item" data-id="<%=i%>" data-price="15">
+								<div class="title fl">菜品名称</div>
+								<div class="sold fr">总销量1231</div>
+								<div class="plus fr">+</div>
+								<div class="price fr">&yen;15元/份</div>
+							</div>
+							<%} %>
+						</div>
+						<%} %>
+					</div>
+				</div>
+				<div class="tab-comment" style="display: none;">
+					<div class="comment-list clearfix">
+						<div class="title clearfix">
+							<form>
+								<label class="filter selected"><input type="radio" checked="checked" name="inlineRadioOptions"/>全部评价(4703)</label>
+								<label class="filter"><input type="radio" name="inlineRadioOptions"/>好评(4029)</label>
+								<label class="filter"><input type="radio" name="inlineRadioOptions"/>中评(503)</label>
+								<label class="filter last-filter"><input type="radio" name="inlineRadioOptions"/>差评(171)</label>
+							</form>
+						</div>
+						<div class="comments">
+							<ul>
+								<%for (int i=0;i<10;i++){ %>
+								<li class="comment">
+									<div class="info clearfix">
+										<span class="field clearfix">
+											<span class="name fl">用户名</span>
+											<span class="fl">总体评价</span>
+											<i class="icon i-star"></i>
+								        	<i class="icon i-star"></i>
+								        	<i class="icon i-star"></i>
+								        	<i class="icon i-star"></i>
+								        	<i class="icon i-star-empty"></i>
+											<span class="feel fl">中评</span>
+											<span class="fr">评价时间</span>
+										</span>
+									</div>
+									<div class="comment-content">
+										这里是评价内容,这里是评价内容这里是评价内容这里是评价内容这里是评价内容这里是评价内容这里是评价内容
+									</div>
+								</li>
+								<%} %>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of left-part -->
 		<div class="right-part">
-			<div class="wiget broadcast">
-				<div class="broadcast-title">
-					<label>订餐必读&amp;商家公告</label>
+			<div class="tab-container">
+				<div class="tab-item">
+					<div class="wiget broadcast">
+						<div class="broadcast-title">
+							<label>订餐必读&amp;商家公告</label>
+						</div>
+						<div  class="broadcast-body">
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+						</div>
+					</div>
+					<div class="wiget discount">
+						在此处显示各类优惠信息
+						在此处显示各类优惠信息
+						在此处显示各类优惠信息
+						在此处显示各类优惠信息
+					</div>
+					<div class="wiget broadcast broadcast-fixed">
+						<div class="broadcast-title">
+							<label>订餐必读&amp;商家公告</label>
+						</div>
+						<div  class="broadcast-body">
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+						</div>
+					</div>
 				</div>
-				<div  class="broadcast-body">
-					<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
-					<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+				<div class="tab-comment" style="display: none;">
+					<div class="wiget score-board">
+						<div class="score-board-title">(当前店铺名)总体评分</div>
+						<div class="score-board-subtitile">(共收到10418份美食评价)</div>
+						<div class="score-avg clearfix">
+							<strong class="fl">4.5</strong>
+							<span class="star-ranking fl">
+								<span class="star-score" style="width: 110px"></span>
+							</span>
+							
+						</div>
+						<div class="score-board-detail">
+							    <div class="field clearfix">
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+								      <span class="fl bar" style="width: 40px"></span>
+								  	<span class="fl percent">87%</span>
+							      </div>
+							    <div class="field clearfix">
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star-empty"></i>
+							      <span class="fl bar" style="width: 10px"></span>
+							      <span class="fl percent">13%</span>
+							    </div>
+							    <div class="field clearfix">
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star-empty"></i>
+							          <i class="icon i-star-empty"></i>
+							      <span class="fl bar" style="width: 0px"></span>
+							      <span class="fl percent" >0%</span>
+							    </div>
+							    <div class="field clearfix">
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star-empty"></i>
+							          <i class="icon i-star-empty"></i>
+							          <i class="icon i-star-empty"></i>
+							      <span class="fl bar" style="width: 0px"></span>
+							      <span class="fl percent">0%</span>
+							    </div>
+							    <div class="field clearfix">
+							          <i class="icon i-star"></i>
+							          <i class="icon i-star-empty"></i>
+							          <i class="icon i-star-empty"></i>
+							          <i class="icon i-star-empty"></i>
+							          <i class="icon i-star-empty"></i>
+							      <span class="fl bar" style="width: 0px"></span>
+							      <span class="fl percent">0%</span>
+							    </div>
+							</div>
+					</div>
 				</div>
 			</div>
-			<div class="wiget discount">
-				在此处显示各类优惠信息
-				在此处显示各类优惠信息
-				在此处显示各类优惠信息
-				在此处显示各类优惠信息
-			</div>
-			
-		</div>
+		</div><!-- end of right-part -->
 	</div>
 	
 	<!-- Bootstrap core JavaScript
