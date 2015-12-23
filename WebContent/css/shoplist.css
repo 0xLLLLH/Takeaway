@@ -21,13 +21,13 @@ ul,li {
 }
 
 
-.content{
+.search_content{
 	width: 1024px;
 	margin: 20px auto;
 	background-color: #fff;
-	min-height:650px; /*(解决ie8.9.ff.chrome)*/
-	*+height:100%;  /*()解决ie7)*/
-	_height:650px; /*(解决ie6) ie6超出自动溢出*/
+	min-height:650px; (解决ie8.9.ff.chrome)
+	*+height:100%;  ()解决ie7)
+	_height:650px; (解决ie6) ie6超出自动溢出
 }
 
 .tab-bar{

@@ -88,15 +88,15 @@ public class dish_Bean {
 		}
 		return true;
 	}
-	public int insertDish_getID(int type_id,String dish_name,double dish_price)
+	public int insertDish_getID(int type_id,String dish_name,double dish_price,int store_id)
 	{
 		conn = DBconn.GetConnection();
 		int dish_id=-1;
 		try
 		{
 			String sql="insert into "+dish_Info.dataTable_dish_Name
-					+"(type_id,dish_name,price)values("+type_id
-					+",'"+dish_name+"',"+dish_price+")";
+					+"(type_id,dish_name,price,store_id,sell_num)values("+type_id
+					+",'"+dish_name+"',"+dish_price+","+store_id+",0)";
 			System.out.println(sql);
 			Statement st = conn.createStatement();
 			st.executeUpdate(sql);
@@ -325,7 +325,7 @@ public class dish_Bean {
 		conn = DBconn.GetConnection();
 		try
 		{
-			String sql = "select dish_name,id,price from "+dish_Info.dataTable_dish_Name
+			String sql = "select dish_name,id,price,sell_num from "+dish_Info.dataTable_dish_Name
 					+" where type_id = "+type_id;
 			System.out.println(sql);
 			Statement st = conn.createStatement();
@@ -336,6 +336,7 @@ public class dish_Bean {
 				elem.setId(rs.getInt("id"));
 				elem.setPrice(rs.getDouble("price"));
 				elem.setDish_name(rs.getString("dish_name"));
+				elem.setSell_num(rs.getInt("sell_num"));
 				data.add(elem);
 			}
 		}

@@ -126,6 +126,72 @@ function addbind(id){
 		}
 	});
 }
+$(function(){
+	$.ajax({
+		url:"code/get_store_id.jsp",
+		type:"get",
+		data:{username:$("#username").val()},
+		success:function(data){
+			if(data.trim()=="-1"){
+				//alert("请先申请您的店铺");
+				window.location.href="ShopApplication.jsp";
+			}
+			$("#store_id").val(data.trim());
+			//alert($("#store_id").val());
+			$.ajax({
+				url:"code/get_Shop_price.jsp",
+				type:"get",
+				data:{store_id:$("#store_id").val()},
+				success:function(data){
+					var pricetsd = $(data).find("price_tosend");
+					var cut1 = $(data).find("cut1");
+					var cut2 = $(data).find("cut2");
+					//alert(pricetsd[0].firstChild.nodeValue);
+					$("#pricetosnd").val(pricetsd[0].firstChild.nodeValue);
+					$("#cut1").val(cut1[0].firstChild.nodeValue);
+					$("#cut2").val(cut2[0].firstChild.nodeValue);
+					
+				}
+			});
+			$.ajax({
+				url:"code/get_Shop_Notice.jsp",
+				type:"get",
+				data:{store_id:$("#store_id").val()},
+				success:function(data){
+					//alert(data);
+					var notice = $(data).find("notice");
+					$("#shop_notice").val(notice[0].firstChild.nodeValue);
+				}
+			});
+		}
+	})
+	$("#price_smt").on("click",function(){
+		//alert("11");
+		$pricetosend=$("#pricetosnd").val().trim();
+		$cut1=$("#cut1").val().trim();
+		$cut2=$("#cut2").val().trim();
+		//alert($pricetosend+" "+$cut1+" "+$cut2);
+		$.ajax({
+			url:"code/set_Shop_price.jsp",
+			type:"get",
+			data:{pricetosend:$pricetosend,cut1:$cut1,cut2:$cut2,store_id:$("#store_id").val()},
+			success:function(){
+				alert("已更新！");
+			}
+		});
+	});
+	$("#notice_smt").on("click",function(){
+		$.ajax({
+			url:"code/set_Shop_Notice.jsp",
+			type:"get",
+			data:{notice:$("#shop_notice").val(),store_id:$("#store_id").val()},
+			success:function(){
+				alert("已更新！");
+			}
+		});
+	});
+})
+
 function un_change_del(){
 	$(".change_type").unbind("click");
 	$(".delete_type").unbind("click");
@@ -427,7 +493,7 @@ function bind_bnt(){//绑定按钮
 				$.ajax({
 					url:"code/check_Dish_Repeat.jsp",
 					type:"get",
-					data:{type_id:$father_type_id,dish_name:$dish_name,dish_price:$dish_price},
+					data:{type_id:$father_type_id,dish_name:$dish_name,dish_price:$dish_price,store_id:$("#store_id").val()},
 					success:function(data){
 						if(data.trim()=="repeat")
 							alert("这个分类已经添加了这道菜");
@@ -499,71 +565,6 @@ $(function(){
 			bind_bnt();
 		}
 		
-	});
-})
-$(function(){
-	$.ajax({
-		url:"code/get_store_id.jsp",
-		type:"get",
-		data:{username:$("#username").val()},
-		success:function(data){
-			if(data.trim()=="-1"){
-				//alert("请先申请您的店铺");
-				window.location.href="ShopApplication.jsp";
-			}
-			$("#store_id").val(data.trim());
-			//alert($("#store_id").val());
-			$.ajax({
-				url:"code/get_Shop_price.jsp",
-				type:"get",
-				data:{store_id:$("#store_id").val()},
-				success:function(data){
-					var pricetsd = $(data).find("price_tosend");
-					var cut1 = $(data).find("cut1");
-					var cut2 = $(data).find("cut2");
-					//alert(pricetsd[0].firstChild.nodeValue);
-					$("#pricetosnd").val(pricetsd[0].firstChild.nodeValue);
-					$("#cut1").val(cut1[0].firstChild.nodeValue);
-					$("#cut2").val(cut2[0].firstChild.nodeValue);
-					
-				}
-			});
-			$.ajax({
-				url:"code/get_Shop_Notice.jsp",
-				type:"get",
-				data:{store_id:$("#store_id").val()},
-				success:function(data){
-					//alert(data);
-					var notice = $(data).find("notice");
-					$("#shop_notice").val(notice[0].firstChild.nodeValue);
-				}
-			});
-		}
-	})
-	$("#price_smt").on("click",function(){
-		//alert("11");
-		$pricetosend=$("#pricetosnd").val().trim();
-		$cut1=$("#cut1").val().trim();
-		$cut2=$("#cut2").val().trim();
-		//alert($pricetosend+" "+$cut1+" "+$cut2);
-		$.ajax({
-			url:"code/set_Shop_price.jsp",
-			type:"get",
-			data:{pricetosend:$pricetosend,cut1:$cut1,cut2:$cut2,store_id:$("#store_id").val()},
-			success:function(){
-				alert("已更新！");
-			}
-		});
-	});
-	$("#notice_smt").on("click",function(){
-		$.ajax({
-			url:"code/set_Shop_Notice.jsp",
-			type:"get",
-			data:{notice:$("#shop_notice").val(),store_id:$("#store_id").val()},
-			success:function(){
-				alert("已更新！");
-			}
-		});
 	});
 })
 

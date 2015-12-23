@@ -7,7 +7,9 @@ body{
 ul{
 	padding:8px;
 }
-
+.num{
+	font-size:10px;
+}
 .content{
 	width: 1024px;
 	margin: 20px auto;
@@ -283,7 +285,7 @@ ul{
 	font-size:18px;
 	font-weight:bold;
 	color:#333;
-	background-color:#fafafa;
+	background-color:#c0c0c0;
 	border-bottom: 1px solid #ebebeb;
 }
 

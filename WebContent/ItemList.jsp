@@ -20,10 +20,13 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<title>这里修改为店铺名</title>
+<title></title>
 </head>
 <body>
 	<%@ include file='CommonHeader.jsp' %>
+	<div id="nowpage">
+	<% int store_id = Integer.parseInt(request.getParameter("store_id"));%>
+	<input type="text" id="store_id" value="<%out.print(store_id);%>" style="display:none">
 	<div class="tab-container">
 		<div class="tab-item">
 			<div class="cart"><!-- 购物车 -->
@@ -38,7 +41,7 @@
 					<div class="total-price fl">
 						<span class="glyphicon glyphicon-shopping-cart"></span>共&yen;<span id="total_price">0</span>元
 					</div>
-					<div class="buy fr"><a style="color:white;">去下单</a></div>
+					<div><a href="javascript:void(0)" style="color:white;" class="buy fr">去下单</a></div>
 				</div>
 			</div>
 		</div>
@@ -49,29 +52,29 @@
 			<div class="detail fl">
 				<div class="top clearfix">
 					<div  class="pic"><img class="img-responsive" src="http://p0.meituan.net/120.0/xianfu/bdcafce11742063f3d3091dd389bb49e414723.jpg"></div>
-					<div class="title fl"><label>这里是店铺名,可以取得很长,比如现在这个</label></div>
+					<div class="title fl shop_name"></div>
 					<div class="fl"></div>
 				</div>
 				<div class="dropdown-info">
-					<p><b>商家地址:</b>aaaaaaaaa</p>
-					<p><b>商家电话:</b>aaaaaaaaaaa</p>
-					<p><b>营业执照:</b>aaaaaaaaaaaa</p>
+					<p class="fl"><b>商家地址:</b></p><p id="shop_address"></p>
+					<p class="fl"><b>商家电话:</b></p><p id="shop_phone"></p>
+					<p class="fl"><b>营业执照:</b></p><p id="shop_license"></p>
 				</div>
 			</div>
 			<div class="score-bar fl clearfix">
 				<div class="avg fl">
-					<div class="score"><strong>4.5</strong><span class="desc">分</span></div>
+					<div class="score" id="score"></div>
 					<div class="desc">商家评分</div>
 				</div>
 				<div class="vertical-line-text fl"></div>
 				<div  class="avg fl">
-					<div class="score"><strong>39</strong>分钟</div>
+					<div class="score" id="ave_sendtime"></div>
 					<div class="desc">平均送餐时间</div>
 				</div>
 				<div class="vertical-line-text fl"></div>
 				<div class="avg fl">
-					<div class="score"><strong>64</strong>%</div>
-					<div class="desc">及时送餐率</div>
+					<div class="score" id="sell_num"></div>
+					<div class="desc">商家销量</div>
 				</div>
 			</div>
 			<div class="extra-part fl">
@@ -85,10 +88,10 @@
 				<div class="tab-container">
 					<div class="tab-item">
 						<div class="food-type clearfix">
-							<div class="type" ><a class="selected" href="#">当前菜品分类</a></div>
-							<%for (int i=0;i<10;i++) { %>
-								<div class="type" ><a href="#">菜品分类</a></div>
-							<%} %>
+							<!-- <div class="type" ><a class="selected" href="#">当前菜品分类</a></div> -->
+						<%-- 	<%for (int i=0;i<10;i++) { %>
+								
+							<%} %> --%>
 						</div>
 					</div>
 				</div>
@@ -96,21 +99,22 @@
 			<div class="tab-container">
 				<div class="tab-item">
 					<div class="item-list">
-						<%for (int k=0;k<10;k++) {%>
+						<%-- <%for (int k=0;k<5;k++) {%>
 						<div class="list-title">这里是标题<%=k %></div>
 						<div class="list-title list-title-fixed">这里是标题<%=k %></div>
 						<div class="list-desc">这里是描述，可选</div>
 						<div class="list-content">
-							<%for (int i=0;i<15;i++) { %>
+							<%for (int i=0;i<18;i++) { %>
 							<div class="list-item" data-id="<%=i%>" data-price="15">
 								<div class="title fl">菜品名称</div>
 								<div class="sold fr">总销量1231</div>
 								<div class="plus fr">+</div>
 								<div class="price fr">&yen;15元/份</div>
+								<div class="plus fr num"  style="display:none">6</div>
 							</div>
 							<%} %>
 						</div>
-						<%} %>
+						<%} %>  --%>
 					</div>
 				</div>
 				<div class="tab-comment" style="display: none;">
@@ -148,6 +152,25 @@
 							</ul>
 						</div>
 					</div>
+					<nav align="center"><!--翻页按钮-->
+					  <ul class="pagination">
+					    <li class="disabled">
+					      <a href="#" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    <li class="active" class="disabled"><a href="#">1</a></li>
+					    <li><a href="#">2</a></li>
+					    <li><a href="#">3</a></li>
+					    <li><a href="#">4</a></li>
+					    <li><a href="#">5</a></li>
+					    <li>
+					      <a href="#" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>	
 				</div>
 			</div>
 		</div><!-- end of left-part -->
@@ -159,23 +182,18 @@
 							<label>订餐必读&amp;商家公告</label>
 						</div>
 						<div  class="broadcast-body">
-							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
-							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+							<!-- <p id="shop_notice">这里是公告的内容，这里是公告的内容，这里是公告的内容，</p> -->
 						</div>
 					</div>
-					<div class="wiget discount">
-						在此处显示各类优惠信息
-						在此处显示各类优惠信息
-						在此处显示各类优惠信息
-						在此处显示各类优惠信息
+					<div class="wiget discount" id="shop_discount">
 					</div>
 					<div class="wiget broadcast broadcast-fixed">
 						<div class="broadcast-title">
 							<label>订餐必读&amp;商家公告</label>
 						</div>
 						<div  class="broadcast-body">
-							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
-							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p>
+							<!-- <p>这里是公告的内容，这里是公告的内容，这里是公告的内容，</p>
+							<p>这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容，这里是公告的内容</p> -->
 						</div>
 					</div>
 				</div>
@@ -242,7 +260,7 @@
 			</div>
 		</div><!-- end of right-part -->
 	</div>
-	
+	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

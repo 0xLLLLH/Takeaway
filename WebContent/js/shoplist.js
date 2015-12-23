@@ -78,7 +78,7 @@ function LoadPage(){
 					+"data-toggle=\"popover\" data-title=\"商家详情\" data-placement=\"left auto\" data-html=\"true\""
 					+"data-template=\"<div class=\'popover\'  style=\'border:2px solid #5cb85c;\' role=\'tooltip\'><div class=\'arrow\'  style=\'border-color:#5cb85c;\'></div><h3 class=\'popover-title\'></h3><div class=\'popover-content\'></div></div>\""
 					+"data-content=\"<label style=\'color:#5cb85c;\'>优惠信息</label><hr><p>"+dcnt+"</p><label style=\'color:#5cb85c;\'>商家地址</label><hr><p>"+shop_address[i].firstChild.nodeValue+"</p><label style=\'color:#5cb85c;\'>商家公告</label><hr><p>"+notice+"</p>\" data-trigger=\"hover\">"	
-						+"<a tabindex=\"0\" class=\"restaurant-link\" href=\"https://www.baidu.com\" target=\"_blank\">"
+						+"<a tabindex=\"0\" class=\"restaurant-link\" href=\"ItemList.jsp?store_id="+id[i].firstChild.nodeValue+"\" target=\"_blank\">"
 							+"<div class=\"outer\">"
 								+"<div class = \"top-content\">"
 									+"<div class=\"shop-preview\">"
@@ -115,7 +115,7 @@ $(function(){
 			  LoadPage();
 		  }
 	  });
-});
+});/*
 function update_Search_Shop_List(id,search){
 	$.ajax({
 		url:"code/search_get_Shopname.jsp",
@@ -150,7 +150,7 @@ function update_Search_Food_List(id,search){
 			//alert(dish_name.length);
 			for(var i=0;i<dish_name.length;++i){	
 				var search_item="<div class=\"result-item\">"
-					+"<a href=\"#\">"
+					+"<a href=\"ItemList.jsp?store_id="+id+"\" target=\"_blank\">"
 					+"<div class=\"result-item-row clearfix\">"
 					+"<span class=\"name fl\"><b>"+dish_name[i].firstChild.nodeValue+"</b></span><span class=\"price fl\">" 
 					+"单价"+price[i].firstChild.nodeValue+"</span><span class=\"sold fl\">"
@@ -223,6 +223,7 @@ $("#search_bnt2").bind("click",function(){
 	go_search_page(search_name.trim());
 	//alert($("#search_txt2").val());
 });
+*/
 $(function(){
 	$.ajax({
 		url: "code/get_First_type.jsp",
@@ -276,7 +277,7 @@ $(function(){
 		update_List(type,sortway,"");
 	});
 })
-function update_List(type,order,search){
+/*function update_List(type,order,search){
 	//alert(search);
 	$.ajax({
 		url: "code/get_Shop_Info.jsp",
@@ -318,7 +319,7 @@ function update_List(type,order,search){
 					+"data-toggle=\"popover\" data-title=\"商家详情\" data-placement=\"left auto\" data-html=\"true\""
 					+"data-template=\"<div class=\'popover\'  style=\'border:2px solid #5cb85c;width:220px\' role=\'tooltip\'><div class=\'arrow\'  style=\'border-color:#5cb85c;\'></div><h3 class=\'popover-title\'></h3><div class=\'popover-content\'></div></div>\""
 					+"data-content=\"<label style=\'color:#5cb85c;\'>优惠信息</label><hr><p>"+dcnt+"</p><label style=\'color:#5cb85c;\'>商家地址</label><hr><p>"+shop_address[i].firstChild.nodeValue+"</p><label style=\'color:#5cb85c;\'>商家公告</label><hr><p>"+notice+"</p>\" data-trigger=\"hover\">"	
-						+"<a tabindex=\"0\" class=\"restaurant-link\" href=\"https://www.baidu.com\" target=\"_blank\">"
+						+"<a tabindex=\"0\" class=\"restaurant-link\" href=\"ItemList.jsp?store_id="+id[i].firstChild.nodeValue+"\" target=\"_blank\">"
 							+"<div class=\"outer\">"
 								+"<div class = \"top-content\">"
 									+"<div class=\"shop-preview\">"
@@ -346,7 +347,7 @@ function update_List(type,order,search){
 			$('[data-toggle="popover"]').popover();
 		}
 	});
-}
+}*/
 
 $(".tab-bar").find("button").click(function (){
 	//alert(this);
