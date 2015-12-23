@@ -54,7 +54,7 @@
 			<button data-toggle="food">美食</button>
 		</div>
 		<div class="text-field"><label>搜索"<span id="search_name" style="color:#27AE60">*</span>"的<span style="color:#27AE60">餐厅</span>结果</label></div>
-		<div id="tab-container">
+		<div id="tab-container" class="shop-list clearfix">
 			<div id="rest" class="rest-result clearfix" >
 				<ul class="rest-result-list clearfix" id="search_shop_List">
 					

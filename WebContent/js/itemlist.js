@@ -1,3 +1,13 @@
+var nowpage=0;
+$(function(){
+	//$("#load_div").hide();
+	$(document).ajaxStart(function(){
+		$("#load_div").show();
+	});
+	$(document).ajaxStop(function(){
+		$("#load_div").hide();
+	});
+})
 $(window).scroll(function(event){
 	if ($(".broadcast").offset().top+$(".broadcast").outerHeight(true)-$(document).scrollTop()<0){
 		$(".broadcast-fixed").show();
@@ -150,14 +160,23 @@ $(function(){
 			//alert(shop_name[0].firstChild.nodeValue);
 			$("title").text(shop_name[0].firstChild.nodeValue);
 			$(".shop_name").text(shop_name[0].firstChild.nodeValue);
+			$(".score-board-title").html("("+shop_name[0].firstChild.nodeValue+")总体评分");
 			$("#shop_address").text(shop_address[0].firstChild.nodeValue);
 			$("#shop_phone").text(shop_phone[0].firstChild.nodeValue);
 			$("#shop_license").text(shop_license[0].firstChild.nodeValue);
 			var add="";
-			if(score[0].firstChild.nodeValue==-1) 
+			if(score[0].firstChild.nodeValue==-1) {
 				add="<strong>暂无</strong><span class=\"desc\"></span>";
-			else
+				$("#show_score").text("暂无");
+				$(".star-score").attr("style","width:0px");
+			}
+			else{
 				add="<strong>"+score[0].firstChild.nodeValue+"</strong><span class=\"desc\">分</span>";
+				var len = 120*score[0].firstChild.nodeValue/5.0
+				//alert(len);
+				$("#show_score").text(score[0].firstChild.nodeValue);
+				$(".star-score").attr("style","width:"+len+"px");
+			}
 			$("#score").append(add);
 			if(ave_sendtime[0].firstChild.nodeValue==3650){
 				add="<strong>暂无</strong>";
@@ -230,4 +249,141 @@ $(function(){
 		}
 	});
 })
-
+$(function(){
+	$.ajax({
+		url:"code/count_Star.jsp",
+		type:"get",
+		data:{store_id:$("#store_id").val()},
+		success:function(data){
+			var one = $(data).find("one_star");
+			var two = $(data).find("two_star");
+			var three = $(data).find("three_star");
+			var four = $(data).find("four_star");
+			var five = $(data).find("five_star");
+			var one_star = parseInt(one[0].firstChild.nodeValue);
+			var two_star = parseInt(two[0].firstChild.nodeValue);
+			var three_star = parseInt(three[0].firstChild.nodeValue);
+			var four_star = parseInt(four[0].firstChild.nodeValue);
+			var five_star = parseInt(five[0].firstChild.nodeValue);
+			all=parseInt(one_star+two_star+three_star+four_star+five_star);
+			$(".score-board-subtitile").html("(共收到"+all+"份美食评价)");
+			var percent_one;
+			var percent_two ;
+			var percent_three;
+			var percent_four ;
+			var percent_five;
+			if(all!=0){
+				 percent_one = one_star *100/ all ;
+				 percent_two = two_star *100 / all ;
+				 percent_three = three_star *100 / all ;
+				 percent_four = four_star *100 / all ;
+				 percent_five = five_star *100 / all ;
+			}
+			else{
+				percent_one = 0 ;
+				 percent_two = 0 ;
+				 percent_three =0 ;
+				 percent_four = 0 ;
+				 percent_five = 0 ;
+			}
+			//alert(all);
+			var len = percent_one*80.0/100;
+			$("#one_star").attr("style","width:"+len+"px");
+			$("#one_star").next().html(percent_one.toFixed(0)+"%");
+			len = percent_two*80.0/100;
+			$("#two_star").attr("style","width:"+len+"px");
+			$("#two_star").next().html(percent_two+"%");
+			len = percent_three*80.0/100;
+			//alert(percent_three);
+			$("#three_star").attr("style","width:"+len+"px");
+			$("#three_star").next().html(percent_three+"%");
+			len = percent_four*80.0/100;
+			$("#four_star").attr("style","width:"+len+"px");
+			$("#four_star").next().html(percent_four+"%");
+			len = percent_five*80.0/100;
+			$("#five_star").attr("style","width:"+len+"px");
+			$("#five_star").next().html(percent_five+"%");
+			var good = five_star+four_star;
+			var mid = three_star+two_star;
+			var bad = one_star;
+			$("#allcmt").parent().html("全部评价("+all+")");
+			$("#goodcmt").parent().html("好评("+good+")");
+			$("#midcmt").parent().html("中评("+mid+")");
+			$("#badcmt").parent().html("差评("+bad+")");
+			var value = $(".cselected").html().replace(/[^0-9]/ig,""); 
+			$("#zt").val(value);
+		}
+	});
+})
+function update_Comments_list(){
+	$.ajax({
+		url:"code/get_Comments.jsp",
+		type:"get",
+		data:{store_id:$("#store_id").val(),cmt_type:$(".cselected").attr("id"),nowpage:nowpage},
+		success:function(data){
+			var score =$(data).find("score");
+			var time =$(data).find("time");
+			var username = $(data).find("username");
+			var comments =$(data).find("comments");
+			$(".comments").find("ul").empty();
+			for(var i=0 ;i<score.length;++i){
+				var add_cmt="<li class=\"comment\"><div class=\"info clearfix\">"
+						+"<span class=\"field clearfix\">"
+						+"<span class=\"name fl\">"+username[i].firstChild.nodeValue+"</span>"
+						+"<span class=\"fl\">总体评价</span><i class=\"icon i-star\"></i>";
+				var sc = score[i].firstChild.nodeValue;
+				if(sc>=4.5)
+					add_cmt+="<i class=\"icon i-star\"></i><i class=\"icon i-star\"></i><i class=\"icon i-star\"></i><i class=\"icon i-star\"></i>";
+				else if(sc<4.5&&sc>=3.5)
+					add_cmt+="<i class=\"icon i-star\"></i><i class=\"icon i-star\"></i><i class=\"icon i-star\"></i><i class=\"icon i-star-empty\"></i>";
+				else if(sc<3.5&&sc>=2.5)
+					add_cmt+="<i class=\"icon i-star\"></i><i class=\"icon i-star\"></i><i class=\"icon i-star-empty\"></i><i class=\"icon i-star-empty\"></i>";
+				else if(sc<2.5&&sc>=1.5)
+					add_cmt+="<i class=\"icon i-star\"></i><i class=\"icon i-star-empty\"></i><i class=\"icon i-star-empty\"></i><i class=\"icon i-star-empty\"></i>";
+				else if(sc<1.5)
+					add_cmt+="<i class=\"icon i-star-empty\"></i><i class=\"icon i-star-empty\"></i><i class=\"icon i-star-empty\"></i><i class=\"icon i-star-empty\"></i>";
+				if(sc>=3.5)
+					add_cmt+="<span class=\"feel fl\">好评</span>";
+				else if(sc>=1.5)
+					add_cmt+="<span class=\"feel fl\">中评</span>";
+				else 
+					add_cmt+="<span class=\"feel fl\">差评</span>";
+				add_cmt=add_cmt+"<span class=\"fr\">"+time[i].firstChild.nodeValue+"</span></span></div>"
+				+"<div class=\"comment-content\">"+comments[i].firstChild.nodeValue+"</div></li>";
+				$(".comments").find("ul").append(add_cmt);
+			}
+		}
+	});
+}
+$(function(){
+	$(".filter").click(function(){
+		nowpage=0;
+		$(".cselected").removeClass("cselected");
+		$(this).addClass("cselected");
+		var value = $(".cselected").html().replace(/[^0-9]/ig,""); 
+		$("#zt").val(value);
+		update_Comments_list();
+	});
+	update_Comments_list();
+})
+$(function(){
+	nowpage=0;
+	$("#first").click(function(){
+		nowpage=0;
+		update_Comments_list();
+	});
+	$("#prev").click(function(){
+		if(nowpage>0)
+			--nowpage;
+			update_Comments_list();
+		});
+	$("#next").click(function(){
+		if(nowpage<$("#zt").val()-1)
+			++nowpage;
+			update_Comments_list();
+	});
+	$("#last").click(function(){
+		nowpage=$("#zt").val()-1;
+		update_Comments_list();
+	});
+})
