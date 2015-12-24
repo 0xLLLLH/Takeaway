@@ -46,18 +46,18 @@
 		<div class="right-part">
 			<div class="right-body">
 				<div class="address-head">
-					<a><i class="order-icon i-add-addr"></i>添加新地址</a>
+					<a href="#"  class="toggle-modal" data-target="#myModal" data-title="添加新地址"><i class="order-icon i-add-addr"></i>添加新地址</a>
 					<h4>送餐详情</h4>
 				</div>
 				<div class="address-body">
 					<div class="address address-selected">
-						<span class="modify-box"><a>修改</a>&nbsp;&nbsp;&nbsp;<a>删除</a></span>
+						<span class="modify-box"><a class="toggle-modal" data-target="#myModal" data-title="修改地址">修改</a>&nbsp;&nbsp;&nbsp;<a>删除</a></span>
 						<p class="address-line">林立豪 先生 ： 18806529323</p>
 						<p class="address-line no-border">浙江农林大学B4号&nbsp;&nbsp;浙江农林大学b4</p>
 					</div>
 					<%for (int i=0;i<3;i++) {%>
 					<div class="address">
-						<span class="modify-box"><a>修改</a>&nbsp;&nbsp;&nbsp;<a>删除</a></span>
+						<span class="modify-box"><a  class="toggle-modal"  data-target="#myModal" data-title="修改地址">修改</a>&nbsp;&nbsp;&nbsp;<a>删除</a></span>
 						<p class="address-line"><%=i %> 先生 ： 18806529323</p>
 						<p class="address-line no-border">浙江农林大学B4号&nbsp;&nbsp;浙江农林大学b4</p>
 					</div>
@@ -82,6 +82,41 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">添加新地址</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<form class="form-horizontal">
+	      		<div class="form-group">
+	      			<div class="col-md-3 col-md-offset-1"><label><span class="color_red">*</span>联系人：</label></div>
+	      			<div class="col-md-7"><input type="text" class="form-control"></div>
+	      		</div>
+	      		<div class="form-group">
+	      			<div class="col-md-3 col-md-offset-1"><label><span class="color_red">*</span>手机号码：</label></div>
+	      			<div class="col-md-7"><input type="text" class="form-control"></div>
+	      		</div>
+	      		<div class="form-group">
+	      			<div class="col-md-3 col-md-offset-1"><label><span class="color_red">*</span>收餐地址：</label></div>
+	      			<div class="col-md-7"><input type="text" class="form-control"></div>
+	      		</div>
+	      		<div class="form-group">
+	      			<div class="col-md-3 col-md-offset-1"><label>详细地址：</label></div>
+	      			<div class="col-md-7"><input type="text" class="form-control"></div>
+	      		</div>
+	      	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary">保存</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
