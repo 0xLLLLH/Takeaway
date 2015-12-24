@@ -28,6 +28,7 @@
 <body>
 	<%@ include file='CommonHeader.jsp' %>
 	<%@ include file='isLoginTLE.jsp' %>
+	<div id="nowpage">
 	<div class="content clearfix">
 		<div class="tab-left">
 			<div class="tab-group">
@@ -188,6 +189,7 @@
 		    <li><a href="#" id="last">尾页 >></a></li>
 		  </ul>
 		</nav>
+	</div>
 	</div>
 	<div  id="load_div" style="display:none"  >
 		<div  class="loading">玩命加载中...</div>

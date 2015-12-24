@@ -62,9 +62,15 @@ function removeColor(){
 }
 
 //提交评论
-$(document).on("click","submit-cmt",function(){
-	alert("1");
-	alert($(this).parent().parent().find(".stars-rank").data("rank"));
+$(document).on("click",".submit_cmt",function(){
+	var star = $(this).parent().parent().find(".stars-rank").data("rank");
+	if(star==0)
+		alert("请点击星星打分！");
+	else{
+		var comments=  $(this).parent().prev().find(".comments_text").val();
+		
+	}
+	
 })
 
 $(function(){
@@ -321,6 +327,7 @@ $(function(){
 							+'</div>';
 	 					}
 	 					else if(step==2){//订单完成，进入评价页面
+	 						var orderTime =setorder_time[i].firstChild.nodeValue;
 	 						add_order=add_order+'<div class="comment-area">'           
 							+'<div class="onerow clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-size: 20px;">收货成功，赏个评价吧！</span></div>'
 							+'<div class="onerow clearfix"><label>评价</label></div>'
@@ -342,20 +349,20 @@ $(function(){
 							+'请选择时间<span class="caret"></span>'
 							+'</button>'
 							+'<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'
-							+'<li><a href="#">Action</a></li>'
-							+'<li><a href="#">Another action</a></li>'
-							+'<li><a href="#">Something else here</a></li>'
-							+'<li><a href="#">Separated link</a></li>'
+							+'<li><a href="#">'+orderTime+'</a></li>'
+							+'<li><a href="#">'+orderTime+'</a></li>'
+							+'<li><a href="#">'+orderTime+'</a></li>'
+							+'<li><a href="#">'+orderTime+'</a></li>'
 							+'</ul>'
 							+'</div>'
 							+'<span class="fl">送达</span>'
 							+'</div>'
 							+'<div class="onerow clearfix">'
 							+'<span class="fl"><span class="color_red" style="visibility: hidden;">*</span>补充评价：</span>'
-							+'<textarea rows="5" cols="45"></textarea>'
+							+'<textarea rows="5" cols="45" class="comments_text"></textarea>'
 							+'</div>'
 							+'<div class="onerow submitbar">'
-							+'<button class="btn btn-success submit-cmt">提交</button>'
+							+'<button class="btn btn-success submit_cmt">提交</button>'
 							+'<span class="inform">提交之后不能修改哦~</span>'
 							+'</div>'
 							+'<div class="comment-footer">'
