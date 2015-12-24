@@ -391,7 +391,7 @@ function bind_bnt(){//绑定按钮
 	change_del();
 	//增加标签按钮
 	$(".add_type_bnt").bind("click",function(){
-		$(".add_type_bnt_remove").unbind("click");//一定要解绑，不然会多次调用回调函数，导致ajax多次发送浪费服务器资源66666
+		$(".add_type_bnt_remove").unbind("click");
 		$(".add_type_bnt_yes").unbind("click");
 		
 		var add_div="<div> <div class=\"poi-info\">"
@@ -400,7 +400,7 @@ function bind_bnt(){//绑定按钮
 			+"<a href=\"javascript:void(0)\" class=\"add_type_bnt_remove  fl type-sel-no\"><span class=\"glyphicon glyphicon-remove\" style=\"color:red\"></span></a>"
 			+"</div><div style=\"height:1px;color:white\"></div></div>";
 		$(".result-list").children("div:first").before(add_div);
-		
+		$(".result-list").children("div:first").find("input").focus();//焦点
 		$(".add_type_bnt_remove").bind("click",function(){
 			$(this).parent().parent().remove();
 		});
@@ -475,6 +475,7 @@ function bind_bnt(){//绑定按钮
 			+"<a href=\"javascript:void(0)\" class=\"add_food_bnt_remove food-sel-no\"><span class=\"glyphicon glyphicon-remove \" style=\"color:red\"></span></a>"
 			+"</li></ul></div>";
 		$(this).parent().after(add_div);
+		$(this).parent().next().find(".in_dish_name").focus();//焦点
 		//新增行的取消按钮x
 		$(".add_food_bnt_remove").bind("click",function(){
 			$(this).parent().parent().parent().remove();
