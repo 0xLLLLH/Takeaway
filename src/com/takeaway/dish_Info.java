@@ -10,8 +10,9 @@ public class dish_Info {
 	private int sell_num;
 	private double score;
 	private double price;
+	private String username;
 	public dish_Info(){}
-	public dish_Info(int id, int store_id, String dish_name, int type_id, int sell_num, double score, double price) {
+	public dish_Info(int id, int store_id, String dish_name, int type_id, int sell_num, double score, double price,String username) {
 		//super();
 		this.id = id;
 		this.store_id = store_id;
@@ -20,6 +21,14 @@ public class dish_Info {
 		this.sell_num = sell_num;
 		this.score = score;
 		this.price = price;
+		this.username=username;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public int getId() {
 		return id;

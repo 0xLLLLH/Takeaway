@@ -9,6 +9,44 @@ import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public store_Info get_shopNamebyid(int store_id)
+	{
+		store_Info info =new store_Info();
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select shop_name,shop_phone,discount from "+store_Info.dataTable_store_Name
+					+" where id= "+store_id;
+			Statement st =conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				info.setShop_name(rs.getString("shop_name"));
+				info.setShop_phone(rs.getString("shop_phone"));
+				info.setDiscount(rs.getString("discount"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return info;
+	}
 	public store_Info get_Shop_InfoByID(int store_id)
 	{
 		store_Info info =new store_Info();

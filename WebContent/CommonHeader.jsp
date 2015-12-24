@@ -4,10 +4,10 @@
 <link href="css/commonheader.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <%
-	String username = (String)session.getAttribute("username");
-	System.out.println(username);
+	String username2 = (String)session.getAttribute("username");
+	System.out.println(username2);
 %>
-<input type="text" style='display:none' id="isLogin" value="<%if(username==null) out.println("0");else out.println("1");%>"/>
+<input type="text" style='display:none' id="isLogin" value="<%if(username2==null) out.println("0");else out.println("1");%>"/>
 <div id="commonheader" class="headerbar">
 	<div class="header-content">
 		<span class="glyphicon glyphicon-map-marker" style="margin:0;font-size:13px;line-height:1.5em;text-indent:2em;" id="place"> </span><a href="./LocationSelect.jsp">[切换地址]</a>
@@ -15,7 +15,7 @@
 			<div class="account-link" style="display: block" id="notlg"><a href="#" id="rg_bnt">注册</a>|<a href="#" id="lg_bnt">登录</a></div>
 			<div class="account-link">
 				<div class="dropdown">
-					<a id="dLabel" data-target="#"  style="display: none" href="Signup.jsp" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎你，<%out.println(username);%><span class="caret"></span></a>
+					<a id="dLabel" data-target="#"  style="display: none" href="Signup.jsp" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎你，<%out.println(username2);%><span class="caret"></span></a>
 					<ul class="dropdown-menu" aria-labelledby="dLabel">
 						<li><a href="#">我的订单</a></li>
 						<li role="separator" class="divider"></li>
@@ -34,7 +34,7 @@
 		<div class="linkarea fl">
 			<a href="ShopList.jsp" class="headerlink"><span>首页 </span></a>
 			<span class="vertical-line">|</span>
-			<a href="#" class="headerlink"><span>我的外卖</span></a>
+			<a href="Customer.jsp" class="headerlink"><span>我的外卖</span></a>
 			<span class="vertical-line">|</span>
 			<a href="#" class="headerlink"><span>加盟合作</span></a>
 		</div>

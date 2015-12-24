@@ -27,7 +27,7 @@
 </head>
 <body>
 	<%@ include file='CommonHeader.jsp' %>
-	
+	<%@ include file='isLoginTLE.jsp' %>
 	<div class="content clearfix">
 		<div class="tab-left">
 			<div class="tab-group">
@@ -43,7 +43,7 @@
 		<div class="right-part">
 			<div class="tab-container">
 				<div class="order-list">
-					<%for (int i=0;i<3;i++) { %>
+<!-- 订单开始-->		<%-- <%for (int i=0;i<0;i++) { %>
 					<div class="order">
 						<a class="order-another btn btn-success">再来一单</a>
 						<div class="intro">
@@ -76,7 +76,8 @@
 								</div>
 							</div>
 							<div class="detail-right">
-								<div class="progress-area">
+	<!--  progress-area-->
+								<div class="progress-area" style="display:block">
 									<div class="step">
 										<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>
 										<p><i class="i-orderarrow fl"></i><button class="btn btn-success">去付款</button>&nbsp;&nbsp;<button class="btn btn-default">取消订单</button></p>
@@ -102,7 +103,9 @@
 										<p class="clearfix"><i class="icon i-orderetyok fl"></i><span class="fl" style="font-weight: bold;">订单完成</span><span class="fr">2015-12-23 11:14</span></p>
 									</div>
 								</div><!-- end of progress-area -->
-								<div class="comment-area" style="display: none;">
+	<!-- end of progress-area -->
+	<!-- commet-area-->					
+								<div class="comment-area" style="display:none;">
 									<div class="onerow clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-size: 20px;">收货成功，赏个评价吧！</span></div>
 									<div class="onerow clearfix"><label>评价</label></div>
 									<div class="onerow clearfix">
@@ -143,8 +146,8 @@
 										<span class="footer-inform">商家没有送餐？您可以致电客服<span class="color_green">400-233-3333</span>或 <a href="#" class="color_green">投诉商家</a>。</span>
 									</div>
 								</div><!-- end of comment-area -->
-								
-								
+	<!--end of   comment-area -->					
+	<!--comment-result  -->							
 								<div class="comment-result" style="display: none;">
 									<div class="onerow clearfix"><label style="font-size: 18px;">我的评价</label></div>
 									<div class="onerow clearfix">
@@ -166,35 +169,28 @@
 										评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</div>
 									</div>
 								</div><!-- end of comment-result -->
+<!--end of comment-result  -->	
 							</div>		
 						</div>
 					</div>
-					<%} %>
-					<div class="pagebar">
-						<nav>
-						  <ul class="pagination">
-						    <li class="disabled">
-						      <a href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						      </a>
-						    </li>
-						    <li class="active" class="disabled"><a href="#">1</a></li>
-						    <li><a href="#">2</a></li>
-						    <li><a href="#">3</a></li>
-						    <li><a href="#">4</a></li>
-						    <li><a href="#">5</a></li>
-						    <li>
-						      <a href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
-						    </li>
-						  </ul>
-						</nav>
-					</div>
+	<!--订单结束-->		<%} %> --%>
 				</div><!-- end of order-list -->
 			</div><!-- end of tab-container -->
 			
 		</div>
+	</div>
+	<div class="pagebar">
+		<nav>
+		  <ul class="pager">
+		  	<li><a href="#" id="first"><< 首页</a></li>
+		    <li><a href="#" id="prev">< 上一页</a></li>
+		    <li><a href="#" id="next">下一页 ></a></li>
+		    <li><a href="#" id="last">尾页 >></a></li>
+		  </ul>
+		</nav>
+	</div>
+	<div  id="load_div" style="display:none"  >
+		<div  class="loading">玩命加载中...</div>
 	</div>
 	
 	<!-- Bootstrap core JavaScript
