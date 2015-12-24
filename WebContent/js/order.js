@@ -30,3 +30,21 @@ $(".field:last").find("a").click(function(){
 	$(".field:last").find("a").removeClass("selected");
 	$(this).addClass("selected");
 });
+
+$(document).on("click",".toggle-modal",function(event){
+	//在此处对模态框内容进行修改
+	//修改完成后弹出
+	$('#myModal').find('.modal-title').text($(this).data("title"));
+	$('#myModal').modal({
+		  keyboard: false
+		})
+		event.stopPropagation(); 
+})
+
+$('#myModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var title = button.data("title") // Extract info from data-* attributes
+	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	  var modal = $(this);
+	})
