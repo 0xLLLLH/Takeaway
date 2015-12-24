@@ -101,8 +101,8 @@
 	 <div style="width:980px;height: 100px;">
 	  <div style="width:370px;height: 40px;margin-bottom: 13px;" class="fl">
 	  	<div class="fl">
-		<span class="glyphicon glyphicon-new-window fl" style="padding-right:15px;font-weight:bold"> 起送价: </span>
-		<input type="text" class="form-control fl" style="width: 100px; height: 25px;" id="price" />
+		<span class="glyphicon glyphicon-new-window fl" style="padding-right:15px;font-weight:bold" > 起送价: </span>
+		<input type="text" class="form-control fl" style="width: 100px; height: 25px;" id="pricetosnd" />
 		<label for="price" style="padding-left:5px">元</label>
 		</div>
 		<div class="informerr fr" id="inform_price" style="display:none">
@@ -131,7 +131,7 @@
 	  </div>
 	  </div>
 	  <br><br>
-	  <button type="button" class="btn-sm btn btn-success" style="width:80px;">提交</button>
+	  <button type="button" class="btn-sm btn btn-success" style="width:80px;" id="price_smt">提交</button>
 	 </div>
 	 </div>
 	 <div id="second" class="message-box tabb_div">
@@ -139,9 +139,9 @@
 	  <div class="mid">
 	  <div class="black">
 	  <span class="glyphicon glyphicon-list-alt" style="line-height:3.5;font-weight:bold;font-size:20px"> 订餐必读&商家公告</span>
-	  <textarea name="feedback" style="height:200px;margin:0 auto"></textarea>
+	  <textarea name="feedback" style="height:200px;margin:0 auto" id="shop_notice"></textarea>
 	  </div>
-	  <button type="button" class="btn-sm btn btn-success" style="width:80px;margin-top:15px">提交</button>
+	  <button type="button" class="btn-sm btn btn-success" style="width:80px;margin-top:15px" id="notice_smt">提交</button>
 	  </div>
 	  </form>
 	 </div>
@@ -155,121 +155,7 @@
 	 	 	<a href="javascript:void(0)" class=" add_type_bnt"><span class="plus fl">+</span><span class="fl">新增分类</span></a>
 	 	</div>
 	 <div class="result-list">			<!-- 一个标签 -->
-	 
-      <!-- <a href="javascript:void(0)" class="type_title"> -->
-     <!-- <div class="poi-info">
-        <input type="text" class="form-control new-type-text fl"  placeholder="新的分类名称">
-        <a href="javascript:void(0)"><span class="glyphicon glyphicon-ok fl type-sel-yes"></span></a>
-        <a href="javascript:void(0)"><span class="glyphicon glyphicon-remove fl type-sel-no"></span></a>
-     </div>
-     
-     
-     <div class="add_center center-block" style="margin-top:10px">
-  			 <a href="javascript:void(0)"><span class="plus fl">+</span><span class="fl">新增菜</span></a>
-   	</div>
-   	<div>
-     <ul class="food-list">	
-     <li class="clearfix">
-      	 <a href="javascript:void(0)" class="food fl">
-      	 <p class="details fl ">
-       		 <input type="text" class="form-control fl" style="width:150px;height:26px;margin-left:85px" placeholder="新的菜名">
-         </p>
-       	<div class="food-div fl"><span class="fl">￥    </span><input type="text" class="form-control fl" style="width:80px;height:26px;" placeholder="菜的价格"><span class="fl" style="margin-left:5px">元</span></div>
-       	</a>
-       	菜删改按钮
-        <a href="javascript:void(0)"><span class="glyphicon glyphicon-ok fl food-sel-yes" ></span></a>
-        <a href="javascript:void(0)"><span class="glyphicon glyphicon-remove fl food-sel-no"></span></a>
-      </li>
-     </ul>
-     </div>
-     </a>
-     
-	<div style="height:1px;color:white"></div> -->
-	 
-	 
-	 
-<%-- 	 <a href="javascript:void(0)" class="type_title">
-     <div class="poi-info">
-        <h3 class="name fl">黄焖鸡米饭</h3><span style="display:block;margin-right:20px;margin-top:20px;color:black;" class="glyphicon glyphicon-chevron-down fr"></span>
-     </div>
-     </a>
-     <!-- 类型删改按钮 -->
-     <div class="type_list">
-   	 	<a href="javascript:void(0)" style="margin-left:20px;color:black;"><span class="glyphicon glyphicon-edit"></span> </a>
-   	 	<span> | </span>
-    	 <a href="javascript:void(0)" style="color:black;"><span class="glyphicon glyphicon-trash"> </span></a> 
-     
-     
-   		 <div class="add_center center-block" style="margin-top:10px">
-  			 <a href="javascript:void(0)"><span class="plus fl">+</span><span class="fl">新增菜</span></a>
-   		</div>
-    	<div>				<!-- 标签内的菜品 -->
-     	<ul class="food-list">				<!-- 内容 -->
-      
-      <!-- <li class="clearfix">
-       <div class="fl" style="padding:10px;padding-left:120px">
-        <input type="text" class="food-name" style="height:25px">
-       </div>
-       <div class="fl" style="padding:10px;padding-left:15px">
-        <input type="text" class="food-price fl" style="height:25px;width:50px">
-       </div>
-      </li>
-       -->
-      	<%for(int i =0;i<6;++i) {%>
-      	<li class="clearfix">
-      	 <a href="javascript:void(0)" class="food fl">
-      	 <p class="details fl ">
-       	 <span class="food-name">小份黄焖鸡+米饭（醇香）</span>
-       	</p>
-       	 <span class="food-price fl">￥    16元</span>
-       	</a>
-       	<!-- 菜删改按钮 -->
-        	<a href="javascript:void(0) " style="color:black;"><span class="glyphicon glyphicon-edit" ></span></a>
-        	<span> | </span>
-     		<a href="javascript:void(0)" style="color:black;"><span class="glyphicon glyphicon-trash"></span></a> 
-      	</li>
-      	<%} %>
-    	</ul>
-    	</div>
- 	 </div>
- </div>
- 
- 
-  <a href="javascript:void(0)" class="type_title">
-     <div class="poi-info">
-        <h3 class="name fl">黄焖鸡米饭</h3><span style="display:block;margin-right:20px;margin-top:20px;color:black;" class="glyphicon glyphicon-chevron-down fr"></span>
-     </div>
-     </a>
- <div class="type_list">
-   	 	<a href="javascript:void(0)" style="margin-left:20px;color:black;"><span class="glyphicon glyphicon-edit"></span> </a>
-   	 	<span> | </span>
-    	 <a href="javascript:void(0)" style="color:black;"><span class="glyphicon glyphicon-trash"> </span></a> 
-     
-     
-   		 <div class="add_center center-block" style="margin-top:10px">
-  			 <a href="javascript:void(0)"><span class="plus fl">+</span><span class="fl">新增菜</span></a>
-   		</div>
-    	<div>				
-     	<ul class="food-list">			
-    
-      	<li class="clearfix">
-      	 <a href="javascript:void(0)" class="food fl">
-      	 <p class="details fl ">
-       	 <span class="food-name">小份黄焖鸡+米饭（醇香）</span>
-       	</p>
-       	 <span class="food-price fl">￥    16元</span>
-       	</a>
-       	<!-- 菜删改按钮 -->
-        	<a href="javascript:void(0) " style="color:black;"><span class="glyphicon glyphicon-edit" ></span></a>
-        	<span> | </span>
-     		<a href="javascript:void(0)" style="color:black;"><span class="glyphicon glyphicon-trash"></span></a> 
-      	</li>
-    	</ul>
-    	</div>
- 	 </div>
- </div> --%> 
-
-
+	 <div style="display:none"><div><!-- 初始div-->
       </div>
     </div>
   </div>
@@ -288,6 +174,6 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script charset="utf-8" type="text/javascript" src="js/headroom.min.js"></script>
 	<script src="js/jQuery.headroom.min.js"></script>
-	<script charset="utf-8" src="js/MerchantAdministrat.js"></script>
+	<script charset="utf-8" src="js/MerchantAdministrat.js" ></script>
 </body>
 </html>

@@ -5,17 +5,16 @@
 <%@page import="com.takeaway.store_Bean"%>
 <%@page import="com.takeaway.dish_Bean"%>
 <%
+	System.out.println("111");
 	dish_Bean bean = new dish_Bean();
 	store_Bean store =new store_Bean();
-	String username = request.getParameter("username");
-	int store_id=store.get_store_id_by_username(username);
+	int store_id=Integer.parseInt(request.getParameter("store_id"));
 	ArrayList<dish_Type_Info> type = new ArrayList<dish_Type_Info>();
 	bean.get_dish_type(type, store_id);
 	Iterator<dish_Type_Info> type_iter=type.iterator();
 	response.setContentType("text/xml; charset=UTF-8");  
     response.setHeader("Cache-Control","no-cache"); 
     out.println("<type_data>");
-    out.println("<store_id>"+store_id+"</store_id>");
 	while(type_iter.hasNext())
 	{
 		dish_Type_Info elem = type_iter.next();
@@ -33,6 +32,7 @@
 			out.println("<dish_id>"+info.getId()+"</dish_id>");
 			out.println("<dish_name>"+info.getDish_name()+"</dish_name>");
 			out.println("<price>"+info.getPrice()+"</price>");
+			out.println("<sell_num>"+info.getSell_num()+"</sell_num>");
 			//System.out.println("<dish_id>"+info.getId()+"</dish_id>");
 			//System.out.println("<dish_name>"+info.getDish_name()+"</dish_name>");
 		}

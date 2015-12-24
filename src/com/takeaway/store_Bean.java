@@ -3,10 +3,236 @@ package com.takeaway;
 import java.sql.*;
 import java.util.*;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
+	public store_Info get_Shop_InfoByID(int store_id)
+	{
+		store_Info info =new store_Info();
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select "+store_Info.dataTable_store_Name+".id,shop_name ,first_type,second_type,shop_owner,shop_address,shop_description,shop_phone,shop_license ,shop_notice,discount,score,sell_num,price_tosend,ave_sendtime from "
+					+store_Info.dataTable_application_name+","+store_Info.dataTable_store_Name
+					+" where "+ store_Info.dataTable_store_Name+".username = "
+					+store_Info.dataTable_application_name+".username "
+					+" and  state='1' and "+store_Info.dataTable_store_Name
+					+".id = "+store_id;
+			Statement st =conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				info = GetDataFromResultSet_shoplist(rs);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return info;
+	}
+	public boolean set_Shop_Notice(int store_id,String notice )
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "update "+store_Info.dataTable_store_Name
+					+" set shop_notice ='"+notice
+					+"' where  id="+store_id;
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	public String get_Shop_Notice(int store_id)
+	{
+		String notice = null;
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select shop_notice from "+store_Info.dataTable_store_Name
+					+" where id = "+store_id;
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				notice = rs.getString("shop_notice");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return notice;
+	}
+	public boolean set_store_price(double price_tosend,double cut1,double cut2,int store_id)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String discount = cut1+"-"+cut2;
+			String sql = "update "+store_Info.dataTable_store_Name
+					+" set price_tosend ="+price_tosend
+					+", discount = '"+discount+"' where  id="+store_id;
+			System.out.println("sql:"+sql);
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	public int get_store_id(String username )
+	{
+		int store_id=-1;
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql ="select id from "+store_Info.dataTable_store_Name
+					+" where username = '"+username+"'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				store_id=rs.getInt("id");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return store_id;
+	}
+	public boolean get_shop_price(store_Info info,int store_id)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select price_tosend,discount from "+store_Info.dataTable_store_Name
+					+" where id ="+store_id;
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				info.setDiscount(rs.getString("discount"));
+				info.setPrice_tosend(rs.getDouble("price_tosend"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	public int get_store_id_by_username(String username)
 	{	
 		int store_id=-1;

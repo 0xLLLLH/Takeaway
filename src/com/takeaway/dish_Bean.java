@@ -11,6 +11,163 @@ public class dish_Bean {
 	
 	private Connection conn;
 	public dish_Bean(){}
+	public boolean update_Dish(String dish_name,double dish_price,int dish_id)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql_repeat="select id from "+dish_Info.dataTable_dish_Name
+					+" where dish_name = '"+dish_name+"'";
+			System.out.println(sql_repeat);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql_repeat);
+			if(rs.next())
+			{
+				return false;
+			}
+			String sql="update "+dish_Info.dataTable_dish_Name
+					+" set dish_name = '"+dish_name+"' ,price = "+dish_price
+					+" where id ="+dish_id;
+			st.executeUpdate(sql);
+			System.out.println(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	public boolean deleteDish(int dish_id)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql ="delete from "+dish_Info.dataTable_dish_Name
+					+" where id = "+dish_id;
+			System.out.println(sql);
+			Statement st =conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
+	public int insertDish_getID(int type_id,String dish_name,double dish_price,int store_id)
+	{
+		conn = DBconn.GetConnection();
+		int dish_id=-1;
+		try
+		{
+			String sql="insert into "+dish_Info.dataTable_dish_Name
+					+"(type_id,dish_name,price,store_id,sell_num)values("+type_id
+					+",'"+dish_name+"',"+dish_price+","+store_id+",0)";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+			String sql_id="select id from "+dish_Info.dataTable_dish_Name
+					+" where dish_name = '"+dish_name+"' and type_id= '"+type_id+"'";
+			System.out.println(sql_id);
+			ResultSet rs = st.executeQuery(sql_id);
+			if(rs.next())
+			{
+				dish_id=rs.getInt("id");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return dish_id;
+	}
+	public int is_Dish_repeat(int type_id , String dish_name )
+	{
+		conn = DBconn.GetConnection();
+		int dish_id=-1;
+		try
+		{
+			String sql ="select id from "+dish_Info.dataTable_dish_Name
+					+" where type_id="+type_id
+					+" and dish_name = '"+dish_name+"'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				dish_id=rs.getInt("id");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return dish_id;
+	}
 	public boolean update_DishType(int type_id,String type)
 	{
 		conn = DBconn.GetConnection();
@@ -168,7 +325,7 @@ public class dish_Bean {
 		conn = DBconn.GetConnection();
 		try
 		{
-			String sql = "select dish_name,id,price from "+dish_Info.dataTable_dish_Name
+			String sql = "select dish_name,id,price,sell_num from "+dish_Info.dataTable_dish_Name
 					+" where type_id = "+type_id;
 			System.out.println(sql);
 			Statement st = conn.createStatement();
@@ -179,6 +336,7 @@ public class dish_Bean {
 				elem.setId(rs.getInt("id"));
 				elem.setPrice(rs.getDouble("price"));
 				elem.setDish_name(rs.getString("dish_name"));
+				elem.setSell_num(rs.getInt("sell_num"));
 				data.add(elem);
 			}
 		}

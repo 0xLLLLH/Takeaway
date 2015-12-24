@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <link href="css/commonheader.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/commonheader.js"></script>
 <%
 	String username = (String)session.getAttribute("username");
 	System.out.println(username);
@@ -46,3 +45,39 @@
 		</form>
 	</div>
 </div>
+<!-- //////////// -->
+ <div id="searchpage" style="display:none">
+      <div class="search_content">
+		<hr class="space">
+		<div class="tab-bar" >
+			<button class="button-active" data-toggle="rest">餐厅</button>
+			<button data-toggle="food">美食</button>
+		</div>
+		<div class="text-field"><label>搜索"<span id="search_name" style="color:#27AE60">*</span>"的<span style="color:#27AE60">餐厅</span>结果</label></div>
+		<div id="tab-container" class="shop-list clearfix">
+			<div id="rest" class="rest-result clearfix" >
+				<ul class="rest-result-list clearfix" id="search_shop_List">
+					
+				</ul>
+			</div>
+			<div id="food" class="food-result">
+				<%-- <%for (int i=0;i<10;i++){ %> --%>
+				<div class="food-result-rest">
+					<div class="result-title">
+						<div class="name clearfix"><label class="fl"><b>这里是店铺名</b></label><div class="fl"><span>折扣信息 【满-减】</span></div></div>
+						<div class="info clearfix"><span>评分 4.5</span><span>|</span><span>起送价</span></div>
+					</div>
+					<div class="result-item">
+						<a href="#">
+							<div class="result-item-row clearfix">
+								<span class="name fl"><b>菜品的名字</b></span><span class="price fl">菜品的单价</span><span class="sold fl">月销0单</span><span class="buy fr">购买</span>
+							</div>
+						</a>
+					</div>
+				</div>
+				<%-- <%} %> --%>
+			</div>
+		</div><!-- end of tab-container -->
+		</div>
+	</div>
+<script src="js/commonheader.js"></script>
