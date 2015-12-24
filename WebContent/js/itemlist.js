@@ -369,21 +369,44 @@ $(function(){
 $(function(){
 	nowpage=0;
 	$("#first").click(function(){
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		
 		nowpage=0;
+		alert(nowpage);
 		update_Comments_list();
 	});
 	$("#prev").click(function(){
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		
 		if(nowpage>0)
 			--nowpage;
+		alert(nowpage);
 			update_Comments_list();
 		});
 	$("#next").click(function(){
-		if(nowpage<$("#zt").val()-1)
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		
+		if(nowpage<allnum)
 			++nowpage;
+		alert(nowpage);
 			update_Comments_list();
 	});
 	$("#last").click(function(){
-		nowpage=$("#zt").val()-1;
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		nowpage=allnum;
+		alert(nowpage);
 		update_Comments_list();
 	});
 })

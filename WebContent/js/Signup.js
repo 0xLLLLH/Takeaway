@@ -1,16 +1,21 @@
 	window.onload=function()
 	{
-		var str = document.cookie;
-		if(!(str == "")){
-		var arrStr = document.cookie.split("; ");
-		var temp = arrStr[0].split("=");
-		document.getElementById("login_username").value=temp[0];
-		document.getElementById("login_password").value=temp[1];
-		LoginForm.remember.checked = true;
-		if($("#state").val()==0){
-			$("#regtab").click();
-			}
-		}
+		var ca = document.cookie.split(";");
+		for(var i=0; i<ca.length; i++) {
+	        var c = ca[i];
+	        //alert(c.split('=')[0].substring(0,7));
+	        if("cookie"==c.split('=')[0].substring(0,6))
+	        {
+	        	var w=c.split('=')[1];
+	        	//alert(w);
+	        	document.getElementById("login_username").value=w.split('+')[0];
+	        	document.getElementById("login_password").value=w.split('+')[1];
+	        	LoginForm.remember.checked = true;
+	        	if($("#state").val()==0){
+	    			$("#regtab").click();
+	    		}
+	    	}
+	    }
 	}
 	function getFocus(inform1,inform2){
 		inform1.style.display="none";
@@ -104,7 +109,7 @@
 						 if( result == "success" )
 						 {
 							 // alert( "注册成功" );
-							 window.location.href="ShopList.jsp";
+							 window.location.href="LocationSelect.jsp";
 						  }
 						  else
 						  {
@@ -134,13 +139,12 @@
 		var str = objName + "=" + escape(objValue);
 		if(objHours > 0){//为0时不设定过期时间，浏览器关闭时cookie自动消失
 		var date = new Date();
-		var ms = objHours*3600*1000;
+		var ms = objHours*3600*1000;		//定义cookie时间
 		date.setTime(date.getTime() + ms);
 		str += "; expires=" + date.toGMTString();
-		//alert(date.toGMTString());
 		}
 		document.cookie = str;
-		//alert("添加cookie成功");
+
 	}
 	function fun(m,n){
 		return document.forms[m].elements[n].value;
@@ -167,25 +171,24 @@
 						  {
 							  inform_username.style.display="none";
 							  inform_password.style.display="none";
-							  //alert("登陆成功");
-							  var str = document.cookie;
-							  if(!(str == "")){
-								  var arrStr = document.cookie.split("; ");
-								  for(var i = 0;i < arrStr.length;i ++){
-								  var temp = arrStr[i].split("=");
-								  var date = new Date();
-								  date.setTime(date.getTime() - 10000);
-								  document.cookie = temp[0] + "=a; expires=" + date.toGMTString();
-							  	}
-							  }
+
+							  var ca = document.cookie.split(";");		//删除cookie
+								for(var i=0; i<ca.length; i++) {
+							        var c = ca[i];
+							        if("cookie"==c.split('=')[0].substring(0,6))
+							        {
+							        	var date = new Date();
+										  date.setTime(date.getTime() - 10000);
+										  document.cookie = "cookie" + "=a; expires=" + date.toGMTString();
+							    	}
+							    }
 							  if(LoginForm.remember.checked)
 							  {
 								  var cookie_name = fun("LoginForm","login_username");
 								  var cookie_value = fun("LoginForm","login_password");
-								  addCookie(cookie_name,cookie_value,24*365);
-								  //alert("登陆成功");
+								  addCookie("cookie",cookie_name+"+"+cookie_value,24*365);		//调用函数添加cookie
 							  }
-							  window.location.href="ShopList.jsp";
+							  window.location.href="LocationSelect.jsp";
 						  }
 						  else if(result=="username_exitandpassword_right1")
 						  {

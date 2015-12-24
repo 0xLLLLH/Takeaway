@@ -11,6 +11,44 @@ public class dish_Bean {
 	
 	private Connection conn;
 	public dish_Bean(){}
+	public dish_Info get_Dishnameandprice(int dish_id)
+	{
+		conn = DBconn.GetConnection();
+		dish_Info info = new dish_Info();
+		try
+		{
+			String sql="select dish_name , price  from "+dish_Info.dataTable_dish_Name
+					+" where id ="+dish_id ;
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				info.setDish_name(rs.getString("dish_name"));
+				info.setPrice(rs.getDouble("price"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return info;
+	}
 	public boolean update_Dish(String dish_name,double dish_price,int dish_id)
 	{
 		conn = DBconn.GetConnection();
