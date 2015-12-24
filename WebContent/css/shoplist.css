@@ -116,8 +116,8 @@ ul,li {
 .rest-result img{
 	display:block;
 	margin:0 auto;
-	max-width:250;
-	max-height:250;
+	max-width:250px;
+	max-height:250px;
 }
 
 .outer {
