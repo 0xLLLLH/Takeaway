@@ -1,0 +1,225 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #f5f5f5;
+}
+
+a:hover{
+	color:#27AE60;
+}
+
+.color_green{
+	color:#27AE60;
+}
+
+.content{
+	width: 1024px;
+	margin: 20px auto;
+	padding:0px;
+	min-height:650px; /*(解决ie8.9.ff.chrome)*/
+	*+height:100%;  /*()解决ie7)*/
+	_height:650px; /*(解决ie6) ie6超出自动溢出*/
+}
+.content-header{
+	border-left: 5px solid #27AE60;
+	padding-left: 15px;
+}
+
+.content-header a{
+	color: #333;
+}
+
+.left-part{
+	float: left;
+	width: 370px;
+	min-height: 200px;
+	margin-top:10px;
+}
+
+.dishes{
+	margin: 0;
+	min-height: 200px;
+	background-color: #fff;
+	border: 1px solid #ebebeb;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 20px 20px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    border-top: 1px dashed #ddd;
+    font-size: 15px;
+}
+
+.ticket-age {
+    width: 370px;
+    height: 32px;
+    margin-top: -1px;
+    background: url(http://xs01.meituan.net/waimai_web/img/order-bot-bg1.png) no-repeat;
+    _background: url(http://xs01.meituan.net/waimai_web/img/_order-bot-bg1.png) no-repeat;
+}
+
+.right-part{
+	float: right;
+	width: 630px;
+	min-height: 200px;
+	margin-top:10px;
+	background-color: #fff;
+	border: 1px solid #ebebeb;
+}
+
+.right-body{
+	padding: 20px;	
+}
+
+.right-body>.address-head{
+	position: relative;
+}
+
+.i-add-addr {
+    margin-right: 8px;
+    vertical-align: -5px;
+}
+.i-add-addr {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -26px;
+}
+.order-icon {
+    background-image: url(http://xs01.meituan.net/waimai_web/img/sprite/order-icon_1.png);
+    _background-image: url(http://xs01.meituan.net/waimai_web/img/sprite/_order-icon_1.png);
+    background-repeat: no-repeat;
+    image-rendering: -webkit-optimize-contrast;
+    display: inline-block;
+}
+i {
+    font-style: normal;
+}
+
+.right-body>.address-head>a{
+	position:absolute;
+	right: 0;
+	color : #898989;
+}
+
+
+.address-body{
+	
+}
+
+.address-body>.address{
+	position:relative;
+	margin-bottom: 20px;
+	padding:0 20px;
+	border: 1px solid #ebebeb;
+	background-color: #fafafa;
+}
+.address-body>.address-selected{
+	border: 1px solid #27AE60;
+}
+
+
+.address-body>.address:hover{
+	border: 1px solid #27AE60;
+}
+
+.modify-box{
+	display:none;
+	position: absolute;
+	top:10px;
+	right: 10px;
+}
+.modify-box>a{
+	color: #27AE60;
+	cursor: pointer;
+}
+
+
+.grean-border{
+	border-color: #27AE60 !important;
+}
+
+.address .no-border{
+	border-width: 0px;
+}
+
+.address .address-line{
+	margin:0;
+	padding:10px 0;
+	border-bottom: 1px dashed #eee;
+}
+
+.address-footer{
+	position:relative;
+	height:30px;
+	border-top: 1px solid #eee;
+}
+.address-footer>.footer-btn{
+	position:absolute;
+	top:-1px;
+	left:250px;
+	padding:2px 5px;
+	color:#777;
+	background-color: #fff;
+	border:1px solid #eee;
+	border-width:0 1px 1px 1px; 
+}
+
+.field{
+	margin-bottom: 10px;
+}
+
+.field>span{
+	display:inline-block;
+	font-size: 14px;
+	color: #333;
+	width: 100px;
+}
+
+.field>a{
+	display:inline-block;
+	font-size: 14px;
+	color: #777;
+	margin-right: 10px;
+	border: 1px solid #ccc;
+	padding:3px;
+	border-radius:3px;
+	cursor: p
+}
+
+.field>.selected{
+	border-color: #27AE60 !important;
+	color:#27AE60 !important;
+}
+
+
+.field>input{
+	display:inline-block;
+	font-size: 14px;
+	color: #333;
+	width: 200px;
+	height: 30px;
+}
+
+
+.right-footer{
+	
+}
+.deliver-time{
+	padding:20px;
+	border: 1px dashed #ebebeb;
+	background-color: #fafafa;
+}
+.deliver-time>select{
+	border-radius:4px;
+}
+
+.pay-area{
+	position:relative;
+	padding: 10px 20px;
+}
+
+.pay-area button{
+	margin: 5px 0px;
+	width:100px;
+	height: 40px;
+}
