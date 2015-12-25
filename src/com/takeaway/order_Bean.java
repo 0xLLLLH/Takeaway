@@ -1,10 +1,251 @@
 package com.takeaway;
 import java.sql.*;
 import java.util.*;
+import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 public class order_Bean {
 	private Connection conn;
 	public order_Bean(){}
+	/**
+	 * @param store_id
+	 * @return
+	 */
+	public order_Info get_receiving_time(String order_id)
+	{
+		order_Info info =new order_Info();
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql ="select receiving_time  from "+order_Info.order_Table_Name
+					+" where id='"+order_id+"'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs =st.executeQuery(sql);
+			if(rs.next())
+			{
+				info.setReceiving_time(rs.getTimestamp("receiving_time"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return info;
+	}
+	public comment_Info get_comment_inorder(String order_id)
+	{
+		comment_Info info =new comment_Info();
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql ="select score ,comments from "+comment_Info.comment_Table_Name
+					+" where order_id='"+order_id+"'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs =st.executeQuery(sql);
+			if(rs.next())
+			{
+				info.setComments(rs.getString("comments"));
+				info.setScore(rs.getDouble("score"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return info;
+	}
+	public boolean update_store_NumandScore(int store_id,int sell_num,double now_score)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql ="update "+store_Info.dataTable_store_Name
+					+" set sell_num = "+sell_num
+					+",score="+now_score
+					+" where id="+store_id;
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
+	public store_Info get_store_NumandScore(int store_id)
+	{
+		store_Info info =new store_Info();
+		conn = DBconn.GetConnection();
+		try
+		{
+			String sql = "select score,sell_num from "+store_Info.dataTable_store_Name
+					+" where id = "+store_id;
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				info.setScore(rs.getDouble("score"));
+				info.setSell_num(rs.getInt("sell_num"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return info;
+	}
+	public boolean  change_state(String order_id,int state)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			java.sql.Timestamp now=new java.sql.Timestamp(new java.util.Date().getTime());
+			String sql_time ="select setorder_time from "+order_Info.order_Table_Name
+					+" where id='"+order_id+"'";
+			System.out.println(sql_time);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql_time);
+			if(rs.next()){
+				 String time = rs.getString("setorder_time");
+				 java.text.SimpleDateFormat timeformat = new java.text.SimpleDateFormat(
+			                "yyyy-MM-dd hh:mm:ss");
+				 java.util.Date order_time = timeformat.parse(time);
+				 java.util.Date nowtime =new java.util.Date();
+				 String distime="-"+(nowtime.getTime()-order_time.getTime());
+				 System.out.println(distime);
+			String sql_state= "update "+order_Info.order_Table_Name
+					+" set state =" +state
+					+", time_from_setorder = concat(time_from_setorder,'"+distime+"') where id='"+order_id+"'";
+			System.out.println(sql_state);
+			st.executeUpdate(sql_state);
+			}
+		}
+		catch(SQLException | ParseException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
+	public boolean  insert_Comments(String comments,String username,double score,String order_id,int store_id)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			java.sql.Timestamp now=new java.sql.Timestamp(new java.util.Date().getTime());
+			String sql ="insert into "+comment_Info.comment_Table_Name
+					+"(comments,username,score,order_id,store_id,time) values('"
+					+comments+"','"+username+"',"+score+",'"+order_id+"',"+store_id+",'"+now
+					+"')";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
 	public int get_Order_num(String username)
 	{
 		conn = DBconn.GetConnection();

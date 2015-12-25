@@ -96,15 +96,19 @@ $(document).on("click",".submit_cmt",function(){
 		$right=$(this).parents(".detail-right");
 		var comments=  $right.find(".comments_text").val();
 		//这里添加提交到数据库的代码
-		alert(star+" "+comments);
+		//alert(star+" "+comments);
 		var item_store_id=$(this).parents("div:eq(4)").data("store");
-		var item_id=$(this).parents("div:eq(4)").data("id");
-		/*$.ajax({
-			url:"code/",
+		var item_order_id=$(this).parents("div:eq(4)").data("id");
+		//alert(item_id + " " + item_store_id);
+		$.ajax({
+			url:"code/insert_Comment.jsp",
 			type:"get",
-			data:{score:star,comments:comments,username:$("#usernmae").val(),store_id:}
+			data:{score:star,comments:comments,username:$("#username").val(),store_id:item_store_id,order_id:item_order_id,},
+			success:function(data){
+				alert(data);
+			}
 			
-		});*/
+		});
 		//接着显示评论
 		
 		var new_item='<div class="comment-result" data-step="3">'
@@ -291,7 +295,7 @@ function update_order_list(){
 							+'</div>'
 							+'<div class="step">'
 							+'<p class="clearfix"><i class="icon i-ordernotok fl"></i><span class="fl" style="font-weight: bold;">用户取消，已退款到余额</span><span class="fr">2015-12-23 11:14</span></p>'
-							+'<p><button class="btn btn-success btn-next">选择其他商家</button>&nbsp;&nbsp;<button class="btn btn-default btn-cancel">取消订单</button></p>'
+							+'<p><button class="btn btn-success btn-next">选择其他商家</button>&nbsp;&nbsp;<button class="btn btn-default btn-cancel">订单反馈</button></p>'
 							+'</div>'
 							+'</div>';
 	 					}
@@ -452,28 +456,83 @@ function update_order_list(){
 							+'</div>';
 	 					}
 	 					else if(step==3){//评价完成
-	 						add_order=add_order+'<div class="comment-result" data-step="'+step+'">'
-							+'<div class="onerow clearfix"><label style="font-size: 18px;">我的评价</label></div>'
-							+'<div class="onerow clearfix">'
-							+'<label class="fl"><span class="color_red">*</span>总体评价：</label>'
-							+'<span class="stars-rank fl" data-rank="0">'
-							+'<i class="fl icon i-star-empty-n"></i>'
-							+'<i class="fl icon i-star-empty-n"></i>'
-							+'<i class="fl icon i-star-empty-n"></i>'
-							+'<i class="fl icon i-star-empty-n"></i>'
-							+'<i class="fl icon i-star-empty-n"></i>'
-							+'</span>'
-							+'</div>'
-							+'<div class="onerow clearfix">'
-							+'<span class="fl"><span class="color_red">*</span><label>送达时间：</label>2015-12-22 18:50</span>'
-							+'</div>'
-							+'<div class="onerow clearfix">'
-							+'<span class="fl"><span class="color_red" style="visibility: hidden;">*</span><label>补充评价：</label></span>'
-							+'<div class="comment fl">评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价'
-							+'评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</div>'
-							+'</div>'
-							+'</div>';
-	 					}					
+	 						$.ajax({
+	 							url:"code/get_Comment_inOrder.jsp",
+	 							type:"get",
+	 							async:false,
+	 							data:{order_id:id[i].firstChild.nodeValue},
+	 							success:function(data){
+	 								var comments=$(data).find("comments");
+	 								var score =$(data).find("score");
+	 								var receiving_time =$(data).find("receiving_time");
+	 								var sc=score[0].firstChild.nodeValue;
+	 								//alert(score[0].firstChild.nodeValue)
+	 								add_order=add_order+'<div class="comment-result" data-step="'+step+'">'
+	 								+'<div class="onerow clearfix"><label style="font-size: 18px;">我的评价</label></div>'
+	 								+'<div class="onerow clearfix">'
+	 								+'<label class="fl"><span class="color_red">*</span>总体评价：</label>'
+	 								+'<span class="stars-rank fl" data-rank="0">';
+	 								if(sc==0){
+	 									add_order=add_order+'<i class="fl icon i-star-empty-n></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>';
+	 								}
+	 								else if(sc==1){
+
+	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>';
+	 								}
+	 								else if(sc==2){
+
+	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>';
+	 								}
+	 								else if(sc==3){
+
+	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>';
+	 								}
+	 								else if(sc==4){
+
+	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-empty-n"></i>';
+	 								}
+	 								else if(sc==5){
+
+	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>'
+		 								+'<i class="fl icon i-star-full-n"></i>';
+	 								}
+	 								add_order=add_order
+	 								+'</span>'
+	 								+'</div>'
+	 								+'<div class="onerow clearfix">'
+	 								+'<span class="fl"><span class="color_red">*</span><label>送达时间：</label>'+receiving_time[0].firstChild.nodeValue+'</span>'
+	 								+'</div>'
+	 								+'<div class="onerow clearfix">'
+	 								+'<span class="fl"><span class="color_red" style="visibility: hidden;">*</span><label>补充评价：</label></span>'
+	 								+'<div class="comment fl">'+comments[0].firstChild.nodeValue+'</div>'
+	 								+'</div>'
+	 								+'</div>';
+	 							}
+	 						});
+	 					}
 						add_order=add_order+'</div>'
 						+'</div>'
 						+'</div>';
@@ -504,7 +563,19 @@ $(function(){
  * 可以通过修改类名达到其他类别按钮的响应
  * 数据库操作在每个case中进行
  */
+function update_state(id,state){
+	$.ajax({
+		url:"code/update_State.jsp",
+		type:"get",
+		data:{order_id:id,state:state},
+		success:function(data){
+			//alert(id+" "+state);
+		}
+	});
+}
 $(document).on("click",".btn-next",function(){
+	var item_order_id=$(this).parent().parents("div:eq(4)").data("id");
+	//alert(item_order_id);
 	var $pa=$(this).parents(".progress-area");
 	var step=parseInt($pa.data("step"));
 	var $right=$(this).parents(".detail-right");
@@ -512,7 +583,7 @@ $(document).on("click",".btn-next",function(){
 	switch (step) {
 	case 1://下单成功等待付款
 		//在此处进行数据库操作
-		
+		update_state(item_order_id,11);
 		new_div=new_div+'<div class="progress-area" data-step="11">'/*<!--  progress-area-->*/
 			+'<div class="step">'
 			+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
@@ -536,7 +607,9 @@ $(document).on("click",".btn-next",function(){
 		window.location.href="ShopList.jsp";
 		break;
 
-
+	case 112:
+		window.location.href="ShopList.jsp";
+		break;
 	case 1110://下单成功，成功付款，成功接单，申请退款
 		//无按钮
 		break;
@@ -544,7 +617,9 @@ $(document).on("click",".btn-next",function(){
 		//无按钮
 		break;
 	case 111://下单成功，成功付款，商家接单
+		//update_state(item_order_id,2);
 	case 11100://下单成功，成功付款，成功接单，退款失败，继续配送
+		update_state(item_order_id,2);
 		new_div=new_div+'<div class="comment-area" data-step="2">'           
 		+'<div class="onerow clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-size: 20px;">收货成功，赏个评价吧！</span></div>'
 		+'<div class="onerow clearfix"><label>评价</label></div>'
@@ -607,12 +682,16 @@ $(document).on("click",".btn-next",function(){
 	}
 });
 $(document).on("click",".btn-cancel",function(){
+	var item_order_id=$(this).parent().parents("div:eq(4)").data("id");
+	//alert(item_order_id);
+	
 	var $pa=$(this).parents(".progress-area");
 	var step=parseInt($pa.data("step"));
 	var $right=$(this).parents(".detail-right");
 	var new_div="";
 	switch (step) {
 	case 1://下单成功等待付款
+		update_state(item_order_id,10);
 		new_div=new_div+'<div class="progress-area" data-step="10">'/*<!--  progress-area-->*/
 			+'<div class="step">'
 			+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
@@ -631,6 +710,7 @@ $(document).on("click",".btn-cancel",function(){
 		break;
 	case 11://下单成功，成功付款，等待接单
 		//
+		update_state(item_order_id,112);
 		new_div=new_div+'<div class="progress-area" data-step="112">'/*<!--  progress-area-->*/
 			+'<div class="step">'
 			+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
@@ -653,6 +733,7 @@ $(document).on("click",".btn-cancel",function(){
 		break;
 	case 111://下单成功，成功付款，商家接单
 		//
+		update_state(item_order_id,1110);
 		new_div=new_div+'<div class="progress-area" data-step="1110">'/*<!--  progress-area-->*/
 			+'<div class="step">'
 			+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'

@@ -201,10 +201,10 @@ $(function(){
 				$(".star-score").attr("style","width:0px");
 			}
 			else{
-				add="<strong>"+score[0].firstChild.nodeValue+"</strong><span class=\"desc\">分</span>";
+				add="<strong>"+ parseFloat(score[0].firstChild.nodeValue).toFixed(1)+"</strong><span class=\"desc\">分</span>";
 				var len = 120*score[0].firstChild.nodeValue/5.0
 				//alert(len);
-				$("#show_score").text(score[0].firstChild.nodeValue);
+				$("#show_score").text(parseFloat(score[0].firstChild.nodeValue).toFixed(1));
 				$(".star-score").attr("style","width:"+len+"px");
 			}
 			$("#score").append(add);
