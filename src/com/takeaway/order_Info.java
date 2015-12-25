@@ -16,10 +16,10 @@ public class order_Info {
 	private String address;
 	private String name;
 	private String phone;
-	private double total_price;
+	private double total_price;	
 	private String discount_result;
 	order_Info(){}
-<<<<<<< HEAD
+
 	public order_Info(String id, Date setorder_time, int state, String time_from_setorder, double total_price,String discount_result,
 			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,String name,String phone) {
 		//super();
@@ -40,10 +40,8 @@ public class order_Info {
 		this.discount_result=discount_result;
 	}
 	
-	public order_Info(String id, Date setorder_time, int state, Date receiving_time, String time_from_setorder, double total_price,String discount_result,
-=======
 	public order_Info(String id, Date setorder_time, int state, int send_time, String time_from_setorder, double total_price,String discount_result,
->>>>>>> refs/remotes/ZT837606704/master
+
 			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,String name,String phone) {
 		//super();
 		this.id = id;
