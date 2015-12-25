@@ -303,6 +303,7 @@ $(function(){
 			var percent_four ;
 			var percent_five;
 			if(all!=0){
+				//parseFloat(score[i].firstChild.nodeValue).toFixed(1)
 				 percent_one = one_star *100/ all ;
 				 percent_two = two_star *100 / all ;
 				 percent_three = three_star *100 / all ;
@@ -317,22 +318,22 @@ $(function(){
 				 percent_five = 0 ;
 			}
 			//alert(all);
-			var len = percent_one*80.0/100;
+			var len = parseFloat(percent_one*80.0/100).toFixed(1);
 			$("#one_star").attr("style","width:"+len+"px");
 			$("#one_star").next().html(percent_one.toFixed(0)+"%");
 			len = percent_two*80.0/100;
 			$("#two_star").attr("style","width:"+len+"px");
-			$("#two_star").next().html(percent_two+"%");
+			$("#two_star").next().html(percent_two.toFixed(0)+"%");
 			len = percent_three*80.0/100;
 			//alert(percent_three);
 			$("#three_star").attr("style","width:"+len+"px");
-			$("#three_star").next().html(percent_three+"%");
+			$("#three_star").next().html(percent_three.toFixed(0)+"%");
 			len = percent_four*80.0/100;
 			$("#four_star").attr("style","width:"+len+"px");
-			$("#four_star").next().html(percent_four+"%");
+			$("#four_star").next().html(percent_four.toFixed(0)+"%");
 			len = percent_five*80.0/100;
 			$("#five_star").attr("style","width:"+len+"px");
-			$("#five_star").next().html(percent_five+"%");
+			$("#five_star").next().html(percent_five.toFixed(0)+"%");
 			var good = five_star+four_star;
 			var mid = three_star+two_star;
 			var bad = one_star;
@@ -405,24 +406,24 @@ $(function(){
 	nowpage+=parseInt(allnum/10-1);
 	$("#first").click(function(){
 		nowpage=0;
-		alert(nowpage);
+		//alert(nowpage);
 		update_Comments_list();
 	});
 	$("#prev").click(function(){		
 		if(nowpage>0)
 			--nowpage;
-		alert(nowpage);
+		//alert(nowpage);
 			update_Comments_list();
 		});
 	$("#next").click(function(){
 		if(nowpage<pagenum)
 			++nowpage;
-		alert(nowpage);
+		//alert(nowpage);
 			update_Comments_list();
 	});
 	$("#last").click(function(){
 		nowpage=pagenum;
-		alert(nowpage);
+		//alert(nowpage);
 		update_Comments_list();
 	});
 })

@@ -148,8 +148,8 @@ $(function(){
 					var cut2 = $(data).find("cut2");
 					//alert(pricetsd[0].firstChild.nodeValue);
 					$("#pricetosnd").val(pricetsd[0].firstChild.nodeValue);
-					$("#cut1").val(cut1[0].firstChild.nodeValue);
-					$("#cut2").val(cut2[0].firstChild.nodeValue);
+					$("#cut1").val(parseInt(cut1[0].firstChild.nodeValue));
+					$("#cut2").val(parseInt(cut2[0].firstChild.nodeValue));
 					
 				}
 			});
@@ -174,7 +174,7 @@ $(function(){
 		$.ajax({
 			url:"code/set_Shop_price.jsp",
 			type:"get",
-			data:{pricetosend:$pricetosend,cut1:$cut1,cut2:$cut2,store_id:$("#store_id").val()},
+			data:{pricetosend:$pricetosend,cut1:parseInt($cut1),cut2:parseInt($cut2),store_id:$("#store_id").val()},
 			success:function(){
 				alert("已更新！");
 			}

@@ -210,7 +210,7 @@ public class store_Bean {
 		}
 		return notice;
 	}
-	public boolean set_store_price(double price_tosend,double cut1,double cut2,int store_id)
+	public boolean set_store_price(double price_tosend,String cut1,String cut2,int store_id)
 	{
 		conn = DBconn.GetConnection();
 		try

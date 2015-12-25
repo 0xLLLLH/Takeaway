@@ -56,7 +56,7 @@
     	 out.println( "<address_id>" + elem.getAddress_id() + "</address_id>" );
     	 //out.println( "<dish_id_string>" + result + "</dish_id_string>" );
     	 out.println( "<payment_type>" + elem.getPayment_type() + "</payment_type>" );
-    	 out.println( "<receiving_time>" + elem.getReceiving_time() + "</receiving_time>" );
+    	// out.println( "<receiving_time>" + elem.getReceiving_time() + "</receiving_time>" );
     	 out.println( "<remark>" + elem.getRemark() + "</remark>" );
     	 out.println( "<setorder_time>" + elem.getSetorder_time() + "</setorder_time>" );
     	 out.println( "<state>" + elem.getState() + "</state>" );

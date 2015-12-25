@@ -11,20 +11,20 @@ public class order_Bean {
 	 * @param store_id
 	 * @return
 	 */
-	public order_Info get_receiving_time(String order_id)
+	public int get_send_time(String order_id)
 	{
-		order_Info info =new order_Info();
+		int time=0;
 		conn = DBconn.GetConnection();
 		try
 		{
-			String sql ="select receiving_time  from "+order_Info.order_Table_Name
+			String sql ="select send_time  from "+order_Info.order_Table_Name
 					+" where id='"+order_id+"'";
 			System.out.println(sql);
 			Statement st = conn.createStatement();
 			ResultSet rs =st.executeQuery(sql);
 			if(rs.next())
 			{
-				info.setReceiving_time(rs.getTimestamp("receiving_time"));
+				time = rs.getInt("send_time");
 			}
 		}
 		catch(SQLException e)
@@ -46,7 +46,7 @@ public class order_Bean {
 				}
 			}
 		}
-		return info;
+		return time;
 	}
 	public comment_Info get_comment_inorder(String order_id)
 	{
@@ -86,7 +86,7 @@ public class order_Bean {
 		}
 		return info;
 	}
-	public boolean update_store_NumandScore(int store_id,int sell_num,double now_score)
+	public boolean update_store_NumandScore(int store_id,int sell_num,double now_score,int send_time)
 	{
 		conn = DBconn.GetConnection();
 		try
@@ -94,6 +94,7 @@ public class order_Bean {
 			String sql ="update "+store_Info.dataTable_store_Name
 					+" set sell_num = "+sell_num
 					+",score="+now_score
+					+",ave_sendtime="+send_time
 					+" where id="+store_id;
 			System.out.println(sql);
 			Statement st = conn.createStatement();
@@ -128,7 +129,7 @@ public class order_Bean {
 		conn = DBconn.GetConnection();
 		try
 		{
-			String sql = "select score,sell_num from "+store_Info.dataTable_store_Name
+			String sql = "select score,sell_num ,ave_sendtime from "+store_Info.dataTable_store_Name
 					+" where id = "+store_id;
 			System.out.println(sql);
 			Statement st = conn.createStatement();
@@ -137,6 +138,7 @@ public class order_Bean {
 			{
 				info.setScore(rs.getDouble("score"));
 				info.setSell_num(rs.getInt("sell_num"));
+				info.setAve_sendtime(rs.getInt("ave_sendtime"));
 			}
 		}
 		catch(SQLException e)
@@ -209,11 +211,11 @@ public class order_Bean {
 		}
 		return true;
 	}
-	public boolean  insert_Comments(String comments,String username,double score,String order_id,int store_id)
+	public boolean  insert_Comments(String comments,String username,double score,String order_id,int store_id,int send_time)
 	{
 		conn = DBconn.GetConnection();
 		try
-		{
+		{	
 			java.sql.Timestamp now=new java.sql.Timestamp(new java.util.Date().getTime());
 			String sql ="insert into "+comment_Info.comment_Table_Name
 					+"(comments,username,score,order_id,store_id,time) values('"
@@ -221,6 +223,10 @@ public class order_Bean {
 					+"')";
 			System.out.println(sql);
 			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+			sql="update "+order_Info.order_Table_Name
+					+" set send_time = '"+send_time+"'";
+			System.out.println(sql);
 			st.executeUpdate(sql);
 		}
 		catch(SQLException e)
