@@ -1,4 +1,26 @@
 var nowpage =0;
+var pagenum=0;
+var num=0;
+var f=0;
+$(function(){
+	num=0;
+	f=0;
+	nowpage=0;
+	pagenum=0;
+	$.ajax({
+		url:"code/count_Order.jsp",
+		type:"get",
+		data:{username:$("#username").val()},
+		success:function(data){
+			//alert(data.trim());
+			num = parseInt(data.trim());
+			allnum=num;
+			if(allnum%6!=0)
+				pagenum++;
+			pagenum+=parseInt(allnum/6-1);
+		}
+	});
+})
 $(function(){
 	//$("#load_div").hide();
 	$(document).ajaxStart(function(){
@@ -108,7 +130,7 @@ function update_order_list(){
 	$.ajax({
 		url:"code/get_Order_Info.jsp",
 		type:"get",
-		data:{username:$("#username").val()},
+		data:{username:$("#username").val(),nowpage:nowpage},
 		success:function(data){
 			var id=$(data).find("id");
 			var address_id=$(data).find("address_id");
@@ -449,7 +471,10 @@ function update_order_list(){
 						+'</div>';
 				$(".order-list").append(add_order);		
 			}
-			$(".intro:eq(0)").next().show();
+			if(f==0){
+				$(".intro:eq(0)").next().show();
+				f=1;
+			}
 			$(".comment-area").find(".i-star-empty-n").mouseover(addColor);
 
 			$(".comment-area").find(".i-star-empty-n").mouseout(removeColor);
@@ -659,47 +684,28 @@ $(document).on("click",".btn-cancel",function(){
 
 
 $(function(){
-	nowpage=0;
 	$("#first").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		
 		nowpage=0;
 		//alert(nowpage);
-		update_Comments_list();
+		update_order_list();
 	});
 	$("#prev").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		
 		if(nowpage>0)
 			--nowpage;
 		//alert(nowpage);
-			update_Comments_list();
+		update_order_list();
 		});
 	$("#next").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
 		
-		if(nowpage<allnum)
+		if(nowpage<pagenum)
 			++nowpage;
 		//alert(nowpage);
-			update_Comments_list();
+		update_order_list();
 	});
 	$("#last").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		nowpage=allnum;
+		nowpage=pagenum;
 		//alert(nowpage);
-		update_Comments_list();
+		update_order_list();
 	});
 })
 
