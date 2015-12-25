@@ -4,7 +4,6 @@ public class order_Info {
 	public static String  order_Table_Name = "order_list";
 	public static int pre_page = 6;
 	private String id;
-	private double score;
 	private Date setorder_time;
 	private int state ;
 	private Date receiving_time;
@@ -21,7 +20,7 @@ public class order_Info {
 	private String discount_result;
 	order_Info(){}
 	public order_Info(String id, Date setorder_time, int state, Date receiving_time, String time_from_setorder, double total_price,String discount_result,
-			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,double score,String name,String phone) {
+			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,String name,String phone) {
 		//super();
 		this.id = id;
 		this.setorder_time = setorder_time;
@@ -34,7 +33,6 @@ public class order_Info {
 		this.remark = remark;
 		this.payment_type = payment_type;
 		this.address=address;
-		this.score=score;
 		this.total_price=total_price;
 		this.discount_result=discount_result;
 	}
@@ -63,12 +61,6 @@ public class order_Info {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public double getScore() {
-		return score;
-	}
-	public void setScore(double score) {
-		this.score = score;
 	}
 	public String getAddress() {
 		return address;
@@ -138,7 +130,7 @@ public class order_Info {
 	}
 	@Override
 	public String toString() {
-		return "order_Info [id=" + id + ", score=" + score + ", setorder_time=" + setorder_time + ", state=" + state
+		return "order_Info [id=" + id + ", setorder_time=" + setorder_time + ", state=" + state
 				+ ", receiving_time=" + receiving_time + ", time_from_setorder=" + time_from_setorder + ", address_id="
 				+ address_id + ", dish_id_string=" + dish_id_string + ", store_id=" + store_id + ", remark=" + remark
 				+ ", payment_type=" + payment_type + ", address=" + address + "]";
