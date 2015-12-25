@@ -5,6 +5,44 @@ import java.text.SimpleDateFormat;
 public class order_Bean {
 	private Connection conn;
 	public order_Bean(){}
+	public int get_Order_num(String username)
+	{
+		conn = DBconn.GetConnection();
+		int num = 0;
+		try
+		{
+			String sql =" select count(*) as num from "+order_Info.order_Table_Name
+					+" where username ='"+username+"'";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next())
+			{
+				num=rs.getInt("num");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+				}
+			}
+		}
+		return num;
+	}
 	public boolean insert_Order(String id ,int state,String time_from_setorder,int address_id,String dish_id_string,int store_id,String remark,int payment_type,String username,String discount_result,double total_price)
 	{
 		conn = DBconn.GetConnection();

@@ -1,4 +1,5 @@
 var nowpage=0;
+var pagenum=0;
 $(function(){
 	//$("#load_div").hide();
 	$(document).ajaxStart(function(){
@@ -396,46 +397,32 @@ $(function(){
 	update_Comments_list();
 })
 $(function(){
+	pagenum=0;
 	nowpage=0;
+	var allnum =$("#zt").val();
+	if(allnum%10!=0)
+		nowpage++;
+	nowpage+=parseInt(allnum/10-1);
 	$("#first").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		
 		nowpage=0;
-		//alert(nowpage);
+		alert(nowpage);
 		update_Comments_list();
 	});
-	$("#prev").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		
+	$("#prev").click(function(){		
 		if(nowpage>0)
 			--nowpage;
-		//alert(nowpage);
+		alert(nowpage);
 			update_Comments_list();
 		});
 	$("#next").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		
-		if(nowpage<allnum)
+		if(nowpage<pagenum)
 			++nowpage;
-		//alert(nowpage);
+		alert(nowpage);
 			update_Comments_list();
 	});
 	$("#last").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
-			allnum++;
-		allnum=parseInt(allnum/10-1);
-		nowpage=allnum;
-		//alert(nowpage);
+		nowpage=pagenum;
+		alert(nowpage);
 		update_Comments_list();
 	});
 })

@@ -201,7 +201,7 @@ public class store_Bean {
 		conn = DBconn.GetConnection();
 		try
 		{
-			String sql ="select id from "+store_Info.dataTable_store_Name+","+store_Info.dataTable_application_name
+			String sql ="select "+store_Info.dataTable_store_Name+".id from "+store_Info.dataTable_store_Name+","+store_Info.dataTable_application_name
 					+" where "+store_Info.dataTable_store_Name+".username = "+store_Info.dataTable_application_name+".username"
 					+" and "+store_Info.dataTable_store_Name+".username ='"+username+"' and state =1";
 			System.out.println(sql);
