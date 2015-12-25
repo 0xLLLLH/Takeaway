@@ -14,7 +14,7 @@ $(window).scroll(function(event){
 	}else {
 		$(".broadcast-fixed").hide();
 	}
-	$(".list-title").each(function(){
+	$(".list-title:even").each(function(){
 		if ($(this).offset().top+$(this).outerHeight(true)-$(document).scrollTop()<60){
 			$(this).next().show();
 			$(this).next().width($(".list-title").width());
@@ -79,6 +79,7 @@ $(".tab-bar").find("button").click(function (){
 	//$("#"+target).siblings().hide();
 	$(".tab-container").children().hide();
 	$("."+target).show();
+	$(".list-title-fixed").hide();
 });
 
 $(document).on("click",".list-item",function(){
@@ -232,7 +233,7 @@ $(function(){
 						+"<div class=\"list-content\" id=\""+type_id[i].firstChild.nodeValue+"\"></div>";
 				$(".item-list").append(add_title);
 				for(var j=0;j<dish_num[i].firstChild.nodeValue;++j,++s){
-					var add_dish ="<div class=\"list-item\" data-id=\""+dish_id[s].firstChild.nodeValue+"\" data-price="+price[s].firstChild.nodeValue+">"
+					var add_dish ="<div class='list-item clearfix' data-id=\""+dish_id[s].firstChild.nodeValue+"\" data-price="+price[s].firstChild.nodeValue+">"
 								+"<div class=\"title fl\">"+dish_name[s].firstChild.nodeValue+"</div>"
 								+"<div class=\"sold fr\">总销量"+sell_num[s].firstChild.nodeValue+"</div>"
 								+"<div class=\"plus fr\">+</div>"
