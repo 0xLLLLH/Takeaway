@@ -100,12 +100,13 @@ $(document).on("click",".submit_cmt",function(){
 		var item_store_id=$(this).parents("div:eq(4)").data("store");
 		var item_order_id=$(this).parents("div:eq(4)").data("id");
 		//alert(item_id + " " + item_store_id);
+		alert($("#recive_time").val());
 		$.ajax({
 			url:"code/insert_Comment.jsp",
 			type:"get",
-			data:{score:star,comments:comments,username:$("#username").val(),store_id:item_store_id,order_id:item_order_id,},
+			data:{score:star,comments:comments,username:$("#username").val(),store_id:item_store_id,order_id:item_order_id,send_time:$("#recive_time").val()},
 			success:function(data){
-				alert(data);
+				//alert(data);
 			}
 			
 		});
@@ -123,7 +124,7 @@ $(document).on("click",".submit_cmt",function(){
 		new_item=new_item+'</span>'
 		+'</div>'
 		+'<div class="onerow clearfix">'
-		+'<span class="fl"><span class="color_red">*</span><label>送达时间：</label>2015-12-22 18:50</span>'
+		+'<span class="fl"><span class="color_red">*</span><label>配送用时：</label>'+$("#recive_time").val()+'</span>'
 		+'</div>'
 		+'<div class="onerow clearfix">'
 		+'<span class="fl"><span class="color_red" style="visibility: hidden;">*</span><label>补充评价：</label></span>'
@@ -169,6 +170,15 @@ function update_order_list(){
 			$(".order-list").empty();
 			for(var i = 0,s=0;i<id.length;++i){
 				//alert(id[i].firstChild.nodeValue);
+				var timeset = time_from_setorder[i].firstChild.nodeValue;
+				var eachtime = timeset.split("-");
+				var bf_time = setorder_time[i].firstChild.nodeValue;
+				var z=0;
+				
+			/*	var b_time=bf_time;
+				b_time.setTime(b_time.getTime()+eachtime[z++]);
+				b_time.toGMTString();
+				*/
 				var add_order='<div class="order" data-id='+id[i].firstChild.nodeValue+' data-store='+store_id[i].firstChild.nodeValue+'>'
 						+'<a class="order-another btn btn-success">再来一单</a>'
 						+'<div class="intro">'
@@ -201,6 +211,9 @@ function update_order_list(){
 	 					}
 	 					else 
 	 						cut="不满足优惠要求";
+	 					var rk="";
+	 					if(remark[i].firstChild!=null)
+	 						rk=remark[i].firstChild.nodeValue;
 	 add_order=add_order+'<div class="field">菜品共'+dish_count[i].firstChild.nodeValue+'份，总价&yen;'+totalprice+'元</div>'
 						+'<div class="field">'+add_dish+'<div class="clearfix"><div class="discount fl">满减优惠</div><div class="discount fr">-&yen;'
 	 					+cut
@@ -214,7 +227,7 @@ function update_order_list(){
 						+'<p>地址：'+address[i].firstChild.nodeValue+'</p>'
 						+'<p>姓名：'+name[i].firstChild.nodeValue+'</p>'
 						+'<p>电话：'+phone[i].firstChild.nodeValue+'</p>'
-						+'<p>备注：'+remark[i].firstChild.nodeValue+'</p>'
+						+'<p>备注：'+rk+'</p>'
 						+'</div>'
 						+'</div>'
 						+'<div class="detail-right">';
@@ -222,7 +235,7 @@ function update_order_list(){
 	 					if(step==1){//下单成功等待付款
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderetyok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderetyok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><button class="btn btn-success pay btn-next">去付款</button>&nbsp;&nbsp;<button class="btn btn-default  btn-cancel">取消订单</button></p>'
 							+'</div>'
 							+'</div>';
@@ -230,7 +243,7 @@ function update_order_list(){
 	 					else if(step==10){//下单成功，取消订单
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -242,7 +255,7 @@ function update_order_list(){
 	 					else if(step==11){//下单成功，成功付款，等待接单
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -254,7 +267,7 @@ function update_order_list(){
 	 					else if(step==110){//下单成功，成功付款，拒绝接单
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -270,7 +283,7 @@ function update_order_list(){
 	 					else if(step==111){//下单成功，成功付款，成功接单
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -286,7 +299,7 @@ function update_order_list(){
 	 					else if(step==112){//下单成功，成功付款，取消订单
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -302,7 +315,7 @@ function update_order_list(){
 	 					else if(step==1110){//下单成功，成功付款，成功接单，申请退款
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -321,7 +334,7 @@ function update_order_list(){
 	 					else if(step==1111){//下单成功，成功付款，成功接单，订单完成
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -340,7 +353,7 @@ function update_order_list(){
 	 					else if(step==11100){//下单成功，成功付款，成功接单，申请退款 ，退款失败，继续配送
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -364,7 +377,7 @@ function update_order_list(){
 	 					else if(step==111001){//下单成功，成功付款，成功接单，申请退款，退款失败，继续配送,订单完成***
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -391,7 +404,7 @@ function update_order_list(){
 	 					else if(step==11101){//下单成功，成功付款，成功接单，，申请退款，退款成功
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
-	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
+	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">'+setorder_time[i].firstChild.nodeValue.split(':')[0]+':'+setorder_time[i].firstChild.nodeValue.split(':')[1]+'</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -424,9 +437,9 @@ function update_order_list(){
 							+'<span class="inform fl">点击星星打分</span>'
 							+'</div>'
 							+'<div class="onerow clearfix">'
-							+'<span class="fl"><span class="color_red">*</span>送达时间：当天</span>'
-							+'<select class="fl">';
-	 						var now=new Date(orderTime);
+							+'<span class="fl"><span class="color_red">*</span>送达时间：</span>'
+							+'<select class="fl" id="recive_time">';
+	 						/*var now=new Date(orderTime);
 	 						var time_back=2*60;
 	 						var per=15;
 	 						now.setHours(now.getHours()-time_back/60, Math.floor(now.getMinutes()/per)*per, 0, 0)
@@ -437,10 +450,14 @@ function update_order_list(){
 	 							if (m<10)
 	 								mm='0'+mm;
 	 							add_order+='<option value="'+now.toString()+'">'+now.getHours()+":"+mm+'</option>';
+	 						}*/
+	 						for(var l=1;l<=9;l++){
+	 				
+	 							add_order+='<option value="'+15*l+'">'+15*l+'</option>';
 	 						}
 							
 							add_order=add_order+'</select>'
-							+'<span class="fl">送达</span>'
+							+'<span class="fl">分钟</span>'
 							+'</div>'
 							+'<div class="onerow clearfix">'
 							+'<span class="fl"><span class="color_red" style="visibility: hidden;">*</span>补充评价：</span>'
@@ -464,16 +481,17 @@ function update_order_list(){
 	 							success:function(data){
 	 								var comments=$(data).find("comments");
 	 								var score =$(data).find("score");
-	 								var receiving_time =$(data).find("receiving_time");
+	 								var send_time =$(data).find("send_time");
 	 								var sc=score[0].firstChild.nodeValue;
 	 								//alert(score[0].firstChild.nodeValue)
 	 								add_order=add_order+'<div class="comment-result" data-step="'+step+'">'
 	 								+'<div class="onerow clearfix"><label style="font-size: 18px;">我的评价</label></div>'
 	 								+'<div class="onerow clearfix">'
 	 								+'<label class="fl"><span class="color_red">*</span>总体评价：</label>'
-	 								+'<span class="stars-rank fl" data-rank="0">';
+	 								+'<span class="stars-rank fl" data-rank="'+sc+'">';
 	 								if(sc==0){
-	 									add_order=add_order+'<i class="fl icon i-star-empty-n></i>'
+	 									add_order=add_order
+	 									+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
@@ -481,7 +499,8 @@ function update_order_list(){
 	 								}
 	 								else if(sc==1){
 
-	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+	 									add_order=add_order
+	 									+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
@@ -489,15 +508,16 @@ function update_order_list(){
 	 								}
 	 								else if(sc==2){
 
-	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+	 									add_order=add_order
+	 									+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>';
 	 								}
 	 								else if(sc==3){
-
-	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+	 									add_order=add_order
+	 									+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-empty-n"></i>'
@@ -505,7 +525,8 @@ function update_order_list(){
 	 								}
 	 								else if(sc==4){
 
-	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+	 									add_order=add_order
+	 									+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
@@ -513,7 +534,8 @@ function update_order_list(){
 	 								}
 	 								else if(sc==5){
 
-	 									add_order=add_order+'<i class="fl icon i-star-full-n></i>'
+	 									add_order=add_order
+	 									+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
 		 								+'<i class="fl icon i-star-full-n"></i>'
@@ -523,7 +545,7 @@ function update_order_list(){
 	 								+'</span>'
 	 								+'</div>'
 	 								+'<div class="onerow clearfix">'
-	 								+'<span class="fl"><span class="color_red">*</span><label>送达时间：</label>'+receiving_time[0].firstChild.nodeValue+'</span>'
+	 								+'<span class="fl"><span class="color_red">*</span><label>配送用时：</label>'+send_time[0].firstChild.nodeValue+'</span>'
 	 								+'</div>'
 	 								+'<div class="onerow clearfix">'
 	 								+'<span class="fl"><span class="color_red" style="visibility: hidden;">*</span><label>补充评价：</label></span>'
@@ -536,6 +558,7 @@ function update_order_list(){
 						add_order=add_order+'</div>'
 						+'</div>'
 						+'</div>';
+						
 				$(".order-list").append(add_order);		
 			}
 			if(f==0){

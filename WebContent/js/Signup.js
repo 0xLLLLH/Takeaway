@@ -109,7 +109,7 @@
 						 if( result == "success" )
 						 {
 							 // alert( "注册成功" );
-							 window.location.href="LocationSelect.jsp";
+							 window.location.href="ShopList.jsp";
 						  }
 						  else
 						  {
@@ -188,7 +188,7 @@
 								  var cookie_value = fun("LoginForm","login_password");
 								  addCookie("cookie",cookie_name+"+"+cookie_value,24*365);		//调用函数添加cookie
 							  }
-							  window.location.href="LocationSelect.jsp";
+							  window.location.href="ShopList.jsp";
 						  }
 						  else if(result=="username_exitandpassword_right1")
 						  {

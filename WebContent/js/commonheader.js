@@ -85,7 +85,7 @@ function update_List(type,order,search){
 			$("#search_shop_List").empty();//clear
 			for(var i=0;i<id.length;++i)
 			{
-				var sc=score[i].firstChild.nodeValue==-1?"暂无":score[i].firstChild.nodeValue;
+				var sc=score[i].firstChild.nodeValue==-1?"暂无":parseFloat(score[i].firstChild.nodeValue).toFixed(1);
 				var notice = shop_notice[i].firstChild.nodeValue == "null"?"暂无公告":shop_notice[i].firstChild.nodeValue;
 				var dcnt;
 				if(discount[i].firstChild.nodeValue!=null){

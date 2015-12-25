@@ -63,7 +63,7 @@ function LoadPage(){
 			//$("#shop_list").empty();//clear
 			for(var i=0;i<id.length;++i)
 			{
-				var sc=score[i].firstChild.nodeValue==-1?"暂无":score[i].firstChild.nodeValue;
+				var sc=score[i].firstChild.nodeValue==-1?"暂无":parseFloat(score[i].firstChild.nodeValue).toFixed(1);
 				var notice = shop_notice[i].firstChild.nodeValue == "null"?"暂无公告":shop_notice[i].firstChild.nodeValue;
 				var dcnt;
 				if(discount[i].firstChild.nodeValue!=null){
@@ -84,9 +84,9 @@ function LoadPage(){
 									+"<div class=\"shop-preview\">"
 										+"<img alt=\"preview\"  src=\"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=398990237,3888602267&fm=58\">"
 									+"</div>"
-									+"<div class=\"shop-content clearfix\">"
+									+"<div class=\"shop-content clearfix\">" 
 										+"<div class=\"clearfix\"><span class=\"shopname\">"+shop_name[i].firstChild.nodeValue+"</span></div>"
-										+"<div class=\"clearfix\"><span class=\"fl\">评分 "+sc+"</span><span class=\"fr\" style=\"color:orange\">销量 "+sell_num[i].firstChild.nodeValue+"单</span></div>"
+										+"<div class=\"clearfix\"><span class=\"fl\">评分 "+ sc+"</span><span class=\"fr\" style=\"color:orange\">销量 "+sell_num[i].firstChild.nodeValue+"单</span></div>"
 										+"<div class=\"clearfix\"><span class=\"fl\">起送价 ￥"+price_tosend[i].firstChild.nodeValue+"</span><span class=\"fr\"><span class=\"glyphicon glyphicon-time\"></span> "+avetime+"</span></div>"
 									+"</div>"
 								+"</div>"
