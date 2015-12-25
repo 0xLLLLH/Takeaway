@@ -32,15 +32,15 @@
 	<input type="text" id="shop_name" style="display:none">
 	<div class="tab-container">
 		<div class="tab-item">
-			<div class="cart"><!-- 购物车 -->
-				<div class="cart-title">购物车<div class="clear fr"><span class="glyphicon glyphicon-trash"></span>清空</div></div>
-				<div class="cart-body">
+			<div class="cart clearfix"><!-- 购物车 -->
+				<div class="cart-title clearfix">购物车<div class="clear fr"><span class="glyphicon glyphicon-trash"></span>清空</div></div>
+				<div class="cart-body clearfix">
 					<table id="cart-items" class="table table-hover" style="margin:0;">
 						<tr><th>菜品</th><th>份数</th><th>单价</th></tr>
 						
 					</table>
 				</div>
-				<div class="cart-footer">
+				<div class="cart-footer clearfix">
 					<div class="total-price fl">
 						<span class="glyphicon glyphicon-shopping-cart"></span>共&yen;<span id="total_price">0</span>元
 					</div>
