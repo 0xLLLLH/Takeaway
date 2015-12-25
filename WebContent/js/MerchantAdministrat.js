@@ -564,13 +564,130 @@ $(function(){
 				}
 			}
 			bind_bnt();
+			/*
+			 * 类别加载完后再加载当前订单
+			 */
+			$(function(){
+				//alert($("#store_id").val());
+				$.ajax({
+					url:"code/get_Store_Orders.jsp",
+					type:"get",
+					data:{shop_id:$("#store_id").val(),state:11},
+					success:function(data){
+						//alert($("#store_id").val());
+						var order_id=$(data).find("id");
+						var name=$(data).find("name");
+						var phone=$(data).find("phone");
+						var address=$(data).find("address");
+						var payment_type=$(data).find("payment_type");
+						var remark=$(data).find("remark");
+						var ordertime=$(data).find("setorder_time");
+						var state=$(data).find("state");
+						var store_id=$(data).find("store_id");
+						var dishes=$(data).find("dishes");
+						
+						
+						for(var i=0,s=0;i<order_id.length;i++){
+							var new_row='<tr data-state="11" data-id="'+order_id[i].firstChild.nodeValue+'">'
+							+'<td>'+ordertime[i].firstChild.nodeValue.substr(0,ordertime[i].firstChild.nodeValue.length-5)+'</td>'
+							+'<td>'
+							+dishes[i].firstChild.nodeValue
+							+'</td>'
+							+'<td>'+name[i].firstChild.nodeValue+'</td>'
+							+'<td>'+phone[i].firstChild.nodeValue+'</td>'
+							+'<td>'+address[i].firstChild.nodeValue+'</td>'
+							+'<td style="width: 160px"><nobr>'
+							+'<button type="button" class="btn-sm btn btn-success btn-agree"'
+							+'style="width: 80px;">接单</button>'
+							+'<button type="button" class="btn-sm btn btn-danger btn-disagree"'
+							+'style="width: 80px">拒绝</button>'
+							+'</nobr></td>'
+							+'</tr>'
+							$(".table-1").append($(new_row));
+							if($(".table-1").find("tr").length>8)
+								$(".table-1").find("tr:gt(7)").hide();
+						}
+					}
+				});
+			});
+			/*
+			 * 加载完后再加载当前退单订单
+			 */
+			$(function(){
+				//alert($("#store_id").val());
+				$.ajax({
+					url:"code/get_Store_Orders.jsp",
+					type:"get",
+					data:{shop_id:$("#store_id").val(),state:1110},
+					success:function(data){
+						//alert($("#store_id").val());
+						var order_id=$(data).find("id");
+						var name=$(data).find("name");
+						var phone=$(data).find("phone");
+						var address=$(data).find("address");
+						var payment_type=$(data).find("payment_type");
+						var remark=$(data).find("remark");
+						var ordertime=$(data).find("setorder_time");
+						var state=$(data).find("state");
+						var store_id=$(data).find("store_id");
+						var dishes=$(data).find("dishes");
+						for(var i=0,s=0;i<order_id.length;i++){
+							var new_row='<tr data-state="1110" data-id="'+order_id[i].firstChild.nodeValue+'">'
+							+'<td>'+ordertime[i].firstChild.nodeValue.substr(0,ordertime[i].firstChild.nodeValue.length-5)+'</td>'
+							+'<td>'
+							+dishes[i].firstChild.nodeValue
+							+'</td>'
+							+'<td>'+name[i].firstChild.nodeValue+'</td>'
+							+'<td>'+phone[i].firstChild.nodeValue+'</td>'
+							//+'<td>'+address[i].firstChild.nodeValue+'</td>'
+							+'<td style="width: 160px"><nobr>'
+							+'<button type="button" class="btn-sm btn btn-success btn-agree"'
+							+'style="width: 80px;">同意</button>'
+							+'<button type="button" class="btn-sm btn btn-danger btn-disagree"'
+							+'style="width: 80px">拒绝</button>'
+							+'</nobr></td>'
+							+'</tr>'
+							$(".table-2").append($(new_row));
+							if($(".table-2").find("tr").length>8)
+								$(".table-2").find("tr:gt(7)").hide();
+						}
+					}
+				});
+			});
 		}
 		
 	});
 })
 
+$(document).on("click",".btn-agree",function(){
+	var $tr=$(this).parents("tr");
+	var id=$tr.data("id");
+	var state=$tr.data("state")+"1";
+	$.ajax({
+		url:"code/update_State.jsp",
+		type:"get",
+		data:{order_id:id,state:state},
+		success:function(data){
+				$tr.parent().find("tr:eq(8)").show();
+				$tr.remove();
+			}
+		});
+})
 
-    
-        
+$(document).on("click",".btn-disagree",function(){
+	var $tr=$(this).parents("tr");
+	var id=$tr.data("id");
+	var state=$tr.data("state")+"0";
+	$.ajax({
+		url:"code/update_State.jsp",
+		type:"get",
+		data:{order_id:id,state:state},
+		success:function(data){
+			$tr.parent().find("tr:eq(8)").show();
+			$tr.remove();
+			}
+		});
+})
+
 
         

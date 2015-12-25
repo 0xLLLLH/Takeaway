@@ -64,7 +64,7 @@
 							</div>
 							<hr>
 							<div class="dan_div curdan_div">
-								<table class="table table-striped table-hover table-bordered"
+								<table class="table-1 table table-striped table-hover table-bordered"
 									id="app_table">
 									<tr>
 										<th>下单时间</th>
@@ -74,9 +74,7 @@
 										<th>收货地址</th>
 										<th>操作</th>
 									</tr>
-									<%
-										for (int i = 0; i < 8; i++) {
-									%>
+									<!-- 
 									<tr>
 										<td>15:19</td>
 										<td>黄焖鸡米饭x2+米饭+可口可乐</td>
@@ -90,26 +88,23 @@
 													style="width: 80px">拒绝</button>
 											</nobr></td>
 									</tr>
-									<%
-										}
-									%>
+									-->
 								</table>
 							</div>
 
 							<div class="dan_div">
-								<table class="table table-striped table-hover table-bordered"
+								<table class="table-2 table table-striped table-hover table-bordered"
 									id="app_table">
 									<tr>
 										<th>申请时间</th>
 										<th>菜名</th>
 										<th>收货姓名</th>
 										<th>手机号码</th>
-										<th>退单理由</th>
+										<!-- <th>退单理由</th> -->
 										<th>操作</th>
 									</tr>
-									<%
-										for (int i = 0; i < 8; i++) {
-									%>
+									
+									<!-- 
 									<tr>
 										<td>15:19</td>
 										<td>黄焖鸡米饭x2+米饭+可口可乐</td>
@@ -123,9 +118,7 @@
 													style="width: 80px">拒绝</button>
 											</nobr></td>
 									</tr>
-									<%
-										}
-									%>
+									 -->
 								</table>
 							</div>
 
@@ -197,7 +190,7 @@
 										<div class="black">
 											<span class="glyphicon glyphicon-list-alt"
 												style="line-height: 3.5; font-weight: bold; font-size: 20px">
-												订餐必读&商家公告</span>
+												订餐必读&amp;商家公告</span>
 											<textarea name="feedback"
 												style="height: 200px; margin: 0 auto" id="shop_notice"></textarea>
 										</div>
