@@ -8,6 +8,32 @@ $(function(){
 		$("#load_div").hide();
 	});
 })
+$(function(){
+	$(".buy").click(function(){
+		var go = "Order.jsp?";
+		$("#cart-items tr:gt(0)").each(function(i){
+			var item_id = $(this).data("id");
+			if(i==0)
+				go=go+"id="+item_id;
+			else 
+				go=go+"&id="+item_id;
+			var item_price =$(this).data("price");
+			go=go+"&price="+item_price;
+			var item_num = $(this).find(".count").val();
+			go=go+"&num="+item_num;
+			var item_name = $(this).children("td").eq(0).text();
+			go=go+"&name="+item_name;
+		});
+		if(go=="Order.jsp?") alert("你的购物车还是空的哟！");
+		else{
+			go=go+"&discount="+$("#store_discount").val();
+			go=go+"&ttprice="+$("#total_price").text();
+			go=go+"&store_id="+$("#store_id").val();
+			go=go+"&shop_name="+$("#shop_name").val();
+			window.location.href=go;
+		}
+	})
+})
 $(window).scroll(function(event){
 	if ($(".broadcast").offset().top+$(".broadcast").outerHeight(true)-$(document).scrollTop()<0){
 		$(".broadcast-fixed").show();
@@ -158,6 +184,8 @@ $(function(){
 			var ave_sendtime=$(data).find("ave_sendtime");
 			var discount=$(data).find("discount");
 			//alert(shop_name[0].firstChild.nodeValue);
+			$("#shop_name").val(shop_name[0].firstChild.nodeValue);
+			$("#store_discount").val(discount[0].firstChild.nodeValue);
 			$("title").text(shop_name[0].firstChild.nodeValue);
 			$(".shop_name").text(shop_name[0].firstChild.nodeValue);
 			$(".score-board-title").html("("+shop_name[0].firstChild.nodeValue+")总体评分");
@@ -375,7 +403,7 @@ $(function(){
 		allnum=parseInt(allnum/10-1);
 		
 		nowpage=0;
-		alert(nowpage);
+		//alert(nowpage);
 		update_Comments_list();
 	});
 	$("#prev").click(function(){
@@ -386,7 +414,7 @@ $(function(){
 		
 		if(nowpage>0)
 			--nowpage;
-		alert(nowpage);
+		//alert(nowpage);
 			update_Comments_list();
 		});
 	$("#next").click(function(){
@@ -397,7 +425,7 @@ $(function(){
 		
 		if(nowpage<allnum)
 			++nowpage;
-		alert(nowpage);
+		//alert(nowpage);
 			update_Comments_list();
 	});
 	$("#last").click(function(){
@@ -406,7 +434,7 @@ $(function(){
 			allnum++;
 		allnum=parseInt(allnum/10-1);
 		nowpage=allnum;
-		alert(nowpage);
+		//alert(nowpage);
 		update_Comments_list();
 	});
 })

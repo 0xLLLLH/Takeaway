@@ -16,8 +16,10 @@ public class order_Info {
 	private String address;
 	private String name;
 	private String phone;
+	private double total_price;
+	private String discount_result;
 	order_Info(){}
-	public order_Info(String id, Date setorder_time, int state, Date receiving_time, String time_from_setorder,
+	public order_Info(String id, Date setorder_time, int state, Date receiving_time, String time_from_setorder, double total_price,String discount_result,
 			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,double score,String name,String phone) {
 		//super();
 		this.id = id;
@@ -32,9 +34,23 @@ public class order_Info {
 		this.payment_type = payment_type;
 		this.address=address;
 		this.score=score;
+		this.total_price=total_price;
+		this.discount_result=discount_result;
 	}
 	
 	
+	public double getTotal_price() {
+		return total_price;
+	}
+	public void setTotal_price(double total_price) {
+		this.total_price = total_price;
+	}
+	public String getDiscount_result() {
+		return discount_result;
+	}
+	public void setDiscount_result(String discount_result) {
+		this.discount_result = discount_result;
+	}
 	public String getPhone() {
 		return phone;
 	}
