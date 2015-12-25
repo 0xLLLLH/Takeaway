@@ -2,6 +2,7 @@ package com.takeaway;
 import java.util.*;
 public class order_Info {
 	public static String  order_Table_Name = "order_list";
+	public static int pre_page = 6;
 	private String id;
 	private double score;
 	private Date setorder_time;

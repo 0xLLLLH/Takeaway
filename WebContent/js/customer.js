@@ -108,7 +108,7 @@ function update_order_list(){
 	$.ajax({
 		url:"code/get_Order_Info.jsp",
 		type:"get",
-		data:{username:$("#username").val()},
+		data:{username:$("#username").val(),nowpage:nowpage},
 		success:function(data){
 			var id=$(data).find("id");
 			var address_id=$(data).find("address_id");
@@ -661,17 +661,17 @@ $(document).on("click",".btn-cancel",function(){
 $(function(){
 	nowpage=0;
 	$("#first").click(function(){
-		var allnum =$("#zt").val();
-		if(allnum%10!=0)
+		var allnum =nowpage;
+		if(allnum%6!=0)
 			allnum++;
-		allnum=parseInt(allnum/10-1);
+		allnum=parseInt(allnum/6-1);
 		
 		nowpage=0;
 		//alert(nowpage);
 		update_Comments_list();
 	});
 	$("#prev").click(function(){
-		var allnum =$("#zt").val();
+		var allnum =nowpage;
 		if(allnum%10!=0)
 			allnum++;
 		allnum=parseInt(allnum/10-1);

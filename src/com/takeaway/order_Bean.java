@@ -42,15 +42,16 @@ public class order_Bean {
 		}
 		return true;
 	}
-	public boolean get_order_info(ArrayList<order_Info> data,String username)
+	public boolean get_order_info(ArrayList<order_Info> data,String username,int nowpage)
 	{
 		conn = DBconn.GetConnection();
 		try
 		{
+			int pageon=nowpage*order_Info.pre_page;
 			String sql ="select "+order_Info.order_Table_Name+".id,address_id,address,dish_id_string,payment_type, name,remark, phone,setorder_time, state , store_id, time_from_setorder from "
 					+order_Info.order_Table_Name+","+address_Info.address_Table_Name
 					+" where "+order_Info.order_Table_Name+".username ='"+username+"' and "+order_Info.order_Table_Name+".address_id = "+address_Info.address_Table_Name+".id"
-					+" order by setorder_time desc";
+					+" order by setorder_time desc limit "+pageon+","+order_Info.pre_page;
 			System.out.println(sql);
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);

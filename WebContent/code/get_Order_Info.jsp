@@ -8,9 +8,10 @@
 <%@page import="java.util.ArrayList"%>
 <%
 	String username = request.getParameter("username");
+	int nowpage = Integer.parseInt(request.getParameter("nowpage"));
 	ArrayList<order_Info> data = new ArrayList<order_Info>();
 	order_Bean bean  = new order_Bean();
-	boolean result = bean.get_order_info(data, username);
+	boolean result = bean.get_order_info(data, username,nowpage);
 	response.setContentType("text/xml; charset=UTF-8");  
     response.setHeader("Cache-Control","no-cache"); 
     out.println("<type_data>");
