@@ -41,6 +41,7 @@ body{
 	padding:5px 30px;
 	font-size:13px;
 	color:#777;
+	cursor: pointer;
 }
 
 .tab-group .selected,.tab-group a:hover{
