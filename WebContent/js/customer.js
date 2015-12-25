@@ -1,3 +1,4 @@
+var nowpage =0;
 $(function(){
 	//$("#load_div").hide();
 	$(document).ajaxStart(function(){
@@ -102,8 +103,8 @@ $(document).on("click",".submit_cmt",function(){
 	}
 	
 })
+function update_order_list(){
 
-$(function(){
 	$.ajax({
 		url:"code/get_Order_Info.jsp",
 		type:"get",
@@ -458,6 +459,11 @@ $(function(){
 			});
 		}
 	});
+
+}
+
+$(function(){
+	update_order_list();
 })
 
 /* 
@@ -652,5 +658,48 @@ $(document).on("click",".btn-cancel",function(){
 })
 
 
-
+$(function(){
+	nowpage=0;
+	$("#first").click(function(){
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		
+		nowpage=0;
+		//alert(nowpage);
+		update_Comments_list();
+	});
+	$("#prev").click(function(){
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		
+		if(nowpage>0)
+			--nowpage;
+		//alert(nowpage);
+			update_Comments_list();
+		});
+	$("#next").click(function(){
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		
+		if(nowpage<allnum)
+			++nowpage;
+		//alert(nowpage);
+			update_Comments_list();
+	});
+	$("#last").click(function(){
+		var allnum =$("#zt").val();
+		if(allnum%10!=0)
+			allnum++;
+		allnum=parseInt(allnum/10-1);
+		nowpage=allnum;
+		//alert(nowpage);
+		update_Comments_list();
+	});
+})
 
