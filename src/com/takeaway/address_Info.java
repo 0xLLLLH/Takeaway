@@ -6,13 +6,22 @@ public class address_Info {
 	private String address;
 	private String username;
 	private String phone;
+	private String name;
 	public address_Info(){}
-	public address_Info(int id, String address, String username, String phone) {
+	public address_Info(int id, String address, String username, String phone,String name ) {
 		//super();
 		this.id = id;
 		this.address = address;
 		this.username = username;
 		this.phone = phone;
+		this.name=name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getId() {
 		return id;

@@ -133,7 +133,7 @@ $(function(){
 			//alert(id.length);
 			$(".order-list").empty();
 			for(var i = 0,s=0;i<id.length;++i){
-				
+				//alert(i);
 				var add_order='<div class="order">'
 						+'<a class="order-another btn btn-success">再来一单</a>'
 						+'<div class="intro">'
@@ -302,7 +302,7 @@ $(function(){
 							+'</div>'
 							+'</div>';
 	 					}
-	 					else if(step==11100){//下单成功，成功付款，成功接单，退款失败，继续配送
+	 					else if(step==11100){//下单成功，成功付款，成功接单，申请退款 ，退款失败，继续配送
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
 	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
@@ -326,7 +326,7 @@ $(function(){
 							+'</div>'
 							+'</div>';
 	 					}
-	 					else if(step==11101){//下单成功，成功付款，成功接单，退款失败，继续配送,订单完成
+	 					else if(step==111001){//下单成功，成功付款，成功接单，申请退款，退款失败，继续配送,订单完成***
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
 	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
@@ -334,6 +334,14 @@ $(function(){
 							+'</div>'
 							+'<div class="step">'
 							+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">支付成功，等待商家接单</span><span class="fr">2015-12-23 11:14</span></p>'
+							+'<p><i class="i-orderarrow fl"></i></p>'
+							+'</div>'
+							+'<div class="step">'
+							+'<p class="clearfix"><i class="icon i-ordernotok fl"></i><span class="fl" style="font-weight: bold;">商家接单，制作配送中</span><span class="fr">2015-12-23 11:14</span></p>'
+							+'<p><i class="i-orderarrow fl"></i></p>'
+							+'</div>'
+							+'<div class="step">'
+							+'<p class="clearfix"><i class="icon i-ordernotok fl"></i><span class="fl" style="font-weight: bold;">商家拒绝退款</span><span class="fr">2015-12-23 11:14</span></p>'
 							+'<p><i class="i-orderarrow fl"></i></p>'
 							+'</div>'
 							+'<div class="step">'
@@ -345,7 +353,7 @@ $(function(){
 							+'</div>'
 							+'</div>';
 	 					}
-	 					else if(step==111001){//下单成功，成功付款，成功接单，，申请退款，退款成功
+	 					else if(step==11101){//下单成功，成功付款，成功接单，，申请退款，退款成功
 	 						add_order=add_order+'<div class="progress-area" data-step="'+step+'">'/*<!--  progress-area-->*/
 	 						+'<div class="step">'
 	 						+'<p class="clearfix"><i class="icon i-orderok fl"></i><span class="fl" style="font-weight: bold;">订单提交成功，等待付款</span><span class="fr">2015-12-23 11:14</span></p>'
@@ -387,7 +395,7 @@ $(function(){
 	 						var time_back=2*60;
 	 						var per=15;
 	 						now.setHours(now.getHours()-time_back/60, Math.floor(now.getMinutes()/per)*per, 0, 0)
-	 						for (var i=0;i<time_back/per;i++){
+	 						for (var l=0;l<time_back/per;l++){
 	 							now.setMinutes(now.getMinutes()+per);
 	 							var m=now.getMinutes();
 	 							var mm=""+now.getMinutes();
@@ -440,6 +448,7 @@ $(function(){
 						+'</div>';
 				$(".order-list").append(add_order);		
 			}
+			$(".intro:eq(0)").next().show();
 			$(".comment-area").find(".i-star-empty-n").mouseover(addColor);
 
 			$(".comment-area").find(".i-star-empty-n").mouseout(removeColor);

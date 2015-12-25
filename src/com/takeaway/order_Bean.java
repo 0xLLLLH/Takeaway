@@ -1,10 +1,47 @@
 package com.takeaway;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.text.SimpleDateFormat;
 public class order_Bean {
 	private Connection conn;
 	public order_Bean(){}
+	public boolean insert_Order(String id ,int state,String time_from_setorder,int address_id,String dish_id_string,int store_id,String remark,int payment_type,String username,String discount_result,double total_price)
+	{
+		conn = DBconn.GetConnection();
+		try
+		{
+			java.sql.Timestamp now=new java.sql.Timestamp(new java.util.Date().getTime());
+			String sql ="insert into "+order_Info.order_Table_Name
+					+"(id,state,time_from_setorder,address_id,dish_id_string,store_id,remark,payment_type,username,discount_result,total_price,setorder_time)"
+					+" values('"+id+"',"+state+",'"+time_from_setorder+"',"+address_id+",'"+dish_id_string+"',"+store_id+",'"+remark+"',"+payment_type
+					+",'"+username+"','"+discount_result+"',"+total_price+",'"+now+"')";
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false ;
+				}
+			}
+		}
+		return true;
+	}
 	public boolean get_order_info(ArrayList<order_Info> data,String username)
 	{
 		conn = DBconn.GetConnection();
@@ -12,7 +49,8 @@ public class order_Bean {
 		{
 			String sql ="select "+order_Info.order_Table_Name+".id,address_id,address,dish_id_string,payment_type, name,remark, phone,setorder_time, state , store_id, time_from_setorder from "
 					+order_Info.order_Table_Name+","+address_Info.address_Table_Name
-					+" where "+order_Info.order_Table_Name+".username ='"+username+"' and "+order_Info.order_Table_Name+".address_id = "+address_Info.address_Table_Name+".id";
+					+" where "+order_Info.order_Table_Name+".username ='"+username+"' and "+order_Info.order_Table_Name+".address_id = "+address_Info.address_Table_Name+".id"
+					+" order by setorder_time desc";
 			System.out.println(sql);
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);

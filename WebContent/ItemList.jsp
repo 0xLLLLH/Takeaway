@@ -28,6 +28,8 @@
 	<div id="nowpage">
 	<% int store_id = Integer.parseInt(request.getParameter("store_id"));%>
 	<input type="text" id="store_id" value="<%out.print(store_id);%>" style="display:none">
+	<input type="text" id="store_discount" style="display:none">
+	<input type="text" id="shop_name" style="display:none">
 	<div class="tab-container">
 		<div class="tab-item">
 			<div class="cart clearfix"><!-- 购物车 -->
