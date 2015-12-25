@@ -3,6 +3,15 @@ var pagenum=0;
 var num=0;
 var f=0;
 $(function(){
+	//$("#load_div").hide();
+	$(document).ajaxStart(function(){
+		$("#load_div").show();
+	});
+	$(document).ajaxStop(function(){
+		$("#load_div").hide();
+	});
+})
+$(function(){
 	num=0;
 	f=0;
 	nowpage=0;
@@ -21,15 +30,7 @@ $(function(){
 		}
 	});
 })
-$(function(){
-	//$("#load_div").hide();
-	$(document).ajaxStart(function(){
-		$("#load_div").show();
-	});
-	$(document).ajaxStop(function(){
-		$("#load_div").hide();
-	});
-})
+
 $(document).on("click",".intro",function(){
 	var detail=$(this).next();
 	if (detail.is(":visible")==true){
@@ -92,11 +93,18 @@ $(document).on("click",".submit_cmt",function(){
 	if(star==0)
 		alert("请点击星星打分！");
 	else{
-		var $right=$(this).parents(".detail-right");
+		$right=$(this).parents(".detail-right");
 		var comments=  $right.find(".comments_text").val();
 		//这里添加提交到数据库的代码
-		
-		
+		alert(star+" "+comments);
+		var item_store_id=$(this).parents("div:eq(4)").data("store");
+		var item_id=$(this).parents("div:eq(4)").data("id");
+		/*$.ajax({
+			url:"code/",
+			type:"get",
+			data:{score:star,comments:comments,username:$("#usernmae").val(),store_id:}
+			
+		});*/
 		//接着显示评论
 		
 		var new_item='<div class="comment-result" data-step="3">'
@@ -156,8 +164,8 @@ function update_order_list(){
 			//alert(id.length);
 			$(".order-list").empty();
 			for(var i = 0,s=0;i<id.length;++i){
-				//alert(i);
-				var add_order='<div class="order">'
+				//alert(id[i].firstChild.nodeValue);
+				var add_order='<div class="order" data-id='+id[i].firstChild.nodeValue+' data-store='+store_id[i].firstChild.nodeValue+'>'
 						+'<a class="order-another btn btn-success">再来一单</a>'
 						+'<div class="intro">'
 						+'<a target="_blank" class="preview fl" href="ItemList.jsp?store_id='+store_id[i].firstChild.nodeValue+'">'
