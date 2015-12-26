@@ -4,7 +4,7 @@
 		for(var i=0; i<ca.length; i++) {
 	        var c = ca[i];
 	        //alert(c.split('=')[0].substring(0,7));
-	        if("cookie"==c.split('=')[0].substring(0,6))
+	        if("cookie"==c.split('=')[0].substring(1,7))
 	        {
 	        	var w=c.split('=')[1];
 	        	//alert(w);
@@ -175,7 +175,7 @@
 							  var ca = document.cookie.split(";");		//删除cookie
 								for(var i=0; i<ca.length; i++) {
 							        var c = ca[i];
-							        if("cookie"==c.split('=')[0].substring(0,6))
+							        if("cookie"==c.split('=')[0].substring(1,7))
 							        {
 							        	var date = new Date();
 										  date.setTime(date.getTime() - 10000);
