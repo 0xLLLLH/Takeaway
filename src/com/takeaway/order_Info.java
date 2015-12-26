@@ -16,10 +16,32 @@ public class order_Info {
 	private String address;
 	private String name;
 	private String phone;
-	private double total_price;
+	private double total_price;	
 	private String discount_result;
 	order_Info(){}
+
+	public order_Info(String id, Date setorder_time, int state, String time_from_setorder, double total_price,String discount_result,
+			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,String name,String phone) {
+		//super();
+		this.id = id;
+		this.setorder_time = setorder_time;
+		this.state = state;
+		this.time_from_setorder = time_from_setorder;
+		this.address_id = address_id;
+		this.dish_id_string = dish_id_string;
+		this.store_id = store_id;
+		this.remark = remark;
+		this.payment_type = payment_type;
+		this.address=address;
+		this.total_price=total_price;
+		this.discount_result=discount_result;
+		this.name=name;
+		this.phone=phone;
+		this.discount_result=discount_result;
+	}
+	
 	public order_Info(String id, Date setorder_time, int state, int send_time, String time_from_setorder, double total_price,String discount_result,
+
 			int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,String name,String phone) {
 		//super();
 		this.id = id;

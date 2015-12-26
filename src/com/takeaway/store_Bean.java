@@ -2,14 +2,65 @@ package com.takeaway;
 
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+import com.takeaway.order_Info;
 
 
 public class store_Bean {
 	private Connection conn;
 	public store_Bean(){}
-	public store_Info get_shopNamebyid(int store_id)
+	public boolean get_Shop_Orders(ArrayList<order_Info> data, String store_id,String state,int nowpage){
+		conn = DBconn.GetConnection();
+		try
+		{
+			//String id, Date setorder_time, int state, String time_from_setorder, double total_price,String discount_result,
+			//int address_id, String dish_id_string, int store_id, String remark, int payment_type,String address ,String name,String phone
+			//
+			
+			//SELECT `order_list`.`id` , `setorder_time`,`state`,`time_from_setorder` ,`total_price` ,`discount_result` ,`address_id` , `dish_id_string` , `store_id`,`remark` , `payment_type` , `address_list`.`address`,`address_list`.`name`,`address_list`.`phone` 
+			//FROM `order_list`,`address_list` 
+			//WHERE `order_list`.`address_id` =`address_list`.`id`  AND  `state`=11 AND `store_id`=60
+			String sql ="SELECT `order_list`.`id` , `setorder_time`,`state`,`time_from_setorder` ,`total_price` ,`discount_result` ,`address_id` , `dish_id_string` , `store_id`,`remark` , `payment_type` , `address_list`.`address`,`address_list`.`name`,`address_list`.`phone` "
+					+"FROM `order_list`,`address_list`"
+					+"WHERE `order_list`.`address_id` =`address_list`.`id`  AND  `state`="+state+" AND `store_id`="
+					+store_id;
+			System.out.println("store_id:"+store_id);
+			System.out.println(sql);
+			Statement st = conn.createStatement();
+			ResultSet rs =st.executeQuery(sql);
+			while(rs.next())
+			{
+				order_Info elem= new order_Info(rs.getString(1),rs.getTimestamp(2),rs.getInt(3),rs.getString(4),rs.getDouble(5),rs.getString(6),
+						rs.getInt(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getInt(11),rs.getString(12),rs.getString(13),rs.getString(14));
+				data.add(elem);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		
+		{
+			if(conn!=null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch(SQLException e)
+				{
+					System.out.println("关闭连接失败"+e.getMessage());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+ 	public store_Info get_shopNamebyid(int store_id)
 	{
 		store_Info info =new store_Info();
 		conn = DBconn.GetConnection();
